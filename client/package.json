@@ -1,0 +1,63 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-brands-svg-icons": "^5.6.0",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "@fortawesome/react-fontawesome": "^0.1.3",
+    "bootstrap": "^4.1.3",
+    "buffer": "^5.2.1",
+    "dotenv": "^6.2.0",
+    "draft-js": "^0.10.5",
+    "ipfs": "^0.33.1",
+    "ipfs-http-client": "^27.1.0",
+    "localforage": "^1.7.3",
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.3",
+    "react-markdown": "^4.0.4",
+    "react-mde": "5.8.0",
+    "react-moment": "^0.8.4",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-tag-autocomplete": "^5.8.0",
+    "react-tag-input": "^6.1.0",
+    "reactstrap": "^6.5.0",
+    "truffle-contract": "^4.0.0-beta.1",
+    "vertical-timeline-component-for-react": "^1.0.6",
+    "web3": "^1.0.0-beta.36",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "oracle": "npx babel-node ./src/oracle.js",
+    "identity": "npx babel-node ./src/identity.js",
+    "oracle2": "npx babel-watch ./src/oracle.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/cli": "7.2.0",
+    "@babel/core": "7.2.0",
+    "@babel/node": "7.2.0",
+    "@babel/preset-env": "7.2.0",
+    "babel-watch": "2.0.7",
+    "node-sass": "^4.11.0"
+  }
+}
