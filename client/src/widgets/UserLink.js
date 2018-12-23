@@ -4,7 +4,7 @@ import React from "react";
 import { UncontrolledTooltip } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { Link } from "react-router-dom";
 
@@ -19,8 +19,17 @@ const TwitterProviderDetails = props => {
   );
 };
 
+const GitHubProviderDetails = props => {
+  return (
+    <ExternalAnchor href={"https://github.com/" + props.userName}>
+      <FontAwesomeIcon icon={faGithub} /> {props.userName}
+    </ExternalAnchor>
+  );
+};
+
 const ProviderDetails = SwitchHOC("provider", {
-  twitter: TwitterProviderDetails
+  twitter: TwitterProviderDetails,
+  github: GitHubProviderDetails
 });
 
 const UserLink = ({ address, providers }) => {

@@ -8,7 +8,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 /*
-geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --rpcport 8545 --rpccorsdomain "*" --ws -wsapi db,eth,net,web3,personal --wsorigins="*" 
+geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --rpcport 8545 --rpccorsdomain "*" --ws -wsapi db,eth,net,web3,personal --wsorigins="*" --syncmode=light console  
+
+
 
 npm run identity --  --network rinkeby
 */
@@ -24,7 +26,8 @@ const newNetworkConfig = networkType => {
       return {
         // provider: new Web3.providers.WebsocketProvider(
         //   "wss://rinkeby.infura.io/ws"
-        // ),
+        // )
+        // ,
         provider: new Web3.providers.WebsocketProvider("ws://127.0.0.1:8546"),
         networkAccount: process.env.PERMACHAT_ACCOUNT
       };
@@ -53,6 +56,17 @@ const config = async networkType => {
 
   const balance = await web3.eth.getBalance(account);
   console.log("balance", balance, web3.utils.fromWei(balance));
+
+  // console.log("defaultAccount", web3.eth.defaultAccount);
+  //
+  // const added = await web3.eth.accounts.wallet.add(
+  //   process.env.PERMACHAT_PRIVATE_KEY
+  // );
+  // console.log("added", added);
+  //
+  // web3.eth.defaultAccount = process.env.PERMACHAT_ACCOUNT;
+  //
+  // console.log("defaultAccount", web3.eth.defaultAccount);
 
   await web3.eth.personal.unlockAccount(
     process.env.PERMACHAT_ACCOUNT,

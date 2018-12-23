@@ -16,6 +16,7 @@ class PricingService {
   }
 
   async lookup() {
+    // console.log("looking up ETH price");
     const result = await fetch(
       "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR"
     );
@@ -23,6 +24,8 @@ class PricingService {
 
     const price = json.USD * 100;
     const now = new Date().getTime();
+
+    // console.log("ETH price", price);
 
     this.current = {
       timestamp: now,
@@ -45,10 +48,12 @@ class PricingService {
   convertWeiToDollars(wei) {
     if (this.current) {
       const ether = this.web3.utils.fromWei(this.web3.utils.toBN(wei), "ether");
+      // console.log("ether", ether.toString());
       const dollars = (ether * this.current.priceInCents) / 100;
+      // console.log("dollars", dollars.toString());
       return dollars.toFixed(2);
     } else {
-      return 0;
+      return -1;
     }
   }
 }

@@ -1,6 +1,5 @@
 //import _ from "lodash";
 import React from "react";
-import Moment from "react-moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
@@ -9,13 +8,10 @@ import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import UserLink from "./UserLink";
 import CommentarySummary from "./CommentarySummary";
 import ExternalAnchor from "./ExternalAnchor";
+import Timestamp from "./Timestamp";
 
 import ConditionalHOC from "../hoc/ConditionalHOC";
 import DerivedStateHOC from "../hoc/DerivedStateHOC";
-
-const Timestamp = ConditionalHOC(({ timestamp }) => {
-  return <Moment fromNow>{new Date(parseInt(timestamp)).toUTCString()}</Moment>;
-}, "timestamp");
 
 const ConditionalUserLink = ConditionalHOC(
   DerivedStateHOC(UserLink, {

@@ -198,7 +198,7 @@ class Tweeter extends Component {
   render() {
     return (
       <Router>
-        <Container fluid={true}>
+        <Container fluid={false}>
           <Navbar className="mb-4" color="dark" dark expand="md">
             <NavbarBrand href="/">PermaChat</NavbarBrand>
 

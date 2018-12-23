@@ -70,10 +70,11 @@ class IdentityService {
     const self = this;
     const { providerCount } = await this.getMyIdentity();
     const providers = await Promise.all(
-      _.map(
-        _.range(providerCount),
-        async index => await self.contract.getMyProviderInfo(index)
-      )
+      _.map(_.range(providerCount), async index => {
+        const provider = await self.contract.getMyProviderInfo(index);
+        const request = await this.contract.getRequestById(provider.requestId);
+        return _.assign({}, provider, { request });
+      })
     );
 
     return providers;
@@ -87,16 +88,29 @@ class IdentityService {
     return this.web3.utils.sha3(provider + userName + this.account);
   }
 
-  async requestIdentity(evidenceUri) {
+  async requestIdentity(provider, userName, identifier) {
     const priceInWei = await this.contract.requestPrice();
     try {
       return await this.contract.submitRequest(
-        evidenceUri,
+        provider,
+        userName,
+        identifier,
         _.assign({}, this.txParams, { value: priceInWei })
       );
     } catch (e) {
-      console.error("error", "requestIdentity", evidenceUri, e);
+      console.error(
+        "error",
+        "requestIdentity",
+        provider,
+        userName,
+        identifier,
+        e
+      );
     }
+  }
+
+  async getRequestById(requestId) {
+    return await this.contract.getRequestById(requestId);
   }
 
   async getRequestPriceInWei() {

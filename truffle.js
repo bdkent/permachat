@@ -3,8 +3,14 @@ const HDWalletProvider = require("truffle-hdwallet-provider");
 
 require("dotenv").config();
 
+//
+
 /*
 https://medium.com/coinmonks/deploy-your-smart-contract-directly-from-truffle-with-infura-ba1e1f1d40c2
+*/
+
+/*
+ganache-cli -p 7545 -m stumble scissors finger melt market master spray intact audit notable excuse elephant 
 */
 
 module.exports = {
@@ -20,32 +26,29 @@ module.exports = {
     ropsten: {
       provider: () =>
         new HDWalletProvider(
-          process.env.MNENOMIC,
+          process.env.MNEMONIC,
           "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY
         ),
       network_id: 3,
       gas: 4500000
-      // ,gasPrice: 21
     },
     kovan: {
       provider: () =>
         new HDWalletProvider(
-          process.env.MNENOMIC,
+          process.env.MNEMONIC,
           "https://kovan.infura.io/v3/" + process.env.INFURA_API_KEY
         ),
       network_id: 42,
       gas: 5000000
-      // ,gasPrice: 21
     },
     rinkeby: {
       provider: () =>
         new HDWalletProvider(
-          process.env.MNENOMIC,
+          process.env.MNEMONIC,
           "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY
         ),
       network_id: 4,
       gas: 4500000
-      // ,gasPrice: 21
     }
   }
 };

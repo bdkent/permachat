@@ -1,27 +1,30 @@
 import _ from "lodash";
 import React from "react";
 
-import { Button, Form, FormGroup, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import LoadableHOC from "../hoc/LoadableHOC";
 import ConditionalHOC from "../hoc/ConditionalHOC";
 
-const ProviderLabels = {
-  twitter: "Twitter",
-  github: "GitHub"
+const Providers = {
+  twitter: { label: "Twitter", icon: <FontAwesomeIcon icon={faTwitter} /> },
+  github: { label: "GitHub", icon: <FontAwesomeIcon icon={faGithub} /> }
 };
 
 const IdentityProviderInput = LoadableHOC(
   props => {
     return (
       <FormGroup>
-        <h2>1. Pick a Provider</h2>
+        <Label>Pick a Provider</Label>
         <Input type="select" value={props.value} onChange={props.onChange}>
           <option>choose a service to create an identity</option>
           {_.map(props.providers, provider => {
             return (
               <option key={provider} value={provider}>
-                {ProviderLabels[provider]}
+                {Providers[provider].label}
               </option>
             );
           })}
@@ -37,7 +40,7 @@ const IdentityProviderInput = LoadableHOC(
 const IdentityUserNameInput = ConditionalHOC(props => {
   return (
     <FormGroup>
-      <h2>2. Enter User Name</h2>
+      <Label>Enter User Name</Label>
       <Input value={props.value} onChange={props.onChange} />
     </FormGroup>
   );
@@ -47,7 +50,7 @@ const IdentityTokenInput = ConditionalHOC(props => {
   return (
     <React.Fragment>
       <FormGroup>
-        <h2>3. Post Token</h2>
+        <Label>Post Token</Label>
         <p>
           <code>{props.token}</code>
         </p>
@@ -61,7 +64,7 @@ const IdentityEvidenceInput = ConditionalHOC(props => {
   return (
     <React.Fragment>
       <FormGroup>
-        <h2>4. Evidence URI</h2>
+        <Label>Evidence URI</Label>
         <Input value={props.value} onChange={props.onChange} />
       </FormGroup>
       {_.toString(props.priceInWei)} - {_.toString(cents)}
@@ -133,7 +136,11 @@ const IdentityForm = LoadableHOC(
     }
 
     async requestIdentity() {
-      return this.props.identityService.requestIdentity(this.state.evidence);
+      return this.props.identityService.requestIdentity(
+        this.state.provider,
+        this.state.userName,
+        this.state.evidence
+      );
     }
 
     render() {
