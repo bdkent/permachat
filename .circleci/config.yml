@@ -14,12 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/repo/client
 
     steps:
-      - checkout
-
-      - run: cd ~/repo/client
+      - checkout:
+          path: ~/repo
 
       # Download and cache dependencies
       - restore_cache:
