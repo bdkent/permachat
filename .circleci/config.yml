@@ -35,3 +35,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: npm run build
+
+      # - run:
+      #     name: Install jq
+      #     command: |
+      #       apt-get update && apt-get install jq
+
+      - run: curl -F file=@"build" https://ipfs.infura.io:5001/api/v0/add?recursive=true&pin=true
