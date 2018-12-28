@@ -1,16 +1,7 @@
-import _ from "lodash";
+// import _ from "lodash";
 import React from "react";
 
-import {
-  Collapse,
-  Navbar,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarBrand,
-  Container,
-  Jumbotron
-} from "reactstrap";
+import { Jumbotron } from "reactstrap";
 
 const AnonymousBlurb = () => {
   return (

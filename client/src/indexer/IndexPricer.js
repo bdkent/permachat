@@ -11,7 +11,7 @@ import LogUtils from "../utils/LogUtils";
 
 const GasPriceURI = "https://ethgasstation.info/json/ethgasAPI.json";
 
-const DefaultIntervalMinutes = 1; // how about 30 mins ?
+const DefaultIntervalMinutes = 15; // how about 30 mins ?
 const IntervalMs = 1000 * 60 * DefaultIntervalMinutes;
 
 class IndexPricer {

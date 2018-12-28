@@ -56,11 +56,10 @@ class IndexerContractService {
 
       if (!newUnlockPrice.eq(currentUnlockPrice)) {
         await this.contract.setUnlockPrice(newUnlockPrice, this.txParams);
+        logger.info("unlock price updated", _.toString(newUnlockPrice));
       } else {
         // did not change
       }
-
-      logger.info("unlock price updated", _.toString(newUnlockPrice));
 
       return newUnlockPrice;
     }
