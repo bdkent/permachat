@@ -4,7 +4,6 @@ import {
   Navbar,
   Nav,
   NavItem,
-  NavLink,
   NavbarBrand,
   Container,
   Input
@@ -40,6 +39,8 @@ import TagPage from "./pages/TagPage";
 import PostPage from "./pages/PostPage";
 import SettingsPage from "./pages/SettingsPage";
 import MyIdentityPage from "./pages/MyIdentityPage";
+
+import Footer from "./widgets/Footer";
 
 const MainContent = ConditionalHOC(
   globalProps => {
@@ -280,20 +281,21 @@ class PermaChat extends Component {
               contracts={this.props.contracts}
             />
           </Container>
-          <footer className="footer mt-4">
+          <Footer />
+          {/*<footer className="footer mt-4">
             <Navbar className="pt-0 pb-0">
               <Nav>
                 <NavItem>
-                  <NavLink
+                  <ExternalAnchorNavLink
                     href="https://github.com/bdkent/permachat"
                     className="p-0"
                   >
                     Source Code on GitHub
-                  </NavLink>
+                  </ExternalAnchorNavLink>
                 </NavItem>
               </Nav>
             </Navbar>
-          </footer>
+          </footer>*/}
         </div>
       </Router>
     );

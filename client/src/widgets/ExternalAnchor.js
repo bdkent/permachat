@@ -1,11 +1,5 @@
-import React from "react";
+import ExternalAnchorHOC from "../hoc/ExternalAnchorHOC";
 
-const ExternalAnchor = props => {
-  return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
-      {props.children}
-    </a>
-  );
-};
+const ExternalAnchor = ExternalAnchorHOC("a");
 
 export default ExternalAnchor;
