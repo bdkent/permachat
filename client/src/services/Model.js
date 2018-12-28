@@ -36,9 +36,16 @@ const CommentaryType = {
   FLAG: 3
 };
 
+const ActionType = {
+  POST: 0,
+  REPLY: 1,
+  COMMENT: 2
+};
+
 const Model = {
   Post: Post,
-  CommentaryType: CommentaryType
+  CommentaryType: CommentaryType,
+  ActionType: ActionType
 };
 
 export default Model;

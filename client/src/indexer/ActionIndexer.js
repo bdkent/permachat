@@ -9,11 +9,7 @@ import LogUtils from "../utils/LogUtils";
 
 LogUtils.setLowest(logger, "info");
 
-const ActionType = {
-  POST: 0,
-  REPLY: 1,
-  COMMENT: 2
-};
+const ActionType = Model.ActionType;
 
 class ActionIndexer {
   constructor(indexerContractService, indexPersister) {
@@ -63,7 +59,7 @@ class ActionIndexer {
         }
       );
     } else {
-      logger.debug("all paid actions have been indexed already");
+      logger.info("all paid actions have been indexed already");
     }
   }
 
