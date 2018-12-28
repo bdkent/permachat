@@ -1,50 +1,71 @@
 import _ from "lodash";
 
+import BN from "bn.js";
+
+import ipfs from "../utils/ipfs-local";
 import SaneIPFS from "../utils/SaneIPFS";
+
+import LogUtils from "../utils/LogUtils";
+
+LogUtils.setLowest(logger, "info");
+
+const saneIPFS = new SaneIPFS(ipfs);
 
 const DataPageSize = 1;
 
-class PostIndexer {
-  constructor(ipfs) {
-    this.saneIPFS = new SaneIPFS(ipfs);
+const toDateFromTimestamp = timestamp => {
+  if (BN.isBN(timestamp)) {
+    return new Date(timestamp.toNumber());
+  } else if (_.isNumber(timestamp)) {
+    return new Date(timestamp);
+  } else {
+    console.error("unexpected timestamp type: ", timestamp);
   }
+};
 
-  async indexPost(rootDir, post, domain) {
-    const DepthComponentCount = 6;
+const DepthComponentCount = 6;
+const DataFileName = "data.json";
 
-    const toDepthComponent = (date, depth) => {
-      switch (depth) {
-        case 0:
-          return date.getFullYear();
-        case 1:
-          return date.getMonth();
-        case 2:
-          return date.getDate();
-        case 3:
-          return date.getHours();
-        case 4:
-          return date.getMinutes();
-        case 5:
-          return date.getSeconds();
-        default:
-          throw new Error("invalid depth component: " + depth);
-      }
-    };
+const toDepthComponent = (date, depth) => {
+  switch (depth) {
+    case 0:
+      return date.getFullYear();
+    case 1:
+      return date.getMonth();
+    case 2:
+      return date.getDate();
+    case 3:
+      return date.getHours();
+    case 4:
+      return date.getMinutes();
+    case 5:
+      return date.getSeconds();
+    default:
+      throw new Error("invalid depth component: " + depth);
+  }
+};
 
-    const now = new Date(post.timestamp);
+const toDepthsFromDate = date => {
+  return _.range(DepthComponentCount).map(depth =>
+    toDepthComponent(date, depth)
+  );
+};
+
+const DataStatus = {
+  FileExists: "file-exists",
+  DirExists: "dir-exists",
+  NotFound: "not-found"
+};
+
+const PostIndexer = {
+  indexPost: async (rootDir, post, domain) => {
+    const now = toDateFromTimestamp(post.timestamp);
 
     const pathPrefix = rootDir + "/" + domain;
-    console.log("pathPrefix", pathPrefix);
-
-    const toDepthsFromDate = date => {
-      return _.range(DepthComponentCount).map(depth =>
-        toDepthComponent(date, depth)
-      );
-    };
+    logger.debug("pathPrefix", pathPrefix);
 
     const depths = toDepthsFromDate(now);
 
-    const DataFileName = "data.json";
     const toDataFileDir = (depthSegments, depth) => {
       if (depth === 0) {
         return pathPrefix;
@@ -57,23 +78,17 @@ class PostIndexer {
       return toDataFileDir(depthSegments, depth) + "/" + DataFileName;
     };
 
-    const DataStatus = {
-      FileExists: "file-exists",
-      DirExists: "dir-exists",
-      NotFound: "not-found"
-    };
-
     // TODO: must test what if any folders already exist!
     const dataFilePingResults = await Promise.all(
       [...Array(depths.length + 1).keys()].map(async i => {
         const path = toDataFilePath(depths, i);
-        console.log("path", path);
-        const foundFile = await this.saneIPFS.exists(path);
+        logger.debug("path", path);
+        const foundFile = await saneIPFS.exists(path);
         if (foundFile) {
           return DataStatus.FileExists;
         } else {
           // const dir = toDataFileDir(depths, i);
-          // const foundDir = await this.saneIPFS.exists(dir);
+          // const foundDir = await saneIPFS.exists(dir);
           // if (foundDir) {
           //   return DataStatus.DirExists;
           // } else {
@@ -83,51 +98,52 @@ class PostIndexer {
       })
     );
 
-    console.log("dataFilePingResults", dataFilePingResults);
+    logger.debug("dataFilePingResults", dataFilePingResults);
 
     const dataFilePingIndex = _.findLastIndex(
       dataFilePingResults,
       x => x !== DataStatus.NotFound
     );
-    console.log("dataFilePingIndex", dataFilePingIndex);
+    logger.debug("dataFilePingIndex", dataFilePingIndex);
 
     const firstPost = async () => {
-      console.log(1);
+      logger.debug(1);
       const path = toDataFilePath(depths, 0);
-      console.log("path", path);
-      await this.saneIPFS.writeJSON(path, [post]);
-      console.log(2);
+      logger.debug("path", path);
+      await saneIPFS.writeJSON(path, [post]);
+      logger.debug(2);
+      return path;
     };
 
     const nextPost = async depthIndex => {
-      console.log("nextPost", depthIndex);
+      logger.debug("nextPost", depthIndex);
       const path = toDataFilePath(depths, dataFilePingIndex);
-      console.log("path", path);
-      const existingPosts = await this.saneIPFS.readJSON(path);
+      logger.debug("path", path);
+      const existingPosts = await saneIPFS.readJSON(path);
       const content = _.defaultTo(existingPosts, []).concat([post]);
-      console.log("content", content);
+      logger.debug("content", content);
       const dataFileStatus = dataFilePingResults[depthIndex];
       if (dataFileStatus === DataStatus.DirExists) {
-        console.log("dir exists!  can this actually happen?");
+        logger.debug("dir exists!  can this actually happen?");
       } else {
         if (content.length > DataPageSize) {
           const distributionDepth = _.range(
             depthIndex,
             DepthComponentCount
           ).find(depth => {
-            // console.log("depth", depth);
+            // logger.debug("depth", depth);
             const groups = _.groupBy(content, post => {
-              const date = new Date(post.timestamp);
+              const date = toDateFromTimestamp(post.timestamp);
               return toDepthComponent(date, depth);
             });
-            // console.log("groups", groups);
+            // logger.debug("groups", groups);
             return _.every(groups, (v, k) => {
-              // console.log("every", k, v);
+              // logger.debug("every", k, v);
               return _.size(v) <= DataPageSize;
             });
           });
 
-          console.log("distributionDepth", distributionDepth);
+          logger.debug("distributionDepth", distributionDepth);
 
           const handleDistributions = async () => {
             if (distributionDepth === -1) {
@@ -135,16 +151,16 @@ class PostIndexer {
               return [];
             } else {
               const distributionGroups = _.groupBy(content, post => {
-                const date = new Date(post.timestamp);
+                const date = toDateFromTimestamp(post.timestamp);
                 return toDepthComponent(date, distributionDepth);
               });
 
-              console.log("distributionGroups", distributionGroups);
+              logger.debug("distributionGroups", distributionGroups);
 
               return await Promise.all(
                 _.map(distributionGroups, async (posts, depth) => {
                   if (!_.isEmpty(posts)) {
-                    console.log("disting", depth);
+                    logger.debug("disting", depth);
                     const date = new Date(posts[0].timestamp);
                     const distDepths = toDepthsFromDate(date);
                     const distPath = toDataFilePath(
@@ -152,8 +168,8 @@ class PostIndexer {
                       distributionDepth + 1
                     );
                     const sortedPosts = _.sortBy(posts, "timestamp");
-                    console.log("dist write", distPath, sortedPosts);
-                    await this.saneIPFS.writeJSON(distPath, sortedPosts);
+                    logger.debug("dist write", distPath, sortedPosts);
+                    await saneIPFS.writeJSON(distPath, sortedPosts);
                     return distPath;
                   } else {
                     return null;
@@ -165,11 +181,11 @@ class PostIndexer {
 
           const distPaths = handleDistributions();
 
-          await this.saneIPFS.remove(path);
+          await saneIPFS.remove(path);
 
           return distPaths;
         } else {
-          await this.saneIPFS.writeJSON(path, content);
+          await saneIPFS.writeJSON(path, content);
           return path;
         }
       }
@@ -181,6 +197,6 @@ class PostIndexer {
       return await nextPost(dataFilePingIndex);
     }
   }
-}
+};
 
 export default PostIndexer;

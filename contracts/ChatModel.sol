@@ -1,8 +1,8 @@
 pragma solidity >=0.5.0 <0.6.0;
 
-import "./CommonModel.sol";
-
-contract ChatModel is CommonModel {
+contract ChatModel {
+  
+  // TODO: contentType to enum
   
   struct Post {
     uint postId;
@@ -78,6 +78,4 @@ contract ChatModel is CommonModel {
   modifier isValidCommentIndex(uint postId, uint commentIndex) { require (postToCommentaryContent[postId].length < commentIndex); _; }
   
   modifier hasNotYetCommented(uint postId) { require (!commented[postId][toIdentityId(msg.sender)]); _; }
-  
-  
 }

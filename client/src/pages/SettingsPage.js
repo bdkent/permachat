@@ -3,13 +3,12 @@ import React from "react";
 
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-import { Button } from "reactstrap";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileContract, faSlidersH } from "@fortawesome/free-solid-svg-icons";
 
 import localForage from "localforage";
 
+import WorkerButton from "../widgets/WorkerButton";
 import EthereumContract from "../widgets/EthereumContract";
 
 const SettingsPage = ({ contracts }) => {
@@ -38,9 +37,13 @@ const SettingsPage = ({ contracts }) => {
           <FontAwesomeIcon className="mr-2" icon={faSlidersH} />
           Actions
         </h2>
-        <Button color="danger" block={true} onClick={() => localForage.clear()}>
+        <WorkerButton
+          color="danger"
+          block={true}
+          onClick={() => localForage.clear()}
+        >
           Clear All Caches
-        </Button>
+        </WorkerButton>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import {
   Navbar,
   Nav,
   NavItem,
+  NavLink,
   NavbarBrand,
   Container,
   Input
@@ -171,7 +172,7 @@ class Tweeter extends Component {
       this.props.contract,
       this.props.web3
     ),
-    dataService: new DataService(this.props.contract),
+    dataService: new DataService(this.props.accounts[0], this.props.contract),
     pricingService: new PricingService(this.props.web3),
     identityService: new IdentityService(
       this.props.contract,
@@ -198,87 +199,103 @@ class Tweeter extends Component {
   render() {
     return (
       <Router>
-        <Container fluid={false}>
-          <Navbar className="mb-4" color="dark" dark expand="md">
-            <NavbarBrand href="/">PermaChat</NavbarBrand>
+        <div>
+          <Container fluid={false} className="mb-4">
+            <Navbar className="mb-4" color="dark" dark expand="md">
+              <NavbarBrand href="/">PermaChat</NavbarBrand>
 
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <RouterNavLink
-                  to="/post"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <FontAwesomeIcon icon={faBullhorn} /> Post
-                </RouterNavLink>
-              </NavItem>
-              <NavItem>
-                <RouterNavLink
-                  to="/discover"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <FontAwesomeIcon icon={faSearch} /> Discover
-                </RouterNavLink>
-              </NavItem>
-              <NavItem>
-                <RouterNavLink
-                  to="/latest"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <FontAwesomeIcon icon={faClock} /> Latest
-                </RouterNavLink>
-              </NavItem>
-            </Nav>
-
-            <Collapse isOpen={true} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Input
-                    type="select"
-                    value={this.state.account}
-                    onChange={this.setAccount}
-                  >
-                    {this.props.accounts.map(account => {
-                      return (
-                        <option key={account} value={account}>
-                          {this.state.account.substring(0, 8)}...
-                        </option>
-                      );
-                    })}
-                  </Input>
-                </NavItem>
-                <NavItem className="ml-2">
                   <RouterNavLink
-                    to="/my/identity"
+                    to="/post"
                     className="nav-link"
                     activeClassName="active"
                   >
-                    <FontAwesomeIcon icon={faUserCircle} size="lg" />
+                    <FontAwesomeIcon icon={faBullhorn} /> Post
                   </RouterNavLink>
                 </NavItem>
-                <NavItem className="ml-2">
+                <NavItem>
                   <RouterNavLink
-                    to="/settings"
+                    to="/discover"
                     className="nav-link"
                     activeClassName="active"
                   >
-                    <FontAwesomeIcon icon={faCog} size="lg" />
+                    <FontAwesomeIcon icon={faSearch} /> Discover
+                  </RouterNavLink>
+                </NavItem>
+                <NavItem>
+                  <RouterNavLink
+                    to="/latest"
+                    className="nav-link"
+                    activeClassName="active"
+                  >
+                    <FontAwesomeIcon icon={faClock} /> Latest
                   </RouterNavLink>
                 </NavItem>
               </Nav>
-            </Collapse>
-          </Navbar>
-          <MainContent
-            postService={this.state.postService}
-            dataService={this.state.dataService}
-            identityService={this.state.identityService}
-            pricingService={this.state.pricingService}
-            account={this.state.account}
-            contracts={this.props.contracts}
-          />
-        </Container>
+
+              <Collapse isOpen={true} navbar>
+                <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <Input
+                      type="select"
+                      value={this.state.account}
+                      onChange={this.setAccount}
+                    >
+                      {this.props.accounts.map(account => {
+                        return (
+                          <option key={account} value={account}>
+                            {this.state.account.substring(0, 8)}...
+                          </option>
+                        );
+                      })}
+                    </Input>
+                  </NavItem>
+                  <NavItem className="ml-2">
+                    <RouterNavLink
+                      to="/my/identity"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      <FontAwesomeIcon icon={faUserCircle} size="lg" />
+                    </RouterNavLink>
+                  </NavItem>
+                  <NavItem className="ml-2">
+                    <RouterNavLink
+                      to="/settings"
+                      className="nav-link"
+                      activeClassName="active"
+                    >
+                      <FontAwesomeIcon icon={faCog} size="lg" />
+                    </RouterNavLink>
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </Navbar>
+            <MainContent
+              postService={this.state.postService}
+              dataService={this.state.dataService}
+              identityService={this.state.identityService}
+              pricingService={this.state.pricingService}
+              account={this.state.account}
+              contracts={this.props.contracts}
+            />
+          </Container>
+          <footer className="footer mt-4">
+            <Navbar className="pt-0 pb-0">
+              <Nav>
+                <NavItem>
+                  <NavLink
+                    href="https://github.com/bdkent/permachat"
+                    className="p-0"
+                  >
+                    Source Code on GitHub
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            </Navbar>
+          </footer>
+        </div>
       </Router>
     );
   }

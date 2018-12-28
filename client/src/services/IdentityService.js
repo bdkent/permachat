@@ -48,22 +48,27 @@ class IdentityService {
         return result;
       }
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       return null;
     }
   }
 
   async getIdentityProviders(address) {
     const self = this;
-    const { id, providerCount } = await this.getIdentity(address);
-    const providers = await Promise.all(
-      _.map(
-        _.range(providerCount),
-        async index => await self.contract.getProviderInfo(id, index)
-      )
-    );
+    const identity = await this.getIdentity(address);
+    if (_.isNil(identity)) {
+      return [];
+    } else {
+      const { id, providerCount } = identity;
+      const providers = await Promise.all(
+        _.map(
+          _.range(providerCount),
+          async index => await self.contract.getProviderInfo(id, index)
+        )
+      );
 
-    return providers;
+      return providers;
+    }
   }
 
   async getMyIdentityProviders() {

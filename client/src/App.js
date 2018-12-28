@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 
 import PermaChatContract from "./contracts/PermaChat.json";
@@ -54,6 +55,21 @@ class App extends Component {
 
       localForage.config({
         storeName: "permachat"
+      });
+
+      localForage.getItem("permachat-contract").then(storedAddress => {
+        if (!_.isNil(storedAddress) && storedAddress !== contract.address) {
+          console.log(
+            "different contract, clearing cache",
+            "old:",
+            storedAddress,
+            "new:",
+            contract.address
+          );
+          localForage.clear();
+        }
+
+        localForage.setItem("permachat-contract", contract.address);
       });
 
       this.setState({

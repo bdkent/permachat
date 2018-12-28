@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import localForage from "localforage";
 
-import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
+import { Form, FormGroup, Input, Row, Col } from "reactstrap";
 
 import SwitchHOC from "../hoc/SwitchHOC";
 import LoadableHOC from "../hoc/LoadableHOC";
@@ -13,6 +13,7 @@ import MarkdownEditor from "./MarkdownEditor";
 import MarkdownView from "./MarkdownView";
 import HashTagInput from "./HashTagInput";
 import QuotedContent from "./QuotedContent";
+import WorkerButton from "./WorkerButton";
 
 const ContentTypeKey = "default-content-type";
 
@@ -85,14 +86,17 @@ const PostWidget = SwitchHOC(
   toMapping([[ViewState.Edit, PostEdit], [ViewState.Preview, PostPreview]])
 );
 
+const DefaultPostState = {
+  value: "",
+  tags: [],
+  viewState: ViewState.Edit
+};
+
 const PostForm = LoadableHOC(
   class extends Component {
-    state = {
-      value: "",
-      tags: [],
-      viewState: ViewState.Edit,
+    state = _.assign({}, DefaultPostState, {
       contentType: this.props.contentType
-    };
+    });
 
     constructor(props) {
       super(props);
@@ -111,11 +115,15 @@ const PostForm = LoadableHOC(
     }
 
     async addPost() {
-      return this.props.doPost(
+      const result = this.props.doPost(
         this.state.value,
         this.state.tags,
         this.state.contentType
       );
+
+      this.setState(DefaultPostState);
+
+      return result;
     }
 
     update(e) {
@@ -164,22 +172,22 @@ const PostForm = LoadableHOC(
             </FormGroup>
             <Row>
               <Col md={8}>
-                <Button
+                <WorkerButton
                   color="primary"
                   size="lg"
                   onClick={this.addPost}
                   disabled={_.isEmpty(this.state.value)}
                 >
                   Post
-                </Button>
-                <Button
+                </WorkerButton>
+                <WorkerButton
                   size="lg"
                   className="ml-2"
                   onClick={this.toggleViewState}
                   disabled={_.isEmpty(this.state.value)}
                 >
                   {toToggleViewStateLabel(this.state.viewState)}
-                </Button>
+                </WorkerButton>
               </Col>
               <Col md={4}>
                 <Input

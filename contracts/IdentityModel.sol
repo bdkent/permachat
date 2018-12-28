@@ -1,12 +1,14 @@
 pragma solidity >=0.5.0 <0.6.0;
 
 contract IdentityModel {
-  address payable public identityAdmin;
+  address payable identityAdmin;
   uint public requestPrice;
     
   constructor() public {
     identityAdmin = msg.sender;
   }
+  
+  // maybe provider should be a uint8 ?
   
   struct IdentityRequest {
     uint id;

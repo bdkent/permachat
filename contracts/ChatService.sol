@@ -1,11 +1,12 @@
 pragma solidity >=0.5.0 <0.6.0;
 
 import "./ChatModel.sol";
+import "./ActionModel.sol";
 import "./IdentityModel.sol";
 
-contract ChatService is ChatModel, IdentityModel {
+contract ChatService is ChatModel, ActionModel, IdentityModel {
   
-  function newPost(string memory ipfsHash, string memory contentType) public hasIdentity() returns (uint postId) {
+  function newBasePost(string memory ipfsHash, string memory contentType) internal returns (uint postId) {
     uint newPostId = nextPostIndex;
     posts[newPostId] = Post({
       postId: newPostId,
@@ -16,6 +17,11 @@ contract ChatService is ChatModel, IdentityModel {
       contentType: contentType
     });
     nextPostIndex += 1;
+    return newPostId;
+  }
+  
+  function newPost(string memory ipfsHash, string memory contentType) public hasIdentity() returns (uint postId) {
+    uint newPostId = newBasePost(ipfsHash, contentType);
     addAction(newPostId, TargetType.POST);
     emit NewPostEvent({
       postId: posts[newPostId].postId,
@@ -29,9 +35,10 @@ contract ChatService is ChatModel, IdentityModel {
   }
   
   function newReply(uint parentPostId, string memory ipfsHash, string memory contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
-    uint newReplyId = newPost(ipfsHash, contentType);
+    uint newReplyId = newBasePost(ipfsHash, contentType);
     postToReplies[parentPostId].push(newReplyId);
     replyToParentPost[newReplyId] = parentPostId;
+    addAction(newReplyId, TargetType.REPLY);
     emit NewReplyEvent({
       parentPostId: parentPostId,
       postId: posts[newReplyId].postId,

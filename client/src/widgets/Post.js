@@ -25,15 +25,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 
-import QuotedContent from "./QuotedContent";
-
-import IpfsContent from "./IpfsContent";
 import ConditionalHOC from "../hoc/ConditionalHOC";
 import DerivedStateHOC from "../hoc/DerivedStateHOC";
 import LoadingHOC from "../hoc/LoadingHOC";
 import HoverHOC from "../hoc/HoverHOC";
 import IfElseHOC from "../hoc/IfElseHOC";
+
+import QuotedContent from "./QuotedContent";
+import IpfsContent from "./IpfsContent";
 import PostForm from "./PostForm";
+import WorkerButton from "./PostForm";
 
 import BigNumberUtils from "../utils/BigNumberUtils";
 
@@ -207,7 +208,7 @@ const PostOthersToolbar = ConditionalHOC(props => {
   const { attention, toggleReply, replying, hasMyCommentary } = props;
   return (
     <React.Fragment>
-      <Button
+      <WorkerButton
         size="sm"
         className="mr-2"
         color={attention ? "primary" : "secondary"}
@@ -215,7 +216,7 @@ const PostOthersToolbar = ConditionalHOC(props => {
         active={replying}
       >
         <FontAwesomeIcon icon={faReply} className="mr-1" /> Reply
-      </Button>
+      </WorkerButton>
       <CommentaryToolbar {...props} show={!hasMyCommentary} />
     </React.Fragment>
   );

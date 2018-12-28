@@ -1,40 +1,37 @@
 pragma solidity >=0.5.0 <0.6.0;
 
-import "./CommonModel.sol";
+import "./IndexerModel.sol";
+import "./IndexerAdminService.sol";
 
-contract DatabaseIndexer is CommonModel {
+contract DatabaseIndexer is IndexerModel, IndexerAdminService {
   
-  address indexerAdmin;
+  function getDatabaseHash(uint databaseIndex) public view requireIndexed(databaseIndex) returns ( string memory ipfsHash ) {
+    ipfsHash = databaseHashes[databaseIndex];
+  }
 
-  constructor() public {
-    indexerAdmin = msg.sender;
+  function getLatestDatabaseState() public view returns ( uint latestIndex, uint paidIndex, string memory ipfsHash ) {
+    latestIndex = latestDatabaseIndex;
+    paidIndex = paidDatabaseIndex;
+    ipfsHash = databaseHashes[latestDatabaseIndex];
   }
   
-  modifier isIndexerAdmin { require(indexerAdmin == msg.sender); _; }
+  function unlockNewestDatabase() public payable requireDatabasePayable {
+    if(msg.sender != indexerAdmin) {
+      indexerAdmin.transfer(unlockPrice);  
+    }
+    paidDatabaseIndex = nextActionId - 1;
+    emit DatabaseIndexPaidEvent(paidDatabaseIndex);
+  }
   
-  // DB MANAGEMENT:
-
-  uint public latestDatabaseIndex = 0;
-  mapping(uint => string) datebaseHashes;
-
-  event DBUpdateEvent(uint currentDatabaseIndex);
-
-  function setNewDB(string memory ipfsHash) public isIndexerAdmin {
-    latestDatabaseIndex += 1;
-    datebaseHashes[latestDatabaseIndex] = ipfsHash;
-    emit DBUpdateEvent(latestDatabaseIndex);
+  function isDatabasePayable() public view requireDatabasePayable returns (bool) {
+    return true;
   }
-
-  function getDB(uint currentDatabaseIndex) public view returns ( string memory ) {
-    require(currentDatabaseIndex >= 0 &&  currentDatabaseIndex <= latestDatabaseIndex);
-    return datebaseHashes[currentDatabaseIndex];
-  }
-
-  function getLatestDBIndex() public view returns (uint) {
-    return latestDatabaseIndex;
-  }
-
-  function getLatestDBHash() public view returns ( string memory ) {
-    return datebaseHashes[latestDatabaseIndex];
+  
+  function unlockableUpdates() public view returns (uint) {
+    if(nextActionId == 0 || (paidDatabaseIndex + 1) >= nextActionId) {
+      return 0;
+    } else {
+      return nextActionId - paidDatabaseIndex - 1;
+    }
   }
 }

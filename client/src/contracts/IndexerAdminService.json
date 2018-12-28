@@ -1,0 +1,1135 @@
+{
+  "contractName": "IndexerAdminService",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "unlockPrice",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "latestDatabaseIndex",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "nextActionId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "paidDatabaseIndex",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "actionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAction",
+      "outputs": [
+        {
+          "name": "targetId",
+          "type": "uint256"
+        },
+        {
+          "name": "targetType",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "databaseIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "DatabaseIndexPaidEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "databaseIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "DatabaseIndexUpdateEvent",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "setUnlockPrice",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "databaseIndex",
+          "type": "uint256"
+        },
+        {
+          "name": "ipfsHash",
+          "type": "string"
+        }
+      ],
+      "name": "setDatabaseIndex",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405260016000556000600455600060055533600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506104d5806100636000396000f3fe608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631e784ee2146100885780633385e042146100b357806339fa083d1461018557806346abe73a146101b05780639d27f4b7146101db578063b6e7687314610206578063cce929621461026a575b600080fd5b34801561009457600080fd5b5061009d6102a5565b6040518082815260200191505060405180910390f35b3480156100bf57600080fd5b50610183600480360360408110156100d657600080fd5b8101908080359060200190929190803590602001906401000000008111156100fd57600080fd5b82018360208201111561010f57600080fd5b8035906020019184600183028401116401000000008311171561013157600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102ab565b005b34801561019157600080fd5b5061019a610345565b6040518082815260200191505060405180910390f35b3480156101bc57600080fd5b506101c561034b565b6040518082815260200191505060405180910390f35b3480156101e757600080fd5b506101f0610351565b6040518082815260200191505060405180910390f35b34801561021257600080fd5b5061023f6004803603602081101561022957600080fd5b8101908080359060200190929190505050610357565b6040518083815260200182600281111561025557fe5b60ff1681526020019250505060405180910390f35b34801561027657600080fd5b506102a36004803603602081101561028d57600080fd5b810190808035906020019092919050505061039e565b005b60025481565b3373ffffffffffffffffffffffffffffffffffffffff16600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614151561030757600080fd5b81600454101561031957816004819055505b80600660008481526020019081526020016000209080519060200190610340929190610404565b505050565b60045481565b60005481565b60055481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff169050915091565b3373ffffffffffffffffffffffffffffffffffffffff16600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156103fa57600080fd5b8060028190555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061044557805160ff1916838001178555610473565b82800160010185558215610473579182015b82811115610472578251825591602001919060010190610457565b5b5090506104809190610484565b5090565b6104a691905b808211156104a257600081600090555060010161048a565b5090565b9056fea165627a7a7230582020e7b4a612588c72f47aa1935f659b248148b4d02fa2593c4ebbb469b94816d90029",
+  "deployedBytecode": "0x608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631e784ee2146100885780633385e042146100b357806339fa083d1461018557806346abe73a146101b05780639d27f4b7146101db578063b6e7687314610206578063cce929621461026a575b600080fd5b34801561009457600080fd5b5061009d6102a5565b6040518082815260200191505060405180910390f35b3480156100bf57600080fd5b50610183600480360360408110156100d657600080fd5b8101908080359060200190929190803590602001906401000000008111156100fd57600080fd5b82018360208201111561010f57600080fd5b8035906020019184600183028401116401000000008311171561013157600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102ab565b005b34801561019157600080fd5b5061019a610345565b6040518082815260200191505060405180910390f35b3480156101bc57600080fd5b506101c561034b565b6040518082815260200191505060405180910390f35b3480156101e757600080fd5b506101f0610351565b6040518082815260200191505060405180910390f35b34801561021257600080fd5b5061023f6004803603602081101561022957600080fd5b8101908080359060200190929190505050610357565b6040518083815260200182600281111561025557fe5b60ff1681526020019250505060405180910390f35b34801561027657600080fd5b506102a36004803603602081101561028d57600080fd5b810190808035906020019092919050505061039e565b005b60025481565b3373ffffffffffffffffffffffffffffffffffffffff16600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614151561030757600080fd5b81600454101561031957816004819055505b80600660008481526020019081526020016000209080519060200190610340929190610404565b505050565b60045481565b60005481565b60055481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff169050915091565b3373ffffffffffffffffffffffffffffffffffffffff16600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156103fa57600080fd5b8060028190555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061044557805160ff1916838001178555610473565b82800160010185558215610473579182015b82811115610472578251825591602001919060010190610457565b5b5090506104809190610484565b5090565b6104a691905b808211156104a257600081600090555060010161048a565b5090565b9056fea165627a7a7230582020e7b4a612588c72f47aa1935f659b248148b4d02fa2593c4ebbb469b94816d90029",
+  "sourceMap": "63:393:9:-;;;134:1:0;107:28;;534:1:10;500:35;;571:1;539:33;;213:10;198:12;;:25;;;;;;;;;;;;;;;;;;63:393:9;;;;;;",
+  "deployedSourceMap": "63:393:9:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;106:23:10;;8:9:-1;5:2;;;30:1;27;20:12;5:2;106:23:10;;;;;;;;;;;;;;;;;;;;;;;210:244:9;;8:9:-1;5:2;;;30:1;27;20:12;5:2;210:244:9;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;210:244:9;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;210:244:9;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;210:244:9;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;210:244:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;210:244:9;;;;;;;;;;;;;;;;;;500:35:10;;8:9:-1;5:2;;;30:1;27;20:12;5:2;500:35:10;;;;;;;;;;;;;;;;;;;;;;;107:28:0;;8:9:-1;5:2;;;30:1;27;20:12;5:2;107:28:0;;;;;;;;;;;;;;;;;;;;;;;539:33:10;;8:9:-1;5:2;;;30:1;27;20:12;5:2;539:33:10;;;;;;;;;;;;;;;;;;;;;;;253:190:0;;8:9:-1;5:2;;;30:1;27;20:12;5:2;253:190:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;253:190:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;113:93:9;;8:9:-1;5:2;;;30:1;27;20:12;5:2;113:93:9;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;113:93:9;;;;;;;;;;;;;;;;;;;;106:23:10;;;;:::o;210:244:9:-;289:10:10;273:26;;:12;;;;;;;;;;;:26;;;265:35;;;;;;;;338:13:9;316:19;;:35;313:90;;;383:13;361:19;:35;;;;313:90;441:8;409:14;:29;424:13;409:29;;;;;;;;;;;:40;;;;;;;;;;;;:::i;:::-;;210:244;;:::o;500:35:10:-;;;;:::o;107:28:0:-;;;;:::o;539:33:10:-;;;;:::o;253:190:0:-;309:13;324:21;365:7;:17;373:8;365:17;;;;;;;;;;;:26;;;354:37;;410:7;:17;418:8;410:17;;;;;;;;;;;:28;;;;;;;;;;;;397:41;;253:190;;;:::o;113:93:9:-;289:10:10;273:26;;:12;;;;;;;;;;;:26;;;265:35;;;;;;;;196:5:9;182:11;:19;;;;113:93;:::o;63:393::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >=0.5.0 <0.6.0;\n\nimport \"./IndexerModel.sol\";\n\ncontract IndexerAdminService is IndexerModel {\n\n  function setUnlockPrice(uint price) public requireIndexerAdmin {\n    unlockPrice = price;\n  }\n\n  function setDatabaseIndex(uint databaseIndex, string memory ipfsHash) public requireIndexerAdmin {\n    if(latestDatabaseIndex < databaseIndex) {\n      latestDatabaseIndex = databaseIndex;\n    }\n\n    databaseHashes[databaseIndex] = ipfsHash;\n  }\n}\n",
+  "sourcePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
+  "ast": {
+    "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
+    "exportedSymbols": {
+      "IndexerAdminService": [
+        1710
+      ]
+    },
+    "id": 1711,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1669,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:9"
+      },
+      {
+        "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
+        "file": "./IndexerModel.sol",
+        "id": 1670,
+        "nodeType": "ImportDirective",
+        "scope": 1711,
+        "sourceUnit": 1781,
+        "src": "33:28:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1671,
+              "name": "IndexerModel",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1780,
+              "src": "95:12:9",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IndexerModel_$1780",
+                "typeString": "contract IndexerModel"
+              }
+            },
+            "id": 1672,
+            "nodeType": "InheritanceSpecifier",
+            "src": "95:12:9"
+          }
+        ],
+        "contractDependencies": [
+          71,
+          1780
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1710,
+        "linearizedBaseContracts": [
+          1710,
+          1780,
+          71
+        ],
+        "name": "IndexerAdminService",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1683,
+              "nodeType": "Block",
+              "src": "176:30:9",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1681,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1679,
+                      "name": "unlockPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1717,
+                      "src": "182:11:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1680,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1674,
+                      "src": "196:5:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "182:19:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1682,
+                  "nodeType": "ExpressionStatement",
+                  "src": "182:19:9"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1684,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1677,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1676,
+                  "name": "requireIndexerAdmin",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1739,
+                  "src": "156:19:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "156:19:9"
+              }
+            ],
+            "name": "setUnlockPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1674,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1684,
+                  "src": "137:10:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1673,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "137:4:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:12:9"
+            },
+            "returnParameters": {
+              "id": 1678,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "176:0:9"
+            },
+            "scope": 1710,
+            "src": "113:93:9",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1708,
+              "nodeType": "Block",
+              "src": "307:147:9",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1695,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 1693,
+                      "name": "latestDatabaseIndex",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1764,
+                      "src": "316:19:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 1694,
+                      "name": "databaseIndex",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1686,
+                      "src": "338:13:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "316:35:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 1701,
+                  "nodeType": "IfStatement",
+                  "src": "313:90:9",
+                  "trueBody": {
+                    "id": 1700,
+                    "nodeType": "Block",
+                    "src": "353:50:9",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1698,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 1696,
+                            "name": "latestDatabaseIndex",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1764,
+                            "src": "361:19:9",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 1697,
+                            "name": "databaseIndex",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1686,
+                            "src": "383:13:9",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "361:35:9",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 1699,
+                        "nodeType": "ExpressionStatement",
+                        "src": "361:35:9"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1706,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 1702,
+                        "name": "databaseHashes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1771,
+                        "src": "409:14:9",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_string_storage_$",
+                          "typeString": "mapping(uint256 => string storage ref)"
+                        }
+                      },
+                      "id": 1704,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 1703,
+                        "name": "databaseIndex",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1686,
+                        "src": "424:13:9",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "409:29:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1705,
+                      "name": "ipfsHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1688,
+                      "src": "441:8:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "409:40:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 1707,
+                  "nodeType": "ExpressionStatement",
+                  "src": "409:40:9"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1709,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1691,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1690,
+                  "name": "requireIndexerAdmin",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1739,
+                  "src": "287:19:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "287:19:9"
+              }
+            ],
+            "name": "setDatabaseIndex",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1689,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1686,
+                  "name": "databaseIndex",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1709,
+                  "src": "236:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1685,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:4:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1688,
+                  "name": "ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1709,
+                  "src": "256:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:44:9"
+            },
+            "returnParameters": {
+              "id": 1692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "307:0:9"
+            },
+            "scope": 1710,
+            "src": "210:244:9",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1711,
+        "src": "63:393:9"
+      }
+    ],
+    "src": "0:457:9"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
+    "exportedSymbols": {
+      "IndexerAdminService": [
+        1710
+      ]
+    },
+    "id": 1711,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1669,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:9"
+      },
+      {
+        "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
+        "file": "./IndexerModel.sol",
+        "id": 1670,
+        "nodeType": "ImportDirective",
+        "scope": 1711,
+        "sourceUnit": 1781,
+        "src": "33:28:9",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1671,
+              "name": "IndexerModel",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1780,
+              "src": "95:12:9",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IndexerModel_$1780",
+                "typeString": "contract IndexerModel"
+              }
+            },
+            "id": 1672,
+            "nodeType": "InheritanceSpecifier",
+            "src": "95:12:9"
+          }
+        ],
+        "contractDependencies": [
+          71,
+          1780
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1710,
+        "linearizedBaseContracts": [
+          1710,
+          1780,
+          71
+        ],
+        "name": "IndexerAdminService",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1683,
+              "nodeType": "Block",
+              "src": "176:30:9",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1681,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1679,
+                      "name": "unlockPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1717,
+                      "src": "182:11:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1680,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1674,
+                      "src": "196:5:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "182:19:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1682,
+                  "nodeType": "ExpressionStatement",
+                  "src": "182:19:9"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1684,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1677,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1676,
+                  "name": "requireIndexerAdmin",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1739,
+                  "src": "156:19:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "156:19:9"
+              }
+            ],
+            "name": "setUnlockPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1675,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1674,
+                  "name": "price",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1684,
+                  "src": "137:10:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1673,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "137:4:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:12:9"
+            },
+            "returnParameters": {
+              "id": 1678,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "176:0:9"
+            },
+            "scope": 1710,
+            "src": "113:93:9",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1708,
+              "nodeType": "Block",
+              "src": "307:147:9",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1695,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 1693,
+                      "name": "latestDatabaseIndex",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1764,
+                      "src": "316:19:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 1694,
+                      "name": "databaseIndex",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1686,
+                      "src": "338:13:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "316:35:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 1701,
+                  "nodeType": "IfStatement",
+                  "src": "313:90:9",
+                  "trueBody": {
+                    "id": 1700,
+                    "nodeType": "Block",
+                    "src": "353:50:9",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1698,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 1696,
+                            "name": "latestDatabaseIndex",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1764,
+                            "src": "361:19:9",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 1697,
+                            "name": "databaseIndex",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1686,
+                            "src": "383:13:9",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "361:35:9",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "id": 1699,
+                        "nodeType": "ExpressionStatement",
+                        "src": "361:35:9"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1706,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 1702,
+                        "name": "databaseHashes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1771,
+                        "src": "409:14:9",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_string_storage_$",
+                          "typeString": "mapping(uint256 => string storage ref)"
+                        }
+                      },
+                      "id": 1704,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 1703,
+                        "name": "databaseIndex",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1686,
+                        "src": "424:13:9",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "409:29:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1705,
+                      "name": "ipfsHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1688,
+                      "src": "441:8:9",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "409:40:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 1707,
+                  "nodeType": "ExpressionStatement",
+                  "src": "409:40:9"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1709,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1691,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1690,
+                  "name": "requireIndexerAdmin",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1739,
+                  "src": "287:19:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "287:19:9"
+              }
+            ],
+            "name": "setDatabaseIndex",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1689,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1686,
+                  "name": "databaseIndex",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1709,
+                  "src": "236:18:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1685,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:4:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1688,
+                  "name": "ipfsHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1709,
+                  "src": "256:22:9",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1687,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:6:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:44:9"
+            },
+            "returnParameters": {
+              "id": 1692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "307:0:9"
+            },
+            "scope": 1710,
+            "src": "210:244:9",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1711,
+        "src": "63:393:9"
+      }
+    ],
+    "src": "0:457:9"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.0",
+  "updatedAt": "2018-12-27T18:22:15.851Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

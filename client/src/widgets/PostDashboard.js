@@ -2,10 +2,12 @@ import _ from "lodash";
 
 import React, { Component } from "react";
 
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Jumbotron } from "reactstrap";
 
 import DerivedStateHOC from "../hoc/DerivedStateHOC";
 import ConditionalHOC from "../hoc/ConditionalHOC";
+import IfElseHOC from "../hoc/IfElseHOC";
+import LoadableHOC from "../hoc/LoadableHOC";
 
 import PostForm from "./PostForm";
 import MyPosts from "./MyPosts";
@@ -13,7 +15,20 @@ import PinnedPost from "./PinnedPost";
 
 const ConditionalPinnedPost = ConditionalHOC(PinnedPost, "pinnedPostId");
 
-const PostDashboard = DerivedStateHOC(
+const UnidentitiedMyPostsPage = props => {
+  return (
+    <Jumbotron>
+      <p>You cannot post anonymously.</p>
+      <p>
+        In order to create a post, you must associate your Ethereum address with
+        a verified online identity.
+      </p>
+      <p>To begin, click the user icon at the top.</p>
+    </Jumbotron>
+  );
+};
+
+const IdentitiedMyPostsPage = DerivedStateHOC(
   class extends Component {
     render() {
       const services = _.assign(
@@ -44,5 +59,14 @@ const PostDashboard = DerivedStateHOC(
     pinnedPostId: props => props.postService.getPinnedPost()
   }
 );
+
+const MyPostsPage = LoadableHOC(
+  IfElseHOC("identity", IdentitiedMyPostsPage, UnidentitiedMyPostsPage),
+  {
+    identity: props => props.identityService.getMyIdentity()
+  }
+);
+
+const PostDashboard = MyPostsPage;
 
 export default PostDashboard;
