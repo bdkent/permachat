@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Alert } from "reactstrap";
 
-import Tweeter from "./Tweeter.js";
+import PermaChat from "./PermaChat.js";
 
 const deployContract = async (web3, contractDefinition) => {
   const contract = truffleContract(contractDefinition);
@@ -96,7 +96,7 @@ class App extends Component {
     return (
       <div className="">
         <NetworkBanner networkType={this.state.networkType} />
-        <Tweeter
+        <PermaChat
           accounts={this.state.accounts}
           contract={this.state.contract}
           contracts={this.state.contracts}

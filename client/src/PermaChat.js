@@ -164,7 +164,7 @@ const MainContent = ConditionalHOC(
   props => !!props.postService && !!props.dataService && !!props.account
 );
 
-class Tweeter extends Component {
+class PermaChat extends Component {
   state = {
     account: this.props.accounts[0],
     postService: new PostService(
@@ -301,4 +301,4 @@ class Tweeter extends Component {
   }
 }
 
-export default Tweeter;
+export default PermaChat;
