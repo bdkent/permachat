@@ -6,11 +6,15 @@ import getWeb3 from "./utils/getWeb3";
 import truffleContract from "truffle-contract";
 import localForage from "localforage";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Alert } from "reactstrap";
 
-import PermaChat from "./PermaChat.js";
+import PermaChat from "./PermaChat";
+import AnonymousBlurb from "./widgets/AnonymousBlurb";
 
 const deployContract = async (web3, contractDefinition) => {
   const contract = truffleContract(contractDefinition);
@@ -33,6 +37,7 @@ const NetworkBanner = props => {
 
 class App extends Component {
   state = {
+    loading: true,
     web3: null,
     accounts: null,
     contract: null
@@ -73,6 +78,7 @@ class App extends Component {
       });
 
       this.setState({
+        loading: false,
         web3,
         networkType,
         accounts,
@@ -89,21 +95,33 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
+    if (this.state.loading) {
+      return (
+        <div className="container text-center text-info">
+          <FontAwesomeIcon icon={faSyncAlt} spin size="5x" />
+        </div>
+      );
+    } else {
+      if (_.isNil(this.state.web3)) {
+        return (
+          <div className="container">
+            <AnonymousBlurb />
+          </div>
+        );
+      } else {
+        return (
+          <div className="">
+            <NetworkBanner networkType={this.state.networkType} />
+            <PermaChat
+              accounts={this.state.accounts}
+              contract={this.state.contract}
+              contracts={this.state.contracts}
+              web3={this.state.web3}
+            />
+          </div>
+        );
+      }
     }
-
-    return (
-      <div className="">
-        <NetworkBanner networkType={this.state.networkType} />
-        <PermaChat
-          accounts={this.state.accounts}
-          contract={this.state.contract}
-          contracts={this.state.contracts}
-          web3={this.state.web3}
-        />
-      </div>
-    );
   }
 }
 
