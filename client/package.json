@@ -44,9 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "oracle": "npx babel-node ./src/oracle.js",
-    "identity": "npx babel-node ./src/identity.js",
-    "oracle2": "npx babel-watch ./src/oracle.js"
+    "indexer": "npx babel-node ./src/indexer.js"
   },
   "eslintConfig": {
     "extends": "react-app"
