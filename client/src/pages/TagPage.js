@@ -3,9 +3,9 @@ import React from "react";
 
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-import Datastore from "./Datastore";
+import Datastore from "../widgets/Datastore";
 
-const Tag = props => {
+const TagPage = props => {
   const { tag } = props;
 
   const services = _.assign(
@@ -29,4 +29,4 @@ const Tag = props => {
   );
 };
 
-export default Tag;
+export default TagPage;

@@ -9,9 +9,9 @@ import ConditionalHOC from "../hoc/ConditionalHOC";
 import IfElseHOC from "../hoc/IfElseHOC";
 import LoadableHOC from "../hoc/LoadableHOC";
 
-import PostForm from "./PostForm";
-import MyPosts from "./MyPosts";
-import PinnedPost from "./PinnedPost";
+import PostForm from "../widgets/PostForm";
+import MyPosts from "../widgets/MyPosts";
+import PinnedPost from "../widgets/PinnedPost";
 
 const ConditionalPinnedPost = ConditionalHOC(PinnedPost, "pinnedPostId");
 
@@ -67,6 +67,4 @@ const MyPostsPage = LoadableHOC(
   }
 );
 
-const PostDashboard = MyPostsPage;
-
-export default PostDashboard;
+export default MyPostsPage;

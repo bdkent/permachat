@@ -2,9 +2,9 @@ import _ from "lodash";
 
 import React, { Component } from "react";
 
-import Datastore from "./Datastore";
+import Datastore from "../widgets/Datastore";
 
-class SearchDashboard extends Component {
+class DiscoverPage extends Component {
   render() {
     const services = _.assign(
       {},
@@ -18,4 +18,4 @@ class SearchDashboard extends Component {
   }
 }
 
-export default SearchDashboard;
+export default DiscoverPage;

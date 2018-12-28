@@ -32,12 +32,11 @@ import IdentityService from "./services/IdentityService";
 
 import ConditionalHOC from "./hoc/ConditionalHOC";
 
-import Recent from "./widgets/Recent";
-
-import PostDashboard from "./widgets/PostDashboard";
-import SearchDashboard from "./widgets/SearchDashboard";
-import User from "./widgets/User";
-import Tag from "./widgets/Tag";
+import LatestPage from "./pages/LatestPage";
+import MyPostsPage from "./pages/MyPostsPage";
+import DiscoverPage from "./pages/DiscoverPage";
+import UserPage from "./pages/UserPage";
+import TagPage from "./pages/TagPage";
 import PostPage from "./pages/PostPage";
 import SettingsPage from "./pages/SettingsPage";
 import MyIdentityPage from "./pages/MyIdentityPage";
@@ -66,7 +65,7 @@ const MainContent = ConditionalHOC(
           path="/post"
           render={props => {
             return (
-              <PostDashboard
+              <MyPostsPage
                 postService={postService}
                 pricingService={pricingService}
                 identityService={identityService}
@@ -78,7 +77,7 @@ const MainContent = ConditionalHOC(
           path="/discover"
           render={props => {
             return (
-              <SearchDashboard
+              <DiscoverPage
                 postService={postService}
                 pricingService={pricingService}
                 dataService={dataService}
@@ -91,7 +90,7 @@ const MainContent = ConditionalHOC(
           path="/latest"
           render={props => {
             return (
-              <Recent
+              <LatestPage
                 postService={postService}
                 pricingService={pricingService}
                 identityService={identityService}
@@ -104,7 +103,7 @@ const MainContent = ConditionalHOC(
           path="/users/:userId"
           render={props => {
             return (
-              <User
+              <UserPage
                 dataService={dataService}
                 postService={postService}
                 pricingService={pricingService}
@@ -131,7 +130,7 @@ const MainContent = ConditionalHOC(
           path="/tags/:tag"
           render={props => {
             return (
-              <Tag
+              <TagPage
                 postService={postService}
                 pricingService={pricingService}
                 dataService={dataService}

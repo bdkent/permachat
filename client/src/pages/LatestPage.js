@@ -1,9 +1,9 @@
 import _ from "lodash";
 import React, { Component } from "react";
 
-import Posts from "./Posts";
+import Posts from "../widgets/Posts";
 
-class Recent extends Component {
+class LatestPage extends Component {
   state = { posts: [] };
 
   constructor(props) {
@@ -56,4 +56,4 @@ class Recent extends Component {
   }
 }
 
-export default Recent;
+export default LatestPage;

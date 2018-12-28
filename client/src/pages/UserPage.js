@@ -3,9 +3,9 @@ import React from "react";
 
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-import Datastore from "./Datastore";
+import Datastore from "../widgets/Datastore";
 
-const User = props => {
+const UserPage = props => {
   // NOTE: right now userId is the ethereum address
 
   const { userId } = props;
@@ -37,4 +37,4 @@ const User = props => {
   );
 };
 
-export default User;
+export default UserPage;
