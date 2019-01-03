@@ -43,7 +43,7 @@ class ActionIndexer {
 
       return await this.indexPersister.persistWith(
         currentHash,
-        latestDatabaseIndex,
+        nextDatabaseIndex,
         async rootDir => {
           switch (targetType.toNumber()) {
             case ActionType.POST:
@@ -64,6 +64,7 @@ class ActionIndexer {
   }
 
   async indexNextPost(rootDir, postId) {
+    logger.debug("indexNextPost", rootDir, postId);
     const self = this;
     const post = await this.service.getPost(postId);
 

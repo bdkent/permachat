@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Button, ButtonGroup } from "reactstrap";
+import { ButtonGroup } from "reactstrap";
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -34,7 +34,7 @@ import IfElseHOC from "../hoc/IfElseHOC";
 import QuotedContent from "./QuotedContent";
 import IpfsContent from "./IpfsContent";
 import PostForm from "./PostForm";
-import WorkerButton from "./PostForm";
+import WorkerButton from "./WorkerButton";
 
 import BigNumberUtils from "../utils/BigNumberUtils";
 
@@ -149,7 +149,7 @@ const Pin = ConditionalHOC(
     };
 
     return (
-      <Button
+      <WorkerButton
         size="sm"
         className="mr-2"
         color={attention && isPinned ? "warning" : "secondary"}
@@ -157,7 +157,7 @@ const Pin = ConditionalHOC(
         active={isPinned}
       >
         <Icon hasPin={hasPin} />
-      </Button>
+      </WorkerButton>
     );
   },
   props => !props.hasPin || props.isPinned
@@ -186,20 +186,20 @@ const CommentaryToolbar = ConditionalHOC(props => {
         tip={tip}
       />
       <ButtonGroup size="sm" className="ml-2 mr-2">
-        <Button onClick={upvote}>
+        <WorkerButton onClick={upvote}>
           <FontAwesomeIcon icon={faThumbsUp} />
-        </Button>
-        <Button onClick={downvote}>
+        </WorkerButton>
+        <WorkerButton onClick={downvote}>
           <FontAwesomeIcon icon={faThumbsDown} />
-        </Button>
+        </WorkerButton>
       </ButtonGroup>
-      <Button
+      <WorkerButton
         size="sm"
         onClick={flag}
         color={attention ? "danger" : "secondary"}
       >
         <FontAwesomeIcon icon={faSkull} className="mr-1" /> Flag
-      </Button>
+      </WorkerButton>
     </React.Fragment>
   );
 });

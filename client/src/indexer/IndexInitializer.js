@@ -9,7 +9,9 @@ const IndexInitializer = {
   bootstrapInitialize: async () => {
     try {
       await ipfs.files.mkdir("/root");
-    } catch (e) {}
+    } catch (e) {
+      logger.error(e);
+    }
 
     const stat = await ipfs.files.stat("/root");
     logger.debug("stat", stat);
@@ -17,7 +19,7 @@ const IndexInitializer = {
     const firstDBHash = stat.hash;
     logger.debug("firstDB", firstDBHash);
 
-    return IndexInitializer.doInitialize(firstDBHash);
+    return await IndexInitializer.doInitialize(firstDBHash);
   },
 
   nextInitialize: async currentDBHash => {
@@ -41,10 +43,10 @@ const IndexInitializer = {
   doInitialize: async currentDBHash => {
     logger.debug("initialize", "|", currentDBHash, "|");
 
-    if (currentDBHash) {
-      return await IndexInitializer.nextInitialize(currentDBHash);
-    } else {
+    if (_.isNil(currentDBHash)) {
       return await IndexInitializer.bootstrapInitialize();
+    } else {
+      return await IndexInitializer.nextInitialize(currentDBHash);
     }
   },
 
@@ -72,9 +74,16 @@ const IndexInitializer = {
   },
 
   initialize: async currentDBHash => {
+    try {
+      await ipfs.files.ls("/");
+    } catch (e) {
+      logger.warn("verify IPFS is running", e);
+    }
+
+    logger.debug("initialize", currentDBHash);
     const rootDir = await IndexInitializer.doInitialize(currentDBHash);
     logger.debug("rootDir", rootDir);
-    await IndexInitializer.cleanup(currentDBHash, rootDir);
+    // await IndexInitializer.cleanup(currentDBHash, rootDir);
 
     return rootDir;
   }

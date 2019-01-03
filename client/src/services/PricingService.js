@@ -3,6 +3,8 @@ import { fetch } from "whatwg-fetch";
 
 import ClassUtils from "../utils/ClassUtils";
 
+const LookupIntervalMs = 1000 * 60 * 5;
+
 class PricingService {
   current: {};
 
@@ -12,7 +14,7 @@ class PricingService {
     ClassUtils.bindAllMethods(PricingService.prototype, this);
 
     this.lookup();
-    window.setInterval(this.lookup, 1000 * 30);
+    window.setInterval(this.lookup, LookupIntervalMs);
   }
 
   async lookup() {

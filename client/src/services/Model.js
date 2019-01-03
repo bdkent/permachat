@@ -1,3 +1,11 @@
+const ContentType = {
+  TEXT: 0,
+  MARKDOWN: 1,
+  ASCII_DOC: 2,
+  RE_STRUCTURED_TEXT: 3,
+  LATEX: 4
+};
+
 class Post {
   constructor(id, hash, poster, blockNumber, timestamp, contentType) {
     this.id = id;
@@ -5,7 +13,7 @@ class Post {
     this.poster = poster;
     this.blockNumber = blockNumber;
     this.timestamp = timestamp;
-    this.contentType = contentType || "txt";
+    this.contentType = contentType || ContentType.TEXT;
   }
 }
 
@@ -45,7 +53,8 @@ const ActionType = {
 const Model = {
   Post: Post,
   CommentaryType: CommentaryType,
-  ActionType: ActionType
+  ActionType: ActionType,
+  ContentType: ContentType
 };
 
 export default Model;

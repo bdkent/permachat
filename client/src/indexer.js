@@ -99,8 +99,8 @@ const init = async networkType => {
   });
 };
 
-const reset = async () => {
-  const { web3, accounts, account, contract } = await config();
+const reset = async networkType => {
+  const { web3, accounts, account, contract } = await config(networkType);
 
   const dir = "/empty-" + String(Math.random() + Date.now());
   await ipfs.files.mkdir(dir);
@@ -120,4 +120,4 @@ const networkType = args.network || "private";
 console.log("network type", networkType);
 
 init(networkType);
-// reset();
+// reset(networkType);

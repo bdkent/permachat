@@ -13,6 +13,12 @@ contract ActionModel {
     
   mapping(uint => Action) actions;
   
+  event NewActionEvent(
+    uint actionId,
+    uint targetId,
+    TargetType targetType
+  );
+  
   function getAction(uint actionId) public view returns ( uint targetId, TargetType targetType ) {
     targetId = actions[actionId].targetId;
     targetType = actions[actionId].targetType;
@@ -26,6 +32,12 @@ contract ActionModel {
     });
 
     nextActionId += 1;
+    
+    emit NewActionEvent({
+      actionId: newActionId,
+      targetId: targetId,
+      targetType: targetType
+    });
     
     return newActionId;
   }

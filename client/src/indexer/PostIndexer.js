@@ -19,7 +19,12 @@ const toDateFromTimestamp = timestamp => {
   } else if (_.isNumber(timestamp)) {
     return new Date(timestamp);
   } else {
-    console.error("unexpected timestamp type: ", timestamp);
+    try {
+      return new Date(parseInt(_.toString(timestamp)));
+    } catch (e) {
+      console.error("unexpected timestamp type: ", timestamp);
+      throw e;
+    }
   }
 };
 
@@ -59,6 +64,7 @@ const DataStatus = {
 
 const PostIndexer = {
   indexPost: async (rootDir, post, domain) => {
+    logger.debug("indexPost", rootDir, post, domain);
     const now = toDateFromTimestamp(post.timestamp);
 
     const pathPrefix = rootDir + "/" + domain;
@@ -161,7 +167,7 @@ const PostIndexer = {
                 _.map(distributionGroups, async (posts, depth) => {
                   if (!_.isEmpty(posts)) {
                     logger.debug("disting", depth);
-                    const date = new Date(posts[0].timestamp);
+                    const date = toDateFromTimestamp(posts[0].timestamp);
                     const distDepths = toDepthsFromDate(date);
                     const distPath = toDataFilePath(
                       distDepths,

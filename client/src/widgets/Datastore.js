@@ -19,6 +19,7 @@ import DerivedStateHOC from "../hoc/DerivedStateHOC";
 import ContractHelper from "../services/ContractHelper";
 
 import DatastoreIndexExplorer from "./DatastoreIndexExplorer";
+import WorkerButton from "./WorkerButton";
 
 const ConditionalDatastoreIndexExplorer = IfElseHOC(
   "databaseIndex",
@@ -38,10 +39,14 @@ const IsUnlockableButton = props => {
     ? ""
     : _.toString(props.unlockableUpdates) + " behind";
   return (
-    <Button onClick={props.unlockNewestDatabase} block={true} title={note}>
+    <WorkerButton
+      onClick={props.unlockNewestDatabase}
+      block={true}
+      title={note}
+    >
       <FontAwesomeIcon className="mr-2" icon={faUnlockAlt} />
       unlock
-    </Button>
+    </WorkerButton>
   );
 };
 
@@ -75,7 +80,7 @@ const DataNavigator = ({
     <Form>
       <FormGroup>
         <Row>
-          <Col md={10}>
+          <Col md={9}>
             <Row>
               <Col md={3}>
                 <Button
@@ -115,7 +120,7 @@ const DataNavigator = ({
               </Col>
             </Row>
           </Col>
-          <Col md={2}>
+          <Col md={3}>
             <UnlockButton
               isUnlockable={isUnlockable}
               unlockableUpdates={unlockableUpdates}
@@ -232,6 +237,10 @@ const Datastore = DerivedStateHOC(
 
       return (
         <div>
+          {/*<p>
+            {_.toString(this.state.paidDatabaseIndex)} -{" "}
+            {_.toString(this.state.latestDatabaseIndex)}
+          </p>*/}
           <IndexerBehindBanner behind={behind} show={behind > 0} />
           <DataNavigator
             currentDatabaseIndex={this.state.currentDatabaseIndex}

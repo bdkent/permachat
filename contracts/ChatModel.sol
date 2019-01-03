@@ -2,7 +2,7 @@ pragma solidity >=0.5.0 <0.6.0;
 
 contract ChatModel {
   
-  // TODO: contentType to enum
+  enum ContentType { TEXT, MARKDOWN, ASCII_DOC, RE_STRUCTURED_TEXT, LATEX }
   
   struct Post {
     uint postId;
@@ -10,7 +10,7 @@ contract ChatModel {
     address payable poster;
     uint blockNumber;
     uint timestamp;
-    string contentType; // ie: txt, md
+    ContentType contentType;
   }
   
   uint public nextPostIndex = 1;
@@ -46,7 +46,7 @@ contract ChatModel {
     address poster,
     uint blockNumber,
     uint timestamp,
-    string contentType
+    ContentType contentType
   );
   
   event NewReplyEvent(
@@ -56,7 +56,7 @@ contract ChatModel {
     address poster,
     uint blockNumber,
     uint timestamp,
-    string contentType
+    ContentType contentType
   );
   
   event NewCommentaryEvent(

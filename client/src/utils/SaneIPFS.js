@@ -1,3 +1,15 @@
+import _ from "lodash";
+
+import BN from "bn.js";
+
+const customSerializer = function(key, value) {
+  const rawValue = this[key];
+  if (BN.isBN(rawValue)) {
+    return rawValue.toNumber();
+  }
+  return value;
+};
+
 class SaneIPFS {
   constructor(ipfs) {
     this.ipfs = ipfs;
@@ -26,7 +38,10 @@ class SaneIPFS {
   }
 
   async writeJSON(path, contentJSON) {
-    return await this.writeString(path, JSON.stringify(contentJSON));
+    return await this.writeString(
+      path,
+      JSON.stringify(contentJSON, customSerializer)
+    );
   }
 
   async exists(path) {

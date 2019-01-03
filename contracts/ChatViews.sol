@@ -23,7 +23,7 @@ contract ChatViews is ChatModel {
     tip = commentary.tip;
   }
   
-  function getPost(uint postId) public view isValidPost(postId) returns (string memory ipfsHash, address poster, uint blockNumber, uint timestamp, string memory contentType) {
+  function getPost(uint postId) public view isValidPost(postId) returns (string memory ipfsHash, address poster, uint blockNumber, uint timestamp, ContentType contentType) {
     ipfsHash = posts[postId].ipfsHash;
     poster = posts[postId].poster;
     blockNumber = posts[postId].blockNumber;

@@ -17,6 +17,8 @@ contract IndexerModel is ActionModel {
   modifier requireDatabasePayable { require(paidDatabaseIndex < nextActionId); _; }
   
   modifier requireIndexed(uint databaseIndex) { require(databaseIndex <= latestDatabaseIndex); _; }
+  
+  modifier requireIndexable(uint databaseIndex) { require(databaseIndex <= paidDatabaseIndex && databaseIndex < nextActionId); _; }
 
   uint public latestDatabaseIndex = 0;
   uint public paidDatabaseIndex = 0;

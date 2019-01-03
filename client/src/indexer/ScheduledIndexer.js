@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+import ipfs from "../utils/ipfs-local";
 import ClassUtils from "../utils/ClassUtils";
 
 import ActionIndexer from "./ActionIndexer";
@@ -29,16 +30,28 @@ class ScheduledIndexer {
   }
 
   start() {
+    ipfs.files
+      .ls("/")
+      .catch(e =>
+        logger.warn("!!! ALERT: verify IPFS is actually running !!!")
+      );
+
     this.intervalId = setInterval(this.index, IntervalMs);
   }
 
   nextIndex() {
     const self = this;
     logger.info("attempting to index next action");
-    self.indexing = self.actionIndexer.indexNextAction().then(x => {
-      self.indexing = null;
-      return x;
-    });
+    self.indexing = self.actionIndexer
+      .indexNextAction()
+      .then(x => {
+        self.indexing = null;
+        return x;
+      })
+      .catch(e => {
+        logger.error(e);
+        throw e;
+      });
     return self.indexing;
   }
 

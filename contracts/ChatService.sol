@@ -6,7 +6,7 @@ import "./IdentityModel.sol";
 
 contract ChatService is ChatModel, ActionModel, IdentityModel {
   
-  function newBasePost(string memory ipfsHash, string memory contentType) internal returns (uint postId) {
+  function newBasePost(string memory ipfsHash, ContentType contentType) internal returns (uint postId) {
     uint newPostId = nextPostIndex;
     posts[newPostId] = Post({
       postId: newPostId,
@@ -20,7 +20,7 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     return newPostId;
   }
   
-  function newPost(string memory ipfsHash, string memory contentType) public hasIdentity() returns (uint postId) {
+  function newPost(string memory ipfsHash, ContentType contentType) public hasIdentity() returns (uint postId) {
     uint newPostId = newBasePost(ipfsHash, contentType);
     addAction(newPostId, TargetType.POST);
     emit NewPostEvent({
@@ -34,7 +34,7 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     return newPostId;
   }
   
-  function newReply(uint parentPostId, string memory ipfsHash, string memory contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
+  function newReply(uint parentPostId, string memory ipfsHash, ContentType contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
     uint newReplyId = newBasePost(ipfsHash, contentType);
     postToReplies[parentPostId].push(newReplyId);
     replyToParentPost[newReplyId] = parentPostId;

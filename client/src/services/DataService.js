@@ -27,10 +27,20 @@ class DataService {
   async getLatestDBState() {
     // HMM, returns coming back from contract.getLatestDatabaseState are not right,
     // so load manually?
+
+    // const nextActionId = await this.contract.nextActionId();
+
     const paidDatabaseIndex = await this.contract.paidDatabaseIndex();
     const latestDatabaseIndex = await this.contract.latestDatabaseIndex();
 
+    // console.log(
+    //   _.toString(nextActionId),
+    //   _.toString(paidDatabaseIndex),
+    //   _.toString(latestDatabaseIndex)
+    // );
+
     const result = await this.contract.getLatestDatabaseState();
+    // console.log(result);
 
     return _.assign({}, result, { paidDatabaseIndex, latestDatabaseIndex });
   }

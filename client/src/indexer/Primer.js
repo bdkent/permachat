@@ -12,7 +12,7 @@ const TimeoutMs = 1000;
 
 const primeNextHash = hash => {
   const url = "https://gateway.ipfs.io/ipfs" + hash;
-  logger.debug("attempting GET of ", url);
+  logger.info("attempting GET of ", url);
   return new Promise((resolve, reject) => {
     https
       .get(url, response => {
@@ -50,7 +50,7 @@ const scheduleNextPrime = () => {
   } else {
     TimeoutId = setTimeout(() => {
       const size = _.size(Queue);
-      logger.debug("prime queue size =", size);
+      logger.info("prime queue size =", size);
       const nextHash = Queue.shift();
       primeNextHash(nextHash).then(scheduleNextPrime);
     }, TimeoutMs);

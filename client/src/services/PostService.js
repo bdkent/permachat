@@ -182,7 +182,7 @@ class PostService {
       const { hash } = ipfsHash[0];
       const result = await this.contract.newPost(
         hash,
-        contentType || "txt",
+        contentType || Model.ContentType.TEXT,
         this.txParams
       );
 
@@ -200,7 +200,7 @@ class PostService {
       const result = await this.contract.newReply(
         parentPostId,
         hash,
-        contentType || "txt",
+        contentType || Model.ContentType.TEXT,
         this.txParams
       );
 

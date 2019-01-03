@@ -16,6 +16,28 @@
       "type": "function"
     },
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "actionId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "targetId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "targetType",
+          "type": "uint8"
+        }
+      ],
+      "name": "NewActionEvent",
+      "type": "event"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -39,20 +61,20 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6080604052600160005534801561001557600080fd5b50610159806100256000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806346abe73a14610051578063b6e768731461007c575b600080fd5b34801561005d57600080fd5b506100666100e0565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506100e6565b604051808381526020018260028111156100cb57fe5b60ff1681526020019250505060405180910390f35b60005481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff16905091509156fea165627a7a723058201e7f7305efc84dc5682087d6d9b8a5d8ddb781aab4630d71def821d50dc43a250029",
-  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806346abe73a14610051578063b6e768731461007c575b600080fd5b34801561005d57600080fd5b506100666100e0565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506100e6565b604051808381526020018260028111156100cb57fe5b60ff1681526020019250505060405180910390f35b60005481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff16905091509156fea165627a7a723058201e7f7305efc84dc5682087d6d9b8a5d8ddb781aab4630d71def821d50dc43a250029",
-  "sourceMap": "33:696:0:-;;;134:1;107:28;;33:696;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:696:0;;;;;;;",
-  "deployedSourceMap": "33:696:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;107:28;;8:9:-1;5:2;;;30:1;27;20:12;5:2;107:28:0;;;;;;;;;;;;;;;;;;;;;;;253:190;;8:9:-1;5:2;;;30:1;27;20:12;5:2;253:190:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;253:190:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;107:28;;;;:::o;253:190::-;309:13;324:21;365:7;:17;373:8;365:17;;;;;;;;;;;:26;;;354:37;;410:7;:17;418:8;410:17;;;;;;;;;;;:28;;;;;;;;;;;;397:41;;253:190;;;:::o",
-  "source": "pragma solidity >=0.5.0 <0.6.0;\n\ncontract ActionModel {\n  \n  enum TargetType { POST, REPLY, COMMENT }\n  \n  uint public nextActionId = 1;\n  \n  struct Action {\n    uint targetId;\n    TargetType targetType;\n  }\n    \n  mapping(uint => Action) actions;\n  \n  function getAction(uint actionId) public view returns ( uint targetId, TargetType targetType ) {\n    targetId = actions[actionId].targetId;\n    targetType = actions[actionId].targetType;\n  }\n  \n  function addAction(uint targetId, TargetType targetType) internal returns (uint) {\n    uint newActionId = nextActionId;\n    actions[newActionId] = Action({\n      targetId: targetId,\n      targetType: targetType\n    });\n\n    nextActionId += 1;\n    \n    return newActionId;\n  }\n  \n}\n",
+  "bytecode": "0x6080604052600160005534801561001557600080fd5b50610159806100256000396000f3fe60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806346abe73a14610051578063b6e768731461007c575b600080fd5b34801561005d57600080fd5b506100666100e0565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506100e6565b604051808381526020018260028111156100cb57fe5b60ff1681526020019250505060405180910390f35b60005481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff16905091509156fea165627a7a723058203e35486964842d2a14b5a5459e6eec98f95d0b2c445722073403914518bd4f070029",
+  "deployedBytecode": "0x60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806346abe73a14610051578063b6e768731461007c575b600080fd5b34801561005d57600080fd5b506100666100e0565b6040518082815260200191505060405180910390f35b34801561008857600080fd5b506100b56004803603602081101561009f57600080fd5b81019080803590602001909291905050506100e6565b604051808381526020018260028111156100cb57fe5b60ff1681526020019250505060405180910390f35b60005481565b600080600160008481526020019081526020016000206000015491506001600084815260200190815260200160002060010160009054906101000a900460ff16905091509156fea165627a7a723058203e35486964842d2a14b5a5459e6eec98f95d0b2c445722073403914518bd4f070029",
+  "sourceMap": "33:915:0:-;;;134:1;107:28;;33:915;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:915:0;;;;;;;",
+  "deployedSourceMap": "33:915:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;107:28;;8:9:-1;5:2;;;30:1;27;20:12;5:2;107:28:0;;;;;;;;;;;;;;;;;;;;;;;349:190;;8:9:-1;5:2;;;30:1;27;20:12;5:2;349:190:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;349:190:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;107:28;;;;:::o;349:190::-;405:13;420:21;461:7;:17;469:8;461:17;;;;;;;;;;;:26;;;450:37;;506:7;:17;514:8;506:17;;;;;;;;;;;:28;;;;;;;;;;;;493:41;;349:190;;;:::o",
+  "source": "pragma solidity >=0.5.0 <0.6.0;\n\ncontract ActionModel {\n  \n  enum TargetType { POST, REPLY, COMMENT }\n  \n  uint public nextActionId = 1;\n  \n  struct Action {\n    uint targetId;\n    TargetType targetType;\n  }\n    \n  mapping(uint => Action) actions;\n  \n  event NewActionEvent(\n    uint actionId,\n    uint targetId,\n    TargetType targetType\n  );\n  \n  function getAction(uint actionId) public view returns ( uint targetId, TargetType targetType ) {\n    targetId = actions[actionId].targetId;\n    targetType = actions[actionId].targetType;\n  }\n  \n  function addAction(uint targetId, TargetType targetType) internal returns (uint) {\n    uint newActionId = nextActionId;\n    actions[newActionId] = Action({\n      targetId: targetId,\n      targetType: targetType\n    });\n\n    nextActionId += 1;\n    \n    emit NewActionEvent({\n      actionId: newActionId,\n      targetId: targetId,\n      targetType: targetType\n    });\n    \n    return newActionId;\n  }\n  \n}\n",
   "sourcePath": "/Users/kent/git/permachat/contracts/ActionModel.sol",
   "ast": {
     "absolutePath": "/Users/kent/git/permachat/contracts/ActionModel.sol",
     "exportedSymbols": {
       "ActionModel": [
-        71
+        85
       ]
     },
-    "id": 72,
+    "id": 86,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -75,9 +97,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 71,
+        "id": 85,
         "linearizedBaseContracts": [
-          71
+          85
         ],
         "name": "ActionModel",
         "nodeType": "ContractDefinition",
@@ -114,7 +136,7 @@
             "id": 8,
             "name": "nextActionId",
             "nodeType": "VariableDeclaration",
-            "scope": 71,
+            "scope": 85,
             "src": "107:28:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -213,7 +235,7 @@
             ],
             "name": "Action",
             "nodeType": "StructDefinition",
-            "scope": 71,
+            "scope": 85,
             "src": "142:65:0",
             "visibility": "public"
           },
@@ -222,7 +244,7 @@
             "id": 17,
             "name": "actions",
             "nodeType": "VariableDeclaration",
-            "scope": 71,
+            "scope": 85,
             "src": "215:31:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -265,209 +287,23 @@
             "visibility": "internal"
           },
           {
-            "body": {
-              "id": 40,
-              "nodeType": "Block",
-              "src": "348:95:0",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 31,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 26,
-                      "name": "targetId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 22,
-                      "src": "354:8:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 27,
-                          "name": "actions",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 17,
-                          "src": "365:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
-                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
-                          }
-                        },
-                        "id": 29,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 28,
-                          "name": "actionId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 19,
-                          "src": "373:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "365:17:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Action_$13_storage",
-                          "typeString": "struct ActionModel.Action storage ref"
-                        }
-                      },
-                      "id": 30,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "targetId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 10,
-                      "src": "365:26:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "354:37:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 32,
-                  "nodeType": "ExpressionStatement",
-                  "src": "354:37:0"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 38,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 33,
-                      "name": "targetType",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 24,
-                      "src": "397:10:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_TargetType_$5",
-                        "typeString": "enum ActionModel.TargetType"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 34,
-                          "name": "actions",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 17,
-                          "src": "410:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
-                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
-                          }
-                        },
-                        "id": 36,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 35,
-                          "name": "actionId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 19,
-                          "src": "418:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "410:17:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Action_$13_storage",
-                          "typeString": "struct ActionModel.Action storage ref"
-                        }
-                      },
-                      "id": 37,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "targetType",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 12,
-                      "src": "410:28:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_TargetType_$5",
-                        "typeString": "enum ActionModel.TargetType"
-                      }
-                    },
-                    "src": "397:41:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_TargetType_$5",
-                      "typeString": "enum ActionModel.TargetType"
-                    }
-                  },
-                  "id": 39,
-                  "nodeType": "ExpressionStatement",
-                  "src": "397:41:0"
-                }
-              ]
-            },
+            "anonymous": false,
             "documentation": null,
-            "id": 41,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getAction",
-            "nodeType": "FunctionDefinition",
+            "id": 25,
+            "name": "NewActionEvent",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 20,
+              "id": 24,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 19,
+                  "indexed": false,
                   "name": "actionId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "272:13:0",
+                  "scope": 25,
+                  "src": "279:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -478,40 +314,7 @@
                     "id": 18,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "272:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "271:15:0"
-            },
-            "returnParameters": {
-              "id": 25,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 22,
-                  "name": "targetId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "309:13:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 21,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "309:4:0",
+                    "src": "279:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -522,11 +325,39 @@
                 },
                 {
                   "constant": false,
-                  "id": 24,
+                  "id": 21,
+                  "indexed": false,
+                  "name": "targetId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25,
+                  "src": "298:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 20,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "298:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23,
+                  "indexed": false,
                   "name": "targetType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "324:21:0",
+                  "scope": 25,
+                  "src": "317:21:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -535,11 +366,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 23,
+                    "id": 22,
                     "name": "TargetType",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 5,
-                    "src": "324:10:0",
+                    "src": "317:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_enum$_TargetType_$5",
                       "typeString": "enum ActionModel.TargetType"
@@ -549,32 +380,321 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:40:0"
+              "src": "273:69:0"
             },
-            "scope": 71,
-            "src": "253:190:0",
+            "src": "253:90:0"
+          },
+          {
+            "body": {
+              "id": 48,
+              "nodeType": "Block",
+              "src": "444:95:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 39,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 34,
+                      "name": "targetId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30,
+                      "src": "450:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 35,
+                          "name": "actions",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 17,
+                          "src": "461:7:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
+                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
+                          }
+                        },
+                        "id": 37,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 36,
+                          "name": "actionId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27,
+                          "src": "469:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "461:17:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Action_$13_storage",
+                          "typeString": "struct ActionModel.Action storage ref"
+                        }
+                      },
+                      "id": 38,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "targetId",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 10,
+                      "src": "461:26:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "450:37:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 40,
+                  "nodeType": "ExpressionStatement",
+                  "src": "450:37:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 46,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 41,
+                      "name": "targetType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32,
+                      "src": "493:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_TargetType_$5",
+                        "typeString": "enum ActionModel.TargetType"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 42,
+                          "name": "actions",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 17,
+                          "src": "506:7:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
+                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
+                          }
+                        },
+                        "id": 44,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 43,
+                          "name": "actionId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27,
+                          "src": "514:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "506:17:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Action_$13_storage",
+                          "typeString": "struct ActionModel.Action storage ref"
+                        }
+                      },
+                      "id": 45,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "targetType",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 12,
+                      "src": "506:28:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_TargetType_$5",
+                        "typeString": "enum ActionModel.TargetType"
+                      }
+                    },
+                    "src": "493:41:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TargetType_$5",
+                      "typeString": "enum ActionModel.TargetType"
+                    }
+                  },
+                  "id": 47,
+                  "nodeType": "ExpressionStatement",
+                  "src": "493:41:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 49,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAction",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 28,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27,
+                  "name": "actionId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "368:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "368:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "367:15:0"
+            },
+            "returnParameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30,
+                  "name": "targetId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "405:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 29,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "405:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32,
+                  "name": "targetType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "420:21:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TargetType_$5",
+                    "typeString": "enum ActionModel.TargetType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 31,
+                    "name": "TargetType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5,
+                    "src": "420:10:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TargetType_$5",
+                      "typeString": "enum ActionModel.TargetType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "403:40:0"
+            },
+            "scope": 85,
+            "src": "349:190:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 69,
+              "id": 83,
               "nodeType": "Block",
-              "src": "530:194:0",
+              "src": "626:317:0",
               "statements": [
                 {
                   "assignments": [
-                    51
+                    59
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 51,
+                      "id": 59,
                       "name": "newActionId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 69,
-                      "src": "536:16:0",
+                      "scope": 83,
+                      "src": "632:16:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -582,10 +702,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 50,
+                        "id": 58,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "536:4:0",
+                        "src": "632:4:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -595,27 +715,27 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 53,
+                  "id": 61,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 52,
+                    "id": 60,
                     "name": "nextActionId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 8,
-                    "src": "555:12:0",
+                    "src": "651:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "536:31:0"
+                  "src": "632:31:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 61,
+                    "id": 69,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -624,26 +744,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 54,
+                        "id": 62,
                         "name": "actions",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 17,
-                        "src": "573:7:0",
+                        "src": "669:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
                           "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
                         }
                       },
-                      "id": 56,
+                      "id": 64,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 55,
+                        "id": 63,
                         "name": "newActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 51,
-                        "src": "581:11:0",
+                        "referencedDeclaration": 59,
+                        "src": "677:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -654,7 +774,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "573:20:0",
+                      "src": "669:20:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Action_$13_storage",
                         "typeString": "struct ActionModel.Action storage ref"
@@ -667,12 +787,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 58,
+                          "id": 66,
                           "name": "targetId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 43,
-                          "src": "621:8:0",
+                          "referencedDeclaration": 51,
+                          "src": "717:8:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -680,12 +800,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 59,
+                          "id": 67,
                           "name": "targetType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 45,
-                          "src": "649:10:0",
+                          "referencedDeclaration": 53,
+                          "src": "745:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_enum$_TargetType_$5",
                             "typeString": "enum ActionModel.TargetType"
@@ -694,18 +814,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 57,
+                        "id": 65,
                         "name": "Action",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 13,
-                        "src": "596:6:0",
+                        "src": "692:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_Action_$13_storage_ptr_$",
                           "typeString": "type(struct ActionModel.Action storage pointer)"
                         }
                       },
-                      "id": 60,
+                      "id": 68,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -716,38 +836,38 @@
                         "targetType"
                       ],
                       "nodeType": "FunctionCall",
-                      "src": "596:70:0",
+                      "src": "692:70:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Action_$13_memory",
                         "typeString": "struct ActionModel.Action memory"
                       }
                     },
-                    "src": "573:93:0",
+                    "src": "669:93:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Action_$13_storage",
                       "typeString": "struct ActionModel.Action storage ref"
                     }
                   },
-                  "id": 62,
+                  "id": 70,
                   "nodeType": "ExpressionStatement",
-                  "src": "573:93:0"
+                  "src": "669:93:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 65,
+                    "id": 73,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 63,
+                      "id": 71,
                       "name": "nextActionId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 8,
-                      "src": "673:12:0",
+                      "src": "769:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -758,14 +878,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 64,
+                      "id": 72,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "689:1:0",
+                      "src": "785:1:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -773,55 +893,134 @@
                       },
                       "value": "1"
                     },
-                    "src": "673:17:0",
+                    "src": "769:17:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 66,
+                  "id": 74,
                   "nodeType": "ExpressionStatement",
-                  "src": "673:17:0"
+                  "src": "769:17:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 76,
+                        "name": "newActionId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 59,
+                        "src": "835:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 77,
+                        "name": "targetId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 51,
+                        "src": "864:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 78,
+                        "name": "targetType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 53,
+                        "src": "892:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_TargetType_$5",
+                          "typeString": "enum ActionModel.TargetType"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 75,
+                      "name": "NewActionEvent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25,
+                      "src": "802:14:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_enum$_TargetType_$5_$returns$__$",
+                        "typeString": "function (uint256,uint256,enum ActionModel.TargetType)"
+                      }
+                    },
+                    "id": 79,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [
+                      "actionId",
+                      "targetId",
+                      "targetType"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "802:107:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 80,
+                  "nodeType": "EmitStatement",
+                  "src": "797:112:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 67,
+                    "id": 81,
                     "name": "newActionId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 51,
-                    "src": "708:11:0",
+                    "referencedDeclaration": 59,
+                    "src": "927:11:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 49,
-                  "id": 68,
+                  "functionReturnParameters": 57,
+                  "id": 82,
                   "nodeType": "Return",
-                  "src": "701:18:0"
+                  "src": "920:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 70,
+            "id": 84,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addAction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 46,
+              "id": 54,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43,
+                  "id": 51,
                   "name": "targetId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "468:13:0",
+                  "scope": 84,
+                  "src": "564:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -829,10 +1028,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 42,
+                    "id": 50,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "468:4:0",
+                    "src": "564:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -843,11 +1042,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 45,
+                  "id": 53,
                   "name": "targetType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "483:21:0",
+                  "scope": 84,
+                  "src": "579:21:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -856,11 +1055,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 44,
+                    "id": 52,
                     "name": "TargetType",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 5,
-                    "src": "483:10:0",
+                    "src": "579:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_enum$_TargetType_$5",
                       "typeString": "enum ActionModel.TargetType"
@@ -870,19 +1069,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "467:38:0"
+              "src": "563:38:0"
             },
             "returnParameters": {
-              "id": 49,
+              "id": 57,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 48,
+                  "id": 56,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "524:4:0",
+                  "scope": 84,
+                  "src": "620:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -890,10 +1089,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 47,
+                    "id": 55,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "524:4:0",
+                    "src": "620:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -903,29 +1102,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "523:6:0"
+              "src": "619:6:0"
             },
-            "scope": 71,
-            "src": "449:275:0",
+            "scope": 85,
+            "src": "545:398:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 72,
-        "src": "33:696:0"
+        "scope": 86,
+        "src": "33:915:0"
       }
     ],
-    "src": "0:730:0"
+    "src": "0:949:0"
   },
   "legacyAST": {
     "absolutePath": "/Users/kent/git/permachat/contracts/ActionModel.sol",
     "exportedSymbols": {
       "ActionModel": [
-        71
+        85
       ]
     },
-    "id": 72,
+    "id": 86,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -948,9 +1147,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 71,
+        "id": 85,
         "linearizedBaseContracts": [
-          71
+          85
         ],
         "name": "ActionModel",
         "nodeType": "ContractDefinition",
@@ -987,7 +1186,7 @@
             "id": 8,
             "name": "nextActionId",
             "nodeType": "VariableDeclaration",
-            "scope": 71,
+            "scope": 85,
             "src": "107:28:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1086,7 +1285,7 @@
             ],
             "name": "Action",
             "nodeType": "StructDefinition",
-            "scope": 71,
+            "scope": 85,
             "src": "142:65:0",
             "visibility": "public"
           },
@@ -1095,7 +1294,7 @@
             "id": 17,
             "name": "actions",
             "nodeType": "VariableDeclaration",
-            "scope": 71,
+            "scope": 85,
             "src": "215:31:0",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1138,209 +1337,23 @@
             "visibility": "internal"
           },
           {
-            "body": {
-              "id": 40,
-              "nodeType": "Block",
-              "src": "348:95:0",
-              "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 31,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 26,
-                      "name": "targetId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 22,
-                      "src": "354:8:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 27,
-                          "name": "actions",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 17,
-                          "src": "365:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
-                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
-                          }
-                        },
-                        "id": 29,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 28,
-                          "name": "actionId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 19,
-                          "src": "373:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "365:17:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Action_$13_storage",
-                          "typeString": "struct ActionModel.Action storage ref"
-                        }
-                      },
-                      "id": 30,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "targetId",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 10,
-                      "src": "365:26:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "354:37:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 32,
-                  "nodeType": "ExpressionStatement",
-                  "src": "354:37:0"
-                },
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 38,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 33,
-                      "name": "targetType",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 24,
-                      "src": "397:10:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_TargetType_$5",
-                        "typeString": "enum ActionModel.TargetType"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "expression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 34,
-                          "name": "actions",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 17,
-                          "src": "410:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
-                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
-                          }
-                        },
-                        "id": 36,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 35,
-                          "name": "actionId",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 19,
-                          "src": "418:8:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "410:17:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Action_$13_storage",
-                          "typeString": "struct ActionModel.Action storage ref"
-                        }
-                      },
-                      "id": 37,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberName": "targetType",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 12,
-                      "src": "410:28:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_TargetType_$5",
-                        "typeString": "enum ActionModel.TargetType"
-                      }
-                    },
-                    "src": "397:41:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_TargetType_$5",
-                      "typeString": "enum ActionModel.TargetType"
-                    }
-                  },
-                  "id": 39,
-                  "nodeType": "ExpressionStatement",
-                  "src": "397:41:0"
-                }
-              ]
-            },
+            "anonymous": false,
             "documentation": null,
-            "id": 41,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getAction",
-            "nodeType": "FunctionDefinition",
+            "id": 25,
+            "name": "NewActionEvent",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 20,
+              "id": 24,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 19,
+                  "indexed": false,
                   "name": "actionId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "272:13:0",
+                  "scope": 25,
+                  "src": "279:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1351,40 +1364,7 @@
                     "id": 18,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "272:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "271:15:0"
-            },
-            "returnParameters": {
-              "id": 25,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 22,
-                  "name": "targetId",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "309:13:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 21,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "309:4:0",
+                    "src": "279:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1395,11 +1375,39 @@
                 },
                 {
                   "constant": false,
-                  "id": 24,
+                  "id": 21,
+                  "indexed": false,
+                  "name": "targetId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 25,
+                  "src": "298:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 20,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "298:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23,
+                  "indexed": false,
                   "name": "targetType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 41,
-                  "src": "324:21:0",
+                  "scope": 25,
+                  "src": "317:21:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1408,11 +1416,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 23,
+                    "id": 22,
                     "name": "TargetType",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 5,
-                    "src": "324:10:0",
+                    "src": "317:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_enum$_TargetType_$5",
                       "typeString": "enum ActionModel.TargetType"
@@ -1422,32 +1430,321 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:40:0"
+              "src": "273:69:0"
             },
-            "scope": 71,
-            "src": "253:190:0",
+            "src": "253:90:0"
+          },
+          {
+            "body": {
+              "id": 48,
+              "nodeType": "Block",
+              "src": "444:95:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 39,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 34,
+                      "name": "targetId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30,
+                      "src": "450:8:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 35,
+                          "name": "actions",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 17,
+                          "src": "461:7:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
+                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
+                          }
+                        },
+                        "id": 37,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 36,
+                          "name": "actionId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27,
+                          "src": "469:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "461:17:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Action_$13_storage",
+                          "typeString": "struct ActionModel.Action storage ref"
+                        }
+                      },
+                      "id": 38,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "targetId",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 10,
+                      "src": "461:26:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "450:37:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 40,
+                  "nodeType": "ExpressionStatement",
+                  "src": "450:37:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 46,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 41,
+                      "name": "targetType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 32,
+                      "src": "493:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_TargetType_$5",
+                        "typeString": "enum ActionModel.TargetType"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 42,
+                          "name": "actions",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 17,
+                          "src": "506:7:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
+                            "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
+                          }
+                        },
+                        "id": 44,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 43,
+                          "name": "actionId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 27,
+                          "src": "514:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "506:17:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Action_$13_storage",
+                          "typeString": "struct ActionModel.Action storage ref"
+                        }
+                      },
+                      "id": 45,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "targetType",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 12,
+                      "src": "506:28:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_TargetType_$5",
+                        "typeString": "enum ActionModel.TargetType"
+                      }
+                    },
+                    "src": "493:41:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TargetType_$5",
+                      "typeString": "enum ActionModel.TargetType"
+                    }
+                  },
+                  "id": 47,
+                  "nodeType": "ExpressionStatement",
+                  "src": "493:41:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 49,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAction",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 28,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27,
+                  "name": "actionId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "368:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "368:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "367:15:0"
+            },
+            "returnParameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30,
+                  "name": "targetId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "405:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 29,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "405:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 32,
+                  "name": "targetType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49,
+                  "src": "420:21:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TargetType_$5",
+                    "typeString": "enum ActionModel.TargetType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 31,
+                    "name": "TargetType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 5,
+                    "src": "420:10:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_TargetType_$5",
+                      "typeString": "enum ActionModel.TargetType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "403:40:0"
+            },
+            "scope": 85,
+            "src": "349:190:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 69,
+              "id": 83,
               "nodeType": "Block",
-              "src": "530:194:0",
+              "src": "626:317:0",
               "statements": [
                 {
                   "assignments": [
-                    51
+                    59
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 51,
+                      "id": 59,
                       "name": "newActionId",
                       "nodeType": "VariableDeclaration",
-                      "scope": 69,
-                      "src": "536:16:0",
+                      "scope": 83,
+                      "src": "632:16:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1455,10 +1752,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 50,
+                        "id": 58,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "536:4:0",
+                        "src": "632:4:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1468,27 +1765,27 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 53,
+                  "id": 61,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 52,
+                    "id": 60,
                     "name": "nextActionId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 8,
-                    "src": "555:12:0",
+                    "src": "651:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "536:31:0"
+                  "src": "632:31:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 61,
+                    "id": 69,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1497,26 +1794,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 54,
+                        "id": 62,
                         "name": "actions",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 17,
-                        "src": "573:7:0",
+                        "src": "669:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Action_$13_storage_$",
                           "typeString": "mapping(uint256 => struct ActionModel.Action storage ref)"
                         }
                       },
-                      "id": 56,
+                      "id": 64,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 55,
+                        "id": 63,
                         "name": "newActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 51,
-                        "src": "581:11:0",
+                        "referencedDeclaration": 59,
+                        "src": "677:11:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1527,7 +1824,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "573:20:0",
+                      "src": "669:20:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Action_$13_storage",
                         "typeString": "struct ActionModel.Action storage ref"
@@ -1540,12 +1837,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 58,
+                          "id": 66,
                           "name": "targetId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 43,
-                          "src": "621:8:0",
+                          "referencedDeclaration": 51,
+                          "src": "717:8:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1553,12 +1850,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 59,
+                          "id": 67,
                           "name": "targetType",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 45,
-                          "src": "649:10:0",
+                          "referencedDeclaration": 53,
+                          "src": "745:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_enum$_TargetType_$5",
                             "typeString": "enum ActionModel.TargetType"
@@ -1567,18 +1864,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 57,
+                        "id": 65,
                         "name": "Action",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 13,
-                        "src": "596:6:0",
+                        "src": "692:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_Action_$13_storage_ptr_$",
                           "typeString": "type(struct ActionModel.Action storage pointer)"
                         }
                       },
-                      "id": 60,
+                      "id": 68,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1589,38 +1886,38 @@
                         "targetType"
                       ],
                       "nodeType": "FunctionCall",
-                      "src": "596:70:0",
+                      "src": "692:70:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Action_$13_memory",
                         "typeString": "struct ActionModel.Action memory"
                       }
                     },
-                    "src": "573:93:0",
+                    "src": "669:93:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Action_$13_storage",
                       "typeString": "struct ActionModel.Action storage ref"
                     }
                   },
-                  "id": 62,
+                  "id": 70,
                   "nodeType": "ExpressionStatement",
-                  "src": "573:93:0"
+                  "src": "669:93:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 65,
+                    "id": 73,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 63,
+                      "id": 71,
                       "name": "nextActionId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 8,
-                      "src": "673:12:0",
+                      "src": "769:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1631,14 +1928,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 64,
+                      "id": 72,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "689:1:0",
+                      "src": "785:1:0",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_1_by_1",
@@ -1646,55 +1943,134 @@
                       },
                       "value": "1"
                     },
-                    "src": "673:17:0",
+                    "src": "769:17:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 66,
+                  "id": 74,
                   "nodeType": "ExpressionStatement",
-                  "src": "673:17:0"
+                  "src": "769:17:0"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 76,
+                        "name": "newActionId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 59,
+                        "src": "835:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 77,
+                        "name": "targetId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 51,
+                        "src": "864:8:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 78,
+                        "name": "targetType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 53,
+                        "src": "892:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_TargetType_$5",
+                          "typeString": "enum ActionModel.TargetType"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 75,
+                      "name": "NewActionEvent",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25,
+                      "src": "802:14:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_enum$_TargetType_$5_$returns$__$",
+                        "typeString": "function (uint256,uint256,enum ActionModel.TargetType)"
+                      }
+                    },
+                    "id": 79,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [
+                      "actionId",
+                      "targetId",
+                      "targetType"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "802:107:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 80,
+                  "nodeType": "EmitStatement",
+                  "src": "797:112:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 67,
+                    "id": 81,
                     "name": "newActionId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 51,
-                    "src": "708:11:0",
+                    "referencedDeclaration": 59,
+                    "src": "927:11:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 49,
-                  "id": 68,
+                  "functionReturnParameters": 57,
+                  "id": 82,
                   "nodeType": "Return",
-                  "src": "701:18:0"
+                  "src": "920:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 70,
+            "id": 84,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addAction",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 46,
+              "id": 54,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43,
+                  "id": 51,
                   "name": "targetId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "468:13:0",
+                  "scope": 84,
+                  "src": "564:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1702,10 +2078,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 42,
+                    "id": 50,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "468:4:0",
+                    "src": "564:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1716,11 +2092,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 45,
+                  "id": 53,
                   "name": "targetType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "483:21:0",
+                  "scope": 84,
+                  "src": "579:21:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1729,11 +2105,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 44,
+                    "id": 52,
                     "name": "TargetType",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 5,
-                    "src": "483:10:0",
+                    "src": "579:10:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_enum$_TargetType_$5",
                       "typeString": "enum ActionModel.TargetType"
@@ -1743,19 +2119,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "467:38:0"
+              "src": "563:38:0"
             },
             "returnParameters": {
-              "id": 49,
+              "id": 57,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 48,
+                  "id": 56,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "524:4:0",
+                  "scope": 84,
+                  "src": "620:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1763,10 +2139,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 47,
+                    "id": 55,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "524:4:0",
+                    "src": "620:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1776,20 +2152,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "523:6:0"
+              "src": "619:6:0"
             },
-            "scope": 71,
-            "src": "449:275:0",
+            "scope": 85,
+            "src": "545:398:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 72,
-        "src": "33:696:0"
+        "scope": 86,
+        "src": "33:915:0"
       }
     ],
-    "src": "0:730:0"
+    "src": "0:949:0"
   },
   "compiler": {
     "name": "solc",
@@ -1797,7 +2173,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2018-12-26T18:21:28.755Z",
+  "updatedAt": "2019-01-02T16:23:57.134Z",
   "devdoc": {
     "methods": {}
   },

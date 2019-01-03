@@ -13,15 +13,19 @@ class IndexPersister {
   constructor(indexerContractService) {
     this.indexerContractService = indexerContractService;
   }
-  async persistWith(currentHash, currentIndex, f) {
+
+  async persistWith(currentHash, nextDatabaseIndex, f) {
+    logger.debug("persistWith", currentHash, nextDatabaseIndex);
     const rootDir = await IndexInitializer.initialize(currentHash);
+    logger.debug("initialization complete");
     const mfsPaths = await f(rootDir);
-    const newHash = await this.updateDatabase(rootDir, currentIndex);
+    const newHash = await this.updateDatabase(rootDir, nextDatabaseIndex);
     const paths = _.map(mfsPaths, p => p.replace(rootDir, ""));
     return await Primer.prime(paths, newHash);
   }
 
-  async updateDatabase(rootDir, currentDatabaseIndex) {
+  async updateDatabase(rootDir, nextDatabaseIndex) {
+    logger.debug("updateDatabase", rootDir, _.toString(nextDatabaseIndex));
     const stat = await ipfs.files.stat(rootDir);
     logger.debug("stat", stat);
 
@@ -31,10 +35,10 @@ class IndexPersister {
     const added = await ipfs.files.flush();
     logger.debug("added (flush)", added);
 
-    // await indexerContractService.setDatabaseIndex(
-    //   currentDBIndex + 1,
-    //   newDbHash
-    // );
+    await this.indexerContractService.setDatabaseIndex(
+      nextDatabaseIndex,
+      newDbHash
+    );
     logger.debug("DB UPDATED");
 
     return newDbHash;

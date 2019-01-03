@@ -9,6 +9,8 @@ import { Form, FormGroup, Input, Row, Col } from "reactstrap";
 import SwitchHOC from "../hoc/SwitchHOC";
 import LoadableHOC from "../hoc/LoadableHOC";
 
+import Model from "../services/Model";
+
 import MarkdownEditor from "./MarkdownEditor";
 import MarkdownView from "./MarkdownView";
 import HashTagInput from "./HashTagInput";
@@ -22,10 +24,24 @@ const ViewState = {
   Preview: "preview"
 };
 
-const ContentType = {
-  Text: "text",
-  Markdown: "markdown"
+const toContentTypeLabel = contentType => {
+  switch (contentType) {
+    case Model.ContentType.TEXT:
+      return "text";
+    case Model.ContentType.MARKDOWN:
+      return "Markdown";
+    case Model.ContentType.ASCII_DOC:
+      return "AsciiDoc";
+    case Model.ContentType.RE_STRUCTURED_TEXT:
+      return "reStructuredText";
+    case Model.ContentType.LATEX:
+      return "LaTeX";
+    default:
+      return "UNKNOWN";
+  }
 };
+
+const ContentType = _.pick(Model.ContentType, ["TEXT", "MARKDOWN"]);
 
 const toToggleViewStateLabel = viewState => {
   switch (viewState) {
@@ -68,8 +84,8 @@ const PostEditMarkdown = ({ value, update }) => {
 const PostEdit = SwitchHOC(
   "contentType",
   toMapping([
-    [ContentType.Text, PostEditText],
-    [ContentType.Markdown, PostEditMarkdown]
+    [ContentType.TEXT, PostEditText],
+    [ContentType.MARKDOWN, PostEditMarkdown]
   ])
 );
 
@@ -198,7 +214,7 @@ const PostForm = LoadableHOC(
                   {_.map(ContentType, function(v) {
                     return (
                       <option key={v} value={v}>
-                        {v}
+                        {toContentTypeLabel(v)}
                       </option>
                     );
                   })}
@@ -214,7 +230,7 @@ const PostForm = LoadableHOC(
     contentType: props =>
       localForage
         .getItem(ContentTypeKey)
-        .then(value => _.defaultTo(value, ContentType.Text))
+        .then(value => _.defaultTo(value, ContentType.TEXT))
   }
 );
 

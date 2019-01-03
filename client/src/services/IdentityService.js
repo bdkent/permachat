@@ -22,6 +22,11 @@ class IdentityService {
     this.account = account;
   }
 
+  async isMe(address) {
+    const providers = await this.getMyIdentityProviders();
+    return _.some(providers, p => p.identityAddress === address);
+  }
+
   async getMyIdentity() {
     try {
       const result = await this.contract.getMyIdentityInfo(this.txParams);
@@ -73,16 +78,23 @@ class IdentityService {
 
   async getMyIdentityProviders() {
     const self = this;
-    const { providerCount } = await this.getMyIdentity();
-    const providers = await Promise.all(
-      _.map(_.range(providerCount), async index => {
-        const provider = await self.contract.getMyProviderInfo(index);
-        const request = await this.contract.getRequestById(provider.requestId);
-        return _.assign({}, provider, { request });
-      })
-    );
+    const myIdentity = await this.getMyIdentity();
+    if (_.isNil(myIdentity)) {
+      return [];
+    } else {
+      const { providerCount } = myIdentity;
+      const providers = await Promise.all(
+        _.map(_.range(providerCount), async index => {
+          const provider = await self.contract.getMyProviderInfo(index);
+          const request = await this.contract.getRequestById(
+            provider.requestId
+          );
+          return _.assign({}, provider, { request });
+        })
+      );
 
-    return providers;
+      return providers;
+    }
   }
 
   async getProviders() {

@@ -20,6 +20,7 @@ const IdentityProviders = LoadableHOC(
           <h3>{requestor}</h3>
           <Row className="mb-4">
             {_.map(providers, (identityProvider, i) => {
+              console.log(identityProvider);
               return (
                 <Col key={i} md={3}>
                   <IdentityProvider
@@ -54,7 +55,6 @@ class AddIdentityForm extends React.Component {
   }
 
   toggleForm() {
-    console.log("toggling");
     this.setState(previousState => {
       return { show: !previousState.show };
     });

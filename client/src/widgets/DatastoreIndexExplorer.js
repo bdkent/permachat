@@ -111,7 +111,6 @@ const loadListing = async ipfsPath => {
 };
 
 const loadContent = async ipfsPath => {
-  // console.log("loadContent", ipfsPath);
   try {
     const result = await fetch("https://ipfs.infura.io" + ipfsPath);
     if (result.ok) {
@@ -260,6 +259,7 @@ class DatastoreIndexExplorer extends Component {
               _.filter(result, r => r.path !== "data.json"),
               r => r.path
             );
+
             const nextLevelValues = _.assign({}, prevState.levelValues);
             nextLevelValues[nextLevel] = nextValues;
             const nextStatus = _.assign({}, prevState.status);
