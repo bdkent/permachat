@@ -23,8 +23,10 @@ contract ChatViews is ChatModel {
     tip = commentary.tip;
   }
   
-  function getPost(uint postId) public view isValidPost(postId) returns (string memory ipfsHash, address poster, uint blockNumber, uint timestamp, ContentType contentType) {
-    ipfsHash = posts[postId].ipfsHash;
+  function getPost(uint postId) public view isValidPost(postId) returns (bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, address poster, uint blockNumber, uint timestamp, ContentType contentType) {
+    multihashDigest = posts[postId].multihash.digest;
+    multihashHashFunction = posts[postId].multihash.hashFunction;
+    multihashSize = posts[postId].multihash.size;
     poster = posts[postId].poster;
     blockNumber = posts[postId].blockNumber;
     timestamp = posts[postId].timestamp;

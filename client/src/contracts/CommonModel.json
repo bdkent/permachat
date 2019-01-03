@@ -1,24 +1,24 @@
 {
   "contractName": "CommonModel",
   "abi": [],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820e763bb115407e9286b5ecfcf57aeaca4e6c1cdc4e8df40c99227ac86bb8c0eb30029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820e763bb115407e9286b5ecfcf57aeaca4e6c1cdc4e8df40c99227ac86bb8c0eb30029",
-  "sourceMap": "33:141:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:141:4;;;;;;;",
-  "deployedSourceMap": "33:141:4:-;;;;;",
-  "source": "pragma solidity >=0.5.0 <0.6.0;\n\ncontract CommonModel {\n  \n  // TODO: ipfsHash as struct insteads of string\n  // see https://github.com/saurfang/ipfs-multihash-on-solidity \n}\n",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820111f229b1c57508e89a52aa36b0dd63324013a92ba1d74d949e02204d634fb840029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820111f229b1c57508e89a52aa36b0dd63324013a92ba1d74d949e02204d634fb840029",
+  "sourceMap": "33:178:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:178:4;;;;;;;",
+  "deployedSourceMap": "33:178:4:-;;;;;",
+  "source": "pragma solidity >=0.5.0 <0.6.0;\n\ncontract CommonModel {\n\n  // see https://github.com/saurfang/ipfs-multihash-on-solidity \n  \n  struct Multihash {\n    bytes32 digest;\n    uint8 hashFunction;\n    uint8 size;\n  }\n}\n",
   "sourcePath": "/Users/kent/git/permachat/contracts/CommonModel.sol",
   "ast": {
     "absolutePath": "/Users/kent/git/permachat/contracts/CommonModel.sol",
     "exportedSymbols": {
       "CommonModel": [
-        852
+        939
       ]
     },
-    "id": 853,
+    "id": 940,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 851,
+        "id": 931,
         "literals": [
           "solidity",
           ">=",
@@ -37,31 +37,121 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 852,
+        "id": 939,
         "linearizedBaseContracts": [
-          852
+          939
         ],
         "name": "CommonModel",
         "nodeType": "ContractDefinition",
-        "nodes": [],
-        "scope": 853,
-        "src": "33:141:4"
+        "nodes": [
+          {
+            "canonicalName": "CommonModel.Multihash",
+            "id": 938,
+            "members": [
+              {
+                "constant": false,
+                "id": 933,
+                "name": "digest",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "150:14:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 932,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "150:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 935,
+                "name": "hashFunction",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "170:18:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 934,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "170:5:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 937,
+                "name": "size",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "194:10:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 936,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "194:5:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Multihash",
+            "nodeType": "StructDefinition",
+            "scope": 939,
+            "src": "127:82:4",
+            "visibility": "public"
+          }
+        ],
+        "scope": 940,
+        "src": "33:178:4"
       }
     ],
-    "src": "0:175:4"
+    "src": "0:212:4"
   },
   "legacyAST": {
     "absolutePath": "/Users/kent/git/permachat/contracts/CommonModel.sol",
     "exportedSymbols": {
       "CommonModel": [
-        852
+        939
       ]
     },
-    "id": 853,
+    "id": 940,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 851,
+        "id": 931,
         "literals": [
           "solidity",
           ">=",
@@ -80,18 +170,108 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 852,
+        "id": 939,
         "linearizedBaseContracts": [
-          852
+          939
         ],
         "name": "CommonModel",
         "nodeType": "ContractDefinition",
-        "nodes": [],
-        "scope": 853,
-        "src": "33:141:4"
+        "nodes": [
+          {
+            "canonicalName": "CommonModel.Multihash",
+            "id": 938,
+            "members": [
+              {
+                "constant": false,
+                "id": 933,
+                "name": "digest",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "150:14:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 932,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "150:7:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 935,
+                "name": "hashFunction",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "170:18:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 934,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "170:5:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 937,
+                "name": "size",
+                "nodeType": "VariableDeclaration",
+                "scope": 938,
+                "src": "194:10:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 936,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "194:5:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Multihash",
+            "nodeType": "StructDefinition",
+            "scope": 939,
+            "src": "127:82:4",
+            "visibility": "public"
+          }
+        ],
+        "scope": 940,
+        "src": "33:178:4"
       }
     ],
-    "src": "0:175:4"
+    "src": "0:212:4"
   },
   "compiler": {
     "name": "solc",
@@ -99,7 +279,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2018-12-26T18:31:30.525Z",
+  "updatedAt": "2019-01-03T18:14:35.718Z",
   "devdoc": {
     "methods": {}
   },

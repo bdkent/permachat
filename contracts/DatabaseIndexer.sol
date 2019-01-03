@@ -5,14 +5,18 @@ import "./IndexerAdminService.sol";
 
 contract DatabaseIndexer is IndexerModel, IndexerAdminService {
   
-  function getDatabaseHash(uint databaseIndex) public view requireIndexed(databaseIndex) returns ( string memory ipfsHash ) {
-    ipfsHash = databaseHashes[databaseIndex];
+  function getDatabaseHash(uint databaseIndex) public view requireIndexed(databaseIndex) returns ( bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize ) {
+    multihashDigest = databaseHashes[databaseIndex].digest;
+    multihashHashFunction = databaseHashes[databaseIndex].hashFunction;
+    multihashSize = databaseHashes[databaseIndex].size;
   }
 
-  function getLatestDatabaseState() public view returns ( uint latestIndex, uint paidIndex, string memory ipfsHash ) {
+  function getLatestDatabaseState() public view returns ( uint latestIndex, uint paidIndex, bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize ) {
     latestIndex = latestDatabaseIndex;
     paidIndex = paidDatabaseIndex;
-    ipfsHash = databaseHashes[latestDatabaseIndex];
+    multihashDigest = databaseHashes[latestDatabaseIndex].digest;
+    multihashHashFunction = databaseHashes[latestDatabaseIndex].hashFunction;
+    multihashSize = databaseHashes[latestDatabaseIndex].size;
   }
   
   function unlockNewestDatabase() public payable requireDatabasePayable {

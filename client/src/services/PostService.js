@@ -10,6 +10,7 @@ import ContractHelper from "./ContractHelper";
 
 import StringUtils from "../utils/StringUtils";
 import ClassUtils from "../utils/ClassUtils";
+import Multihash from "../utils/multihash";
 
 const RecentTweetsKey = "recent-tweets";
 const RecentTweetsToPersist = 50;
@@ -180,8 +181,11 @@ class PostService {
     try {
       const ipfsHash = await ipfs.add(Buffer.from(value));
       const { hash } = ipfsHash[0];
+      const multihash = Multihash.getBytes32FromMultiash(hash);
       const result = await this.contract.newPost(
-        hash,
+        multihash.digest,
+        multihash.hashFunction,
+        multihash.size,
         contentType || Model.ContentType.TEXT,
         this.txParams
       );
@@ -197,9 +201,12 @@ class PostService {
     try {
       const ipfsHash = await ipfs.add(Buffer.from(value));
       const { hash } = ipfsHash[0];
+      const multihash = Multihash.getBytes32FromMultiash(hash);
       const result = await this.contract.newReply(
         parentPostId,
-        hash,
+        multihash.digest,
+        multihash.hashFunction,
+        multihash.size,
         contentType || Model.ContentType.TEXT,
         this.txParams
       );

@@ -22,15 +22,31 @@ class IndexerContractService {
   }
 
   async setDatabaseIndex(newIndex, newHash) {
+    const multihash = Multihash.getBytes32FromMultiash(newHash);
     return await this.contract.setDatabaseIndex(
       newIndex,
-      newHash,
+      multihash.digest,
+      multihash.hashFunction,
+      multihash.size,
       this.txParams
     );
   }
 
   async getLatestDatabaseState() {
-    return await this.contract.getLatestDatabaseState();
+    const result = await this.contract.getLatestDatabaseState();
+    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    const ipfsHash = Multihash.getMultihashFromBytes32({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
+    // console.log(result);
+
+    return _.assign({}, result, {
+      ipfsHash,
+      paidDatabaseIndex,
+      latestDatabaseIndex
+    });
   }
 
   async getAction(databaseIndex) {

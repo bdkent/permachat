@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+import Multihash from "../utils/multihash";
 import ClassUtils from "../utils/ClassUtils";
 
 class DataService {
@@ -40,13 +41,29 @@ class DataService {
     // );
 
     const result = await this.contract.getLatestDatabaseState();
+    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    const ipfsHash = Multihash.getMultihashFromBytes32({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
     // console.log(result);
 
-    return _.assign({}, result, { paidDatabaseIndex, latestDatabaseIndex });
+    return _.assign({}, result, {
+      ipfsHash,
+      paidDatabaseIndex,
+      latestDatabaseIndex
+    });
   }
 
-  getDB(currentDatabaseIndex) {
-    return this.contract.getDatabaseHash(currentDatabaseIndex);
+  async getDB(currentDatabaseIndex) {
+    const result = await this.contract.getDatabaseHash(currentDatabaseIndex);
+    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    return Multihash.getMultihashFromBytes32({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
   }
 
   async isDBUninitialized() {

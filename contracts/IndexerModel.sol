@@ -1,8 +1,9 @@
 pragma solidity >=0.5.0 <0.6.0;
 
 import "./ActionModel.sol";
+import "./CommonModel.sol";
 
-contract IndexerModel is ActionModel {
+contract IndexerModel is CommonModel, ActionModel {
   
   uint public unlockPrice;
   
@@ -22,7 +23,7 @@ contract IndexerModel is ActionModel {
 
   uint public latestDatabaseIndex = 0;
   uint public paidDatabaseIndex = 0;
-  mapping(uint => string) databaseHashes;
+  mapping(uint => Multihash) databaseHashes;
 
   event DatabaseIndexPaidEvent(uint databaseIndex);
   event DatabaseIndexUpdateEvent(uint databaseIndex);

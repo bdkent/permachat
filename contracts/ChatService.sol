@@ -6,11 +6,11 @@ import "./IdentityModel.sol";
 
 contract ChatService is ChatModel, ActionModel, IdentityModel {
   
-  function newBasePost(string memory ipfsHash, ContentType contentType) internal returns (uint postId) {
+  function newBasePost(Multihash memory multihash, ContentType contentType) internal returns (uint postId) {
     uint newPostId = nextPostIndex;
     posts[newPostId] = Post({
       postId: newPostId,
-      ipfsHash: ipfsHash,
+      multihash: multihash,
       poster: msg.sender,
       blockNumber: block.number,
       timestamp: block.timestamp * 1000,
@@ -20,12 +20,19 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     return newPostId;
   }
   
-  function newPost(string memory ipfsHash, ContentType contentType) public hasIdentity() returns (uint postId) {
-    uint newPostId = newBasePost(ipfsHash, contentType);
+  function newPost(bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() returns (uint postId) {
+    Multihash memory multihash = Multihash({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
+    uint newPostId = newBasePost(multihash, contentType);
     addAction(newPostId, TargetType.POST);
     emit NewPostEvent({
       postId: posts[newPostId].postId,
-      ipfsHash: posts[newPostId].ipfsHash,
+      multihashDigest: multihash.digest,
+      multihashHashFunction: multihash.hashFunction,
+      multihashSize: multihash.size,
       poster: posts[newPostId].poster,
       blockNumber: posts[newPostId].blockNumber,
       timestamp: posts[newPostId].timestamp,
@@ -34,15 +41,22 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     return newPostId;
   }
   
-  function newReply(uint parentPostId, string memory ipfsHash, ContentType contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
-    uint newReplyId = newBasePost(ipfsHash, contentType);
+  function newReply(uint parentPostId, bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
+    Multihash memory multihash = Multihash({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
+    uint newReplyId = newBasePost(multihash, contentType);
     postToReplies[parentPostId].push(newReplyId);
     replyToParentPost[newReplyId] = parentPostId;
     addAction(newReplyId, TargetType.REPLY);
     emit NewReplyEvent({
       parentPostId: parentPostId,
       postId: posts[newReplyId].postId,
-      ipfsHash: posts[newReplyId].ipfsHash,
+      multihashDigest: multihash.digest,
+      multihashHashFunction: multihash.hashFunction,
+      multihashSize: multihash.size,
       poster: posts[newReplyId].poster,
       blockNumber: posts[newReplyId].blockNumber,
       timestamp: posts[newReplyId].timestamp,

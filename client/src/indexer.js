@@ -86,15 +86,7 @@ const init = async networkType => {
   scheduledIndexer.start();
   scheduledIndexer.index();
 
-  contract.NewPostEvent((error, result) => {
-    scheduledIndexer.index();
-  });
-
-  contract.NewReplyEvent((error, result) => {
-    scheduledIndexer.index();
-  });
-
-  contract.NewCommentaryEvent((error, result) => {
+  contract.NewActionEvent((error, result) => {
     scheduledIndexer.index();
   });
 };
@@ -106,7 +98,7 @@ const reset = async networkType => {
   await ipfs.files.mkdir(dir);
   const stat = await ipfs.files.stat(dir);
   const newDbHash = stat.hash;
-  await contract.setDatabaseIndex(1, stat.hash, { from: account });
+  await contract.resetDatabase({ from: account });
 
   console.log("db reset");
 };

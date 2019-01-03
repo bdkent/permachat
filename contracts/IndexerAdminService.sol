@@ -8,12 +8,16 @@ contract IndexerAdminService is IndexerModel {
     unlockPrice = price;
   }
 
-  function setDatabaseIndex(uint databaseIndex, string memory ipfsHash) public requireIndexerAdmin requireIndexable(databaseIndex){
+  function setDatabaseIndex(uint databaseIndex, bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize) public requireIndexerAdmin requireIndexable(databaseIndex){
     if(latestDatabaseIndex < databaseIndex) {
       latestDatabaseIndex = databaseIndex;
     }
 
-    databaseHashes[databaseIndex] = ipfsHash;
+    databaseHashes[databaseIndex] = Multihash({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    });
   }
   
   function resetDatabase() public requireIndexerAdmin {

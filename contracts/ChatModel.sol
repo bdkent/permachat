@@ -1,12 +1,14 @@
 pragma solidity >=0.5.0 <0.6.0;
 
-contract ChatModel {
+import "./CommonModel.sol";
+
+contract ChatModel is CommonModel {
   
   enum ContentType { TEXT, MARKDOWN, ASCII_DOC, RE_STRUCTURED_TEXT, LATEX }
   
   struct Post {
     uint postId;
-    string ipfsHash;
+    Multihash multihash;
     address payable poster;
     uint blockNumber;
     uint timestamp;
@@ -42,7 +44,9 @@ contract ChatModel {
   
   event NewPostEvent(
     uint postId,
-    string ipfsHash,
+    bytes32 multihashDigest,
+    uint8 multihashHashFunction,
+    uint8 multihashSize,
     address poster,
     uint blockNumber,
     uint timestamp,
@@ -52,7 +56,9 @@ contract ChatModel {
   event NewReplyEvent(
     uint parentPostId,
     uint postId,
-    string ipfsHash,
+    bytes32 multihashDigest,
+    uint8 multihashHashFunction,
+    uint8 multihashSize,
     address poster,
     uint blockNumber,
     uint timestamp,

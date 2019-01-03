@@ -3,7 +3,6 @@ import React from "react";
 
 import {
   Alert,
-  Button,
   Form,
   FormGroup,
   Input,
@@ -25,6 +24,7 @@ import LoadableHOC from "../hoc/LoadableHOC";
 import ConditionalHOC from "../hoc/ConditionalHOC";
 
 import ExternalAnchor from "./ExternalAnchor";
+import WorkerButton from "./WorkerButton";
 
 const Providers = {
   twitter: {
@@ -305,9 +305,13 @@ const VerifyForm = ConditionalHOC(props => {
         </p>
       </Alert>
       <FormGroup>
-        <Button color="primary" block={true} onClick={props.requestIdentity}>
+        <WorkerButton
+          color="primary"
+          block={true}
+          onClick={props.requestIdentity}
+        >
           Request Verification
-        </Button>
+        </WorkerButton>
       </FormGroup>
     </React.Fragment>
   );

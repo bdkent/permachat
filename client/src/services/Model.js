@@ -1,3 +1,5 @@
+import Multihash from "../utils/multihash";
+
 const ContentType = {
   TEXT: 0,
   MARKDOWN: 1,
@@ -20,7 +22,9 @@ class Post {
 Post.fromPermaChatContract = returnValues => {
   const {
     postId,
-    ipfsHash,
+    multihashDigest,
+    multihashHashFunction,
+    multihashSize,
     poster,
     blockNumber,
     timestamp,
@@ -29,7 +33,11 @@ Post.fromPermaChatContract = returnValues => {
 
   return new Post(
     postId,
-    ipfsHash,
+    Multihash.getMultihashFromBytes32({
+      digest: multihashDigest,
+      hashFunction: multihashHashFunction,
+      size: multihashSize
+    }),
     poster,
     blockNumber,
     timestamp,
