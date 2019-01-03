@@ -20,7 +20,7 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     return newPostId;
   }
   
-  function newPost(bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() returns (uint postId) {
+  function newPost(bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() {
     Multihash memory multihash = Multihash({
       digest: multihashDigest,
       hashFunction: multihashHashFunction,
@@ -28,20 +28,9 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     });
     uint newPostId = newBasePost(multihash, contentType);
     addAction(newPostId, TargetType.POST);
-    emit NewPostEvent({
-      postId: posts[newPostId].postId,
-      multihashDigest: multihash.digest,
-      multihashHashFunction: multihash.hashFunction,
-      multihashSize: multihash.size,
-      poster: posts[newPostId].poster,
-      blockNumber: posts[newPostId].blockNumber,
-      timestamp: posts[newPostId].timestamp,
-      contentType: contentType
-    });
-    return newPostId;
   }
   
-  function newReply(uint parentPostId, bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() isValidPost(parentPostId) returns (uint) {
+  function newReply(uint parentPostId, bytes32 multihashDigest, uint8 multihashHashFunction, uint8 multihashSize, ContentType contentType) public hasIdentity() isValidPost(parentPostId) {
     Multihash memory multihash = Multihash({
       digest: multihashDigest,
       hashFunction: multihashHashFunction,
@@ -51,18 +40,6 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     postToReplies[parentPostId].push(newReplyId);
     replyToParentPost[newReplyId] = parentPostId;
     addAction(newReplyId, TargetType.REPLY);
-    emit NewReplyEvent({
-      parentPostId: parentPostId,
-      postId: posts[newReplyId].postId,
-      multihashDigest: multihash.digest,
-      multihashHashFunction: multihash.hashFunction,
-      multihashSize: multihash.size,
-      poster: posts[newReplyId].poster,
-      blockNumber: posts[newReplyId].blockNumber,
-      timestamp: posts[newReplyId].timestamp,
-      contentType: contentType
-    });
-    return newReplyId;
   }
   
   function pinPost(uint postId) public isValidPost(postId) hasIdentity() {
@@ -95,13 +72,12 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
   
   function addCommentary(uint postId, CommentaryType commentaryType, uint tip) private hasIdentity() isValidPost(postId) hasNotYetCommented(postId) {
     uint newCommentId = nextCommentIndex;
-    uint commentaryIndex = postToCommentaryContent[postId].length;
-    uint timestamp = block.timestamp * 1000;
+    postToCommentaryContent[postId].length;
     commented[postId][toIdentityId(msg.sender)] = true;
     Commentary memory commentary = Commentary({
       commentaryType: commentaryType,
       commenter: msg.sender,
-      timestamp: timestamp,
+      timestamp: block.timestamp * 1000,
       tip: tip
     });
     postToCommentaryContent[postId].push(commentary);
@@ -109,15 +85,5 @@ contract ChatService is ChatModel, ActionModel, IdentityModel {
     
     addAction(newCommentId, TargetType.COMMENT);
     nextCommentIndex += 1;
-    
-    emit NewCommentaryEvent({
-      postId: postId,
-      commentaryIndex: commentaryIndex,
-      commentId: newCommentId,
-      commentaryType: commentaryType,
-      commenter: msg.sender,
-      timestamp: timestamp,
-      tip: tip
-    });
   }
 }

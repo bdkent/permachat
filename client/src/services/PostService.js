@@ -30,33 +30,47 @@ class PostService {
 
     ClassUtils.bindAllMethods(PostService.prototype, this);
 
-    this.contract.NewPostEvent((error, result) => {
-      const delegateToHandlers = async (result, handlers) => {
-        const post = Model.Post.fromPermaChatContract(result.returnValues);
-        if (!_.isNil(post)) {
-          if (this.isMyAccount(post.poster)) {
-            const posts = await this.loadMyPosts();
-            const newPosts = [post].concat(posts);
-            await localForage.setItem(MyPostsKey, newPosts);
-          } else {
-            const posts = await this.loadRecentPosts();
-            const newPosts = [post]
-              .concat(posts)
-              .splice(0, RecentTweetsToPersist);
-            await localForage.setItem(RecentTweetsKey, newPosts);
-          }
-        }
+    this.contract.NewActionEvent(this.handleActionEvent);
+  }
 
-        handlers.forEach(handler => {
-          handler(post);
-        });
-      };
+  async handleActionEvent(error, result) {
+    // console.log("handleActionEvent", result);
+    if (!error) {
+      return await this.delegateToHandlers(result, this.handlers);
+    } else {
+      console.error("handleActionEvent", error);
+    }
+  }
 
-      if (!error) {
-        delegateToHandlers(result, this.handlers);
+  async delegateToHandlers(result, handlers) {
+    // console.log("delegateToHandlers", result);
+    const { targetId, targetType } = result.returnValues;
+
+    switch (parseInt(targetType)) {
+      case Model.ActionType.POST:
+        const post = await this.getPostById(parseInt(targetId));
+        return await this.handlePost(post, handlers);
+      default:
+        return null;
+    }
+  }
+
+  async handlePost(post, handlers) {
+    // console.log("handlePost", post);
+    if (!_.isNil(post)) {
+      if (this.isMyAccount(post.poster)) {
+        const posts = await this.loadMyPosts();
+        const newPosts = [post].concat(posts);
+        await localForage.setItem(MyPostsKey, newPosts);
       } else {
-        console.error("NewTweetEvent", error);
+        const posts = await this.loadRecentPosts();
+        const newPosts = [post].concat(posts).splice(0, RecentTweetsToPersist);
+        await localForage.setItem(RecentTweetsKey, newPosts);
       }
+    }
+
+    handlers.forEach(handler => {
+      handler(post);
     });
   }
 
@@ -158,7 +172,7 @@ class PostService {
 
   async getPostById(postId) {
     const postData = await this.contract.getPost(postId);
-    if (_.isEmpty(postData.ipfsHash)) {
+    if (_.isEmpty(postData.poster)) {
       return null;
     } else {
       const post = new Model.Post.fromPermaChatContract(

@@ -4,6 +4,7 @@ import Model from "../services/Model";
 
 import BN from "bn.js";
 
+import Multihash from "../utils/Multihash";
 import LogUtils from "../utils/LogUtils";
 
 LogUtils.setLowest(logger, "info");
@@ -34,7 +35,13 @@ class IndexerContractService {
 
   async getLatestDatabaseState() {
     const result = await this.contract.getLatestDatabaseState();
-    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    const {
+      multihashDigest,
+      multihashHashFunction,
+      multihashSize,
+      latestIndex,
+      paidIndex
+    } = result;
     const ipfsHash = Multihash.getMultihashFromBytes32({
       digest: multihashDigest,
       hashFunction: multihashHashFunction,
@@ -44,8 +51,8 @@ class IndexerContractService {
 
     return _.assign({}, result, {
       ipfsHash,
-      paidDatabaseIndex,
-      latestDatabaseIndex
+      paidDatabaseIndex: paidIndex,
+      latestDatabaseIndex: latestIndex
     });
   }
 

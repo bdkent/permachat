@@ -41,40 +41,7 @@ contract ChatModel is CommonModel {
   // commentId => comment
   uint public nextCommentIndex = 1;
   mapping(uint => Commentary) comments;
-  
-  event NewPostEvent(
-    uint postId,
-    bytes32 multihashDigest,
-    uint8 multihashHashFunction,
-    uint8 multihashSize,
-    address poster,
-    uint blockNumber,
-    uint timestamp,
-    ContentType contentType
-  );
-  
-  event NewReplyEvent(
-    uint parentPostId,
-    uint postId,
-    bytes32 multihashDigest,
-    uint8 multihashHashFunction,
-    uint8 multihashSize,
-    address poster,
-    uint blockNumber,
-    uint timestamp,
-    ContentType contentType
-  );
-  
-  event NewCommentaryEvent(
-    uint postId,
-    uint commentaryIndex,
-    uint commentId,
-    CommentaryType commentaryType,
-    address commenter,
-    uint timestamp,
-    uint tip
-  );
-  
+    
   function toIdentityId(address identityAddress) internal view returns ( uint );
   
   modifier isValidPost(uint postId) { require (postId < nextPostIndex); _; }

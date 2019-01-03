@@ -39,8 +39,8 @@ Post.fromPermaChatContract = returnValues => {
       size: multihashSize
     }),
     poster,
-    blockNumber,
-    timestamp,
+    blockNumber.toNumber(),
+    timestamp.toNumber(),
     contentType
   );
 };
