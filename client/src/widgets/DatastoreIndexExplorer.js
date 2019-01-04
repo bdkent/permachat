@@ -151,6 +151,15 @@ class DatastoreIndexExplorer extends Component {
     data: {}
   };
 
+  constructor(props) {
+    super(props);
+    this.updateLevel = this.updateLevel.bind(this);
+    this.validate = this.validate.bind(this);
+    this.toPath = this.toPath.bind(this);
+    this.toUriFromLevel = this.toUriFromLevel.bind(this);
+    this.toUriFromPath = this.toUriFromPath.bind(this);
+  }
+
   componentDidMount = async () => {
     if (this.props.databaseHash) {
       this.validate(this.props.databaseHash, this.state.level);
@@ -189,25 +198,24 @@ class DatastoreIndexExplorer extends Component {
     );
   }
 
-  updateLevel(level) {
+  updateLevel(level, newLevel) {
     const self = this;
-    return event => {
-      const newLevel = event.target.value;
+    // console.log("event", event);
 
-      self.setState(
-        prevState => {
-          const newLevels = prevState.levels.slice();
-          newLevels[level] = newLevel;
-          return {
-            levels: newLevels
-          };
-        },
-        () => self.validate(this.props.databaseHash, newLevel)
-      );
-    };
+    self.setState(
+      prevState => {
+        const newLevels = prevState.levels.slice();
+        newLevels[level] = newLevel;
+        return {
+          levels: newLevels
+        };
+      },
+      () => self.validate(self.props.databaseHash, newLevel)
+    );
   }
 
   async validate(databaseHash, level) {
+    // console.log("validate", databaseHash, level);
     const self = this;
     const path = this.toPath(level);
 
@@ -279,8 +287,13 @@ class DatastoreIndexExplorer extends Component {
 
   render() {
     const self = this;
+    const postsPath = this.toPath();
+    const posts = this.state.data[postsPath];
+    // console.log("render", postsPath, posts);
     return (
       <div>
+        {/*<p>path: {JSON.stringify(postsPath)}</p>
+        <p>levels: {JSON.stringify(this.state.levels)}</p>*/}
         <Form>
           <FormGroup>
             <InputGroup>
@@ -317,55 +330,112 @@ class DatastoreIndexExplorer extends Component {
             </InputGroup>
           </FormGroup>
         </Form>
-
-        {_.map(_.range(1, this.state.level + 1), level => {
-          const path = self.toPath(level);
-          return (
-            <Form key={path}>
-              <FormGroup>
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    <StatusButton
-                      status={_.defaultTo(self.state.status[path], "info")}
-                      test={() => self.validate(self.props.databaseHash, level)}
-                    />
-                  </InputGroupAddon>
-                  <Input
-                    type="select"
-                    value={this.state.levels[level]}
-                    onChange={() => self.updateLevel(level)}
-                  >
-                    {this.state.levelValues[level].map(v => {
-                      return (
-                        <option key={path + "-" + v} value={v}>
-                          {levelValueLabels(level, v)}
-                        </option>
-                      );
-                    })}
-                  </Input>
-                  <InputGroupAddon addonType="append">
-                    <Button
-                      onClick={() =>
-                        window.open(
-                          self.toUriFromLevel(self.props.databaseHash, level),
-                          "_blank"
-                        )
-                      }
-                    >
-                      {LevelLabels[level]}
-                    </Button>
-                  </InputGroupAddon>
-                </InputGroup>
-              </FormGroup>
-            </Form>
-          );
-        })}
+        <LevelsInputForm
+          levelMax={this.state.level}
+          toPath={self.toPath}
+          status={self.state.status}
+          databaseHash={self.props.databaseHash}
+          validate={self.validate}
+          levels={this.state.levels}
+          updateLevel={self.updateLevel}
+          levelValues={this.state.levelValues}
+          toUriFromLevel={self.toUriFromLevel}
+        />
         <LoadingPosts
-          posts={this.state.data[self.toPath()]}
+          posts={posts}
           services={this.props.services}
           showThread={true}
         />
       </div>
+    );
+  }
+}
+
+const LevelsInputForm = props => {
+  // console.log("LevelsInputForm", "render");
+  const {
+    levelMax,
+    toPath,
+    status,
+    databaseHash,
+    validate,
+    levels,
+    updateLevel,
+    levelValues,
+    toUriFromLevel
+  } = props;
+
+  return _.map(_.range(1, levelMax + 1), level => {
+    const levelIndex = level - 1;
+    const path = toPath(level);
+    return (
+      <LevelInputForm
+        key={path}
+        path={path}
+        level={level}
+        levelIndex={levelIndex}
+        status={_.defaultTo(status[path], "info")}
+        databaseHash={databaseHash}
+        validate={validate}
+        value={levels[levelIndex]}
+        updateLevel={updateLevel}
+        uri={toUriFromLevel(databaseHash, level)}
+        levelValues={levelValues[level]}
+      />
+    );
+  });
+};
+
+class LevelInputForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(event) {
+    const newLevel = event.target.value;
+    this.props.updateLevel(this.props.levelIndex, newLevel);
+  }
+
+  render() {
+    // console.log("LevelInputForm", "render");
+    const {
+      path,
+      status,
+      level,
+      databaseHash,
+      validate,
+      value,
+      uri,
+      levelValues
+    } = this.props;
+    return (
+      <Form>
+        <FormGroup>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">
+              <StatusButton
+                status={status}
+                test={() => validate(databaseHash, level)}
+              />
+            </InputGroupAddon>
+            <Input type="select" value={value} onChange={this.onChange}>
+              {_.map(levelValues, v => {
+                return (
+                  <option key={path + "-" + v} value={v}>
+                    {levelValueLabels(level, v)}
+                  </option>
+                );
+              })}
+            </Input>
+            <InputGroupAddon addonType="append">
+              <Button onClick={() => window.open(uri, "_blank")}>
+                {LevelLabels[level]}
+              </Button>
+            </InputGroupAddon>
+          </InputGroup>
+        </FormGroup>
+      </Form>
     );
   }
 }
