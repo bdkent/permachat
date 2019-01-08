@@ -11,14 +11,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/CommonModel.sol",
     "exportedSymbols": {
       "CommonModel": [
-        939
+        807
       ]
     },
-    "id": 940,
+    "id": 808,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 931,
+        "id": 799,
         "literals": [
           "solidity",
           ">=",
@@ -37,23 +37,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 939,
+        "id": 807,
         "linearizedBaseContracts": [
-          939
+          807
         ],
         "name": "CommonModel",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "CommonModel.Multihash",
-            "id": 938,
+            "id": 806,
             "members": [
               {
                 "constant": false,
-                "id": 933,
+                "id": 801,
                 "name": "digest",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "150:14:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -62,7 +62,7 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 932,
+                  "id": 800,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
                   "src": "150:7:4",
@@ -76,10 +76,10 @@
               },
               {
                 "constant": false,
-                "id": 935,
+                "id": 803,
                 "name": "hashFunction",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "170:18:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -88,7 +88,7 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 934,
+                  "id": 802,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
                   "src": "170:5:4",
@@ -102,10 +102,10 @@
               },
               {
                 "constant": false,
-                "id": 937,
+                "id": 805,
                 "name": "size",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "194:10:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -114,7 +114,7 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 936,
+                  "id": 804,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
                   "src": "194:5:4",
@@ -129,12 +129,12 @@
             ],
             "name": "Multihash",
             "nodeType": "StructDefinition",
-            "scope": 939,
+            "scope": 807,
             "src": "127:82:4",
             "visibility": "public"
           }
         ],
-        "scope": 940,
+        "scope": 808,
         "src": "33:178:4"
       }
     ],
@@ -144,14 +144,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/CommonModel.sol",
     "exportedSymbols": {
       "CommonModel": [
-        939
+        807
       ]
     },
-    "id": 940,
+    "id": 808,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 931,
+        "id": 799,
         "literals": [
           "solidity",
           ">=",
@@ -170,23 +170,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 939,
+        "id": 807,
         "linearizedBaseContracts": [
-          939
+          807
         ],
         "name": "CommonModel",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "CommonModel.Multihash",
-            "id": 938,
+            "id": 806,
             "members": [
               {
                 "constant": false,
-                "id": 933,
+                "id": 801,
                 "name": "digest",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "150:14:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -195,7 +195,7 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 932,
+                  "id": 800,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
                   "src": "150:7:4",
@@ -209,10 +209,10 @@
               },
               {
                 "constant": false,
-                "id": 935,
+                "id": 803,
                 "name": "hashFunction",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "170:18:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -221,7 +221,7 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 934,
+                  "id": 802,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
                   "src": "170:5:4",
@@ -235,10 +235,10 @@
               },
               {
                 "constant": false,
-                "id": 937,
+                "id": 805,
                 "name": "size",
                 "nodeType": "VariableDeclaration",
-                "scope": 938,
+                "scope": 806,
                 "src": "194:10:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -247,7 +247,7 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 936,
+                  "id": 804,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
                   "src": "194:5:4",
@@ -262,12 +262,12 @@
             ],
             "name": "Multihash",
             "nodeType": "StructDefinition",
-            "scope": 939,
+            "scope": 807,
             "src": "127:82:4",
             "visibility": "public"
           }
         ],
-        "scope": 940,
+        "scope": 808,
         "src": "33:178:4"
       }
     ],
@@ -279,7 +279,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-03T18:14:35.718Z",
+  "updatedAt": "2019-01-07T17:41:59.951Z",
   "devdoc": {
     "methods": {}
   },

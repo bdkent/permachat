@@ -1,4 +1,4 @@
-import Multihash from "../utils/multihash";
+import Multihash from "../utils/Multihash";
 
 const ContentType = {
   TEXT: 0,

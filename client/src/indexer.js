@@ -11,6 +11,9 @@ import IndexerContractService from "./indexer/IndexerContractService";
 import ScheduledIndexer from "./indexer/ScheduledIndexer";
 import IndexPricer from "./indexer/IndexPricer";
 
+// import dotenv from "dotenv";
+// dotenv.config();
+
 const newNetworkConfig = networkType => {
   switch (networkType) {
     case "private":

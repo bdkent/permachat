@@ -280,14 +280,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/DatabaseIndexer.sol",
     "exportedSymbols": {
       "DatabaseIndexer": [
-        1092
+        960
       ]
     },
-    "id": 1093,
+    "id": 961,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 941,
+        "id": 809,
         "literals": [
           "solidity",
           ">=",
@@ -303,10 +303,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
         "file": "./IndexerModel.sol",
-        "id": 942,
+        "id": 810,
         "nodeType": "ImportDirective",
-        "scope": 1093,
-        "sourceUnit": 1980,
+        "scope": 961,
+        "sourceUnit": 1848,
         "src": "33:28:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -314,10 +314,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
         "file": "./IndexerAdminService.sol",
-        "id": 943,
+        "id": 811,
         "nodeType": "ImportDirective",
-        "scope": 1093,
-        "sourceUnit": 1891,
+        "scope": 961,
+        "sourceUnit": 1759,
         "src": "62:35:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -328,17 +328,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 944,
+              "id": 812,
               "name": "IndexerModel",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1979,
+              "referencedDeclaration": 1847,
               "src": "127:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerModel_$1979",
+                "typeIdentifier": "t_contract$_IndexerModel_$1847",
                 "typeString": "contract IndexerModel"
               }
             },
-            "id": 945,
+            "id": 813,
             "nodeType": "InheritanceSpecifier",
             "src": "127:12:5"
           },
@@ -346,62 +346,62 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 946,
+              "id": 814,
               "name": "IndexerAdminService",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1890,
+              "referencedDeclaration": 1758,
               "src": "141:19:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerAdminService_$1890",
+                "typeIdentifier": "t_contract$_IndexerAdminService_$1758",
                 "typeString": "contract IndexerAdminService"
               }
             },
-            "id": 947,
+            "id": 815,
             "nodeType": "InheritanceSpecifier",
             "src": "141:19:5"
           }
         ],
         "contractDependencies": [
           85,
-          939,
-          1890,
-          1979
+          807,
+          1758,
+          1847
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1092,
+        "id": 960,
         "linearizedBaseContracts": [
-          1092,
-          1890,
-          1979,
+          960,
+          1758,
+          1847,
           85,
-          939
+          807
         ],
         "name": "DatabaseIndexer",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 982,
+              "id": 850,
               "nodeType": "Block",
               "src": "341:193:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 966,
+                    "id": 834,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 961,
+                      "id": 829,
                       "name": "multihashDigest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 955,
+                      "referencedDeclaration": 823,
                       "src": "347:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -416,25 +416,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 962,
+                          "id": 830,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "365:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 964,
+                        "id": 832,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 963,
+                          "id": 831,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "380:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -448,18 +448,18 @@
                         "nodeType": "IndexAccess",
                         "src": "365:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 965,
+                      "id": 833,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "digest",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 933,
+                      "referencedDeclaration": 801,
                       "src": "365:36:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -472,25 +472,25 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 967,
+                  "id": 835,
                   "nodeType": "ExpressionStatement",
                   "src": "347:54:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 973,
+                    "id": 841,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 968,
+                      "id": 836,
                       "name": "multihashHashFunction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 957,
+                      "referencedDeclaration": 825,
                       "src": "407:21:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -505,25 +505,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 969,
+                          "id": 837,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "431:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 971,
+                        "id": 839,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 970,
+                          "id": 838,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "446:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -537,18 +537,18 @@
                         "nodeType": "IndexAccess",
                         "src": "431:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 972,
+                      "id": 840,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hashFunction",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 935,
+                      "referencedDeclaration": 803,
                       "src": "431:42:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -561,25 +561,25 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 974,
+                  "id": 842,
                   "nodeType": "ExpressionStatement",
                   "src": "407:66:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 980,
+                    "id": 848,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 975,
+                      "id": 843,
                       "name": "multihashSize",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 959,
+                      "referencedDeclaration": 827,
                       "src": "479:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -594,25 +594,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 976,
+                          "id": 844,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "495:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 978,
+                        "id": 846,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 977,
+                          "id": 845,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "510:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -626,18 +626,18 @@
                         "nodeType": "IndexAccess",
                         "src": "495:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 979,
+                      "id": 847,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "size",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 937,
+                      "referencedDeclaration": 805,
                       "src": "495:34:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -650,14 +650,14 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 981,
+                  "id": 849,
                   "nodeType": "ExpressionStatement",
                   "src": "479:50:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 983,
+            "id": 851,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -665,11 +665,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 952,
+                    "id": 820,
                     "name": "databaseIndex",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 949,
+                    "referencedDeclaration": 817,
                     "src": "240:13:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -677,14 +677,14 @@
                     }
                   }
                 ],
-                "id": 953,
+                "id": 821,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 951,
+                  "id": 819,
                   "name": "requireIndexed",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1944,
+                  "referencedDeclaration": 1812,
                   "src": "225:14:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_uint256_$",
@@ -698,15 +698,15 @@
             "name": "getDatabaseHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 950,
+              "id": 818,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 949,
+                  "id": 817,
                   "name": "databaseIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "193:18:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -715,7 +715,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 948,
+                    "id": 816,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "193:4:5",
@@ -731,15 +731,15 @@
               "src": "192:20:5"
             },
             "returnParameters": {
-              "id": 960,
+              "id": 828,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 955,
+                  "id": 823,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "265:23:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -748,7 +748,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 954,
+                    "id": 822,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "265:7:5",
@@ -762,10 +762,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 957,
+                  "id": 825,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "290:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -774,7 +774,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 956,
+                    "id": 824,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "290:5:5",
@@ -788,10 +788,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 959,
+                  "id": 827,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "319:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -800,7 +800,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 958,
+                    "id": 826,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "319:5:5",
@@ -815,7 +815,7 @@
               ],
               "src": "263:77:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "168:366:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -823,25 +823,25 @@
           },
           {
             "body": {
-              "id": 1025,
+              "id": 893,
               "nodeType": "Block",
               "src": "704:285:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 998,
+                    "id": 866,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 996,
+                      "id": 864,
                       "name": "latestIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 986,
+                      "referencedDeclaration": 854,
                       "src": "710:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -852,11 +852,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 997,
+                      "id": 865,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "724:19:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -869,25 +869,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 999,
+                  "id": 867,
                   "nodeType": "ExpressionStatement",
                   "src": "710:33:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1002,
+                    "id": 870,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1000,
+                      "id": 868,
                       "name": "paidIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 988,
+                      "referencedDeclaration": 856,
                       "src": "749:9:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -898,11 +898,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1001,
+                      "id": 869,
                       "name": "paidDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1966,
+                      "referencedDeclaration": 1834,
                       "src": "761:17:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -915,25 +915,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1003,
+                  "id": 871,
                   "nodeType": "ExpressionStatement",
                   "src": "749:29:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1009,
+                    "id": 877,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1004,
+                      "id": 872,
                       "name": "multihashDigest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 990,
+                      "referencedDeclaration": 858,
                       "src": "784:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -948,25 +948,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1005,
+                          "id": 873,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "802:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1007,
+                        "id": 875,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1006,
+                          "id": 874,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "817:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -980,18 +980,18 @@
                         "nodeType": "IndexAccess",
                         "src": "802:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1008,
+                      "id": 876,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "digest",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 933,
+                      "referencedDeclaration": 801,
                       "src": "802:42:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -1004,25 +1004,25 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 1010,
+                  "id": 878,
                   "nodeType": "ExpressionStatement",
                   "src": "784:60:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1016,
+                    "id": 884,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1011,
+                      "id": 879,
                       "name": "multihashHashFunction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 992,
+                      "referencedDeclaration": 860,
                       "src": "850:21:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -1037,25 +1037,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1012,
+                          "id": 880,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "874:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1014,
+                        "id": 882,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1013,
+                          "id": 881,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "889:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1069,18 +1069,18 @@
                         "nodeType": "IndexAccess",
                         "src": "874:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1015,
+                      "id": 883,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hashFunction",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 935,
+                      "referencedDeclaration": 803,
                       "src": "874:48:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -1093,25 +1093,25 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 1017,
+                  "id": 885,
                   "nodeType": "ExpressionStatement",
                   "src": "850:72:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1023,
+                    "id": 891,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1018,
+                      "id": 886,
                       "name": "multihashSize",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 994,
+                      "referencedDeclaration": 862,
                       "src": "928:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -1126,25 +1126,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1019,
+                          "id": 887,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "944:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1021,
+                        "id": 889,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1020,
+                          "id": 888,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "959:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1158,18 +1158,18 @@
                         "nodeType": "IndexAccess",
                         "src": "944:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1022,
+                      "id": 890,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "size",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 937,
+                      "referencedDeclaration": 805,
                       "src": "944:40:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -1182,35 +1182,35 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 1024,
+                  "id": 892,
                   "nodeType": "ExpressionStatement",
                   "src": "928:56:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1026,
+            "id": 894,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestDatabaseState",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 984,
+              "id": 852,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "569:2:5"
             },
             "returnParameters": {
-              "id": 995,
+              "id": 863,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 986,
+                  "id": 854,
                   "name": "latestIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "594:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1219,7 +1219,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 985,
+                    "id": 853,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "594:4:5",
@@ -1233,10 +1233,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 988,
+                  "id": 856,
                   "name": "paidIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "612:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1245,7 +1245,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 987,
+                    "id": 855,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "612:4:5",
@@ -1259,10 +1259,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 990,
+                  "id": 858,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "628:23:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1271,7 +1271,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 989,
+                    "id": 857,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "628:7:5",
@@ -1285,10 +1285,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 992,
+                  "id": 860,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "653:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1297,7 +1297,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 991,
+                    "id": 859,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "653:5:5",
@@ -1311,10 +1311,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 994,
+                  "id": 862,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "682:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1323,7 +1323,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 993,
+                    "id": 861,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "682:5:5",
@@ -1338,7 +1338,7 @@
               ],
               "src": "592:111:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "538:451:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -1346,7 +1346,7 @@
           },
           {
             "body": {
-              "id": 1053,
+              "id": 921,
               "nodeType": "Block",
               "src": "1065:186:5",
               "statements": [
@@ -1357,7 +1357,7 @@
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     },
-                    "id": 1034,
+                    "id": 902,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1366,18 +1366,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1031,
+                        "id": 899,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2066,
+                        "referencedDeclaration": 1934,
                         "src": "1074:3:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 1032,
+                      "id": 900,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1395,11 +1395,11 @@
                     "operator": "!=",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1033,
+                      "id": 901,
                       "name": "indexerAdmin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1902,
+                      "referencedDeclaration": 1770,
                       "src": "1088:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
@@ -1413,11 +1413,11 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1042,
+                  "id": 910,
                   "nodeType": "IfStatement",
                   "src": "1071:82:5",
                   "trueBody": {
-                    "id": 1041,
+                    "id": 909,
                     "nodeType": "Block",
                     "src": "1102:51:5",
                     "statements": [
@@ -1427,11 +1427,11 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 1038,
+                              "id": 906,
                               "name": "unlockPrice",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1900,
+                              "referencedDeclaration": 1768,
                               "src": "1132:11:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1448,18 +1448,18 @@
                             ],
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1035,
+                              "id": 903,
                               "name": "indexerAdmin",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1902,
+                              "referencedDeclaration": 1770,
                               "src": "1110:12:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address_payable",
                                 "typeString": "address payable"
                               }
                             },
-                            "id": 1037,
+                            "id": 905,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -1473,7 +1473,7 @@
                               "typeString": "function (uint256)"
                             }
                           },
-                          "id": 1039,
+                          "id": 907,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1487,7 +1487,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 1040,
+                        "id": 908,
                         "nodeType": "ExpressionStatement",
                         "src": "1110:34:5"
                       }
@@ -1497,18 +1497,18 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1047,
+                    "id": 915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1043,
+                      "id": 911,
                       "name": "paidDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1966,
+                      "referencedDeclaration": 1834,
                       "src": "1158:17:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1523,14 +1523,14 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1046,
+                      "id": 914,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1044,
+                        "id": 912,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -1546,7 +1546,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1045,
+                        "id": 913,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1573,7 +1573,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1048,
+                  "id": 916,
                   "nodeType": "ExpressionStatement",
                   "src": "1158:36:5"
                 },
@@ -1583,11 +1583,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1050,
+                        "id": 918,
                         "name": "paidDatabaseIndex",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1966,
+                        "referencedDeclaration": 1834,
                         "src": "1228:17:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1602,18 +1602,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1049,
+                      "id": 917,
                       "name": "DatabaseIndexPaidEvent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1974,
+                      "referencedDeclaration": 1842,
                       "src": "1205:22:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1051,
+                    "id": 919,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1627,27 +1627,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1052,
+                  "id": 920,
                   "nodeType": "EmitStatement",
                   "src": "1200:46:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1054,
+            "id": 922,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1029,
+                "id": 897,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1028,
+                  "id": 896,
                   "name": "requireDatabasePayable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1932,
+                  "referencedDeclaration": 1800,
                   "src": "1042:22:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1661,18 +1661,18 @@
             "name": "unlockNewestDatabase",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1027,
+              "id": 895,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1024:2:5"
             },
             "returnParameters": {
-              "id": 1030,
+              "id": 898,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1065:0:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "995:256:5",
             "stateMutability": "payable",
             "superFunction": null,
@@ -1680,7 +1680,7 @@
           },
           {
             "body": {
-              "id": 1063,
+              "id": 931,
               "nodeType": "Block",
               "src": "1336:22:5",
               "statements": [
@@ -1688,7 +1688,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1061,
+                    "id": 929,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1703,28 +1703,28 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1060,
-                  "id": 1062,
+                  "functionReturnParameters": 928,
+                  "id": 930,
                   "nodeType": "Return",
                   "src": "1342:11:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1064,
+            "id": 932,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1057,
+                "id": 925,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1056,
+                  "id": 924,
                   "name": "requireDatabasePayable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1932,
+                  "referencedDeclaration": 1800,
                   "src": "1298:22:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1738,21 +1738,21 @@
             "name": "isDatabasePayable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1055,
+              "id": 923,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1283:2:5"
             },
             "returnParameters": {
-              "id": 1060,
+              "id": 928,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1059,
+                  "id": 927,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1064,
+                  "scope": 932,
                   "src": "1330:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1761,7 +1761,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1058,
+                    "id": 926,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1330:4:5",
@@ -1776,7 +1776,7 @@
               ],
               "src": "1329:6:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "1257:101:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -1784,7 +1784,7 @@
           },
           {
             "body": {
-              "id": 1090,
+              "id": 958,
               "nodeType": "Block",
               "src": "1420:162:5",
               "statements": [
@@ -1795,7 +1795,7 @@
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     },
-                    "id": 1078,
+                    "id": 946,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1806,14 +1806,14 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1071,
+                      "id": 939,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1069,
+                        "id": 937,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -1829,7 +1829,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "30",
-                        "id": 1070,
+                        "id": 938,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1858,7 +1858,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1077,
+                      "id": 945,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1872,18 +1872,18 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 1074,
+                            "id": 942,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1072,
+                              "id": 940,
                               "name": "paidDatabaseIndex",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1966,
+                              "referencedDeclaration": 1834,
                               "src": "1451:17:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1895,7 +1895,7 @@
                             "rightExpression": {
                               "argumentTypes": null,
                               "hexValue": "31",
-                              "id": 1073,
+                              "id": 941,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -1917,7 +1917,7 @@
                             }
                           }
                         ],
-                        "id": 1075,
+                        "id": 943,
                         "isConstant": false,
                         "isInlineArray": false,
                         "isLValue": false,
@@ -1934,7 +1934,7 @@
                       "operator": ">=",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 1076,
+                        "id": 944,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -1958,7 +1958,7 @@
                     }
                   },
                   "falseBody": {
-                    "id": 1088,
+                    "id": 956,
                     "nodeType": "Block",
                     "src": "1520:58:5",
                     "statements": [
@@ -1969,7 +1969,7 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 1086,
+                          "id": 954,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1980,14 +1980,14 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 1084,
+                            "id": 952,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1082,
+                              "id": 950,
                               "name": "nextActionId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -2002,11 +2002,11 @@
                             "operator": "-",
                             "rightExpression": {
                               "argumentTypes": null,
-                              "id": 1083,
+                              "id": 951,
                               "name": "paidDatabaseIndex",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1966,
+                              "referencedDeclaration": 1834,
                               "src": "1550:17:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -2024,7 +2024,7 @@
                           "rightExpression": {
                             "argumentTypes": null,
                             "hexValue": "31",
-                            "id": 1085,
+                            "id": 953,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2045,18 +2045,18 @@
                             "typeString": "uint256"
                           }
                         },
-                        "functionReturnParameters": 1068,
-                        "id": 1087,
+                        "functionReturnParameters": 936,
+                        "id": 955,
                         "nodeType": "Return",
                         "src": "1528:43:5"
                       }
                     ]
                   },
-                  "id": 1089,
+                  "id": 957,
                   "nodeType": "IfStatement",
                   "src": "1426:152:5",
                   "trueBody": {
-                    "id": 1081,
+                    "id": 949,
                     "nodeType": "Block",
                     "src": "1491:23:5",
                     "statements": [
@@ -2064,7 +2064,7 @@
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "30",
-                          "id": 1079,
+                          "id": 947,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2079,8 +2079,8 @@
                           },
                           "value": "0"
                         },
-                        "functionReturnParameters": 1068,
-                        "id": 1080,
+                        "functionReturnParameters": 936,
+                        "id": 948,
                         "nodeType": "Return",
                         "src": "1499:8:5"
                       }
@@ -2090,28 +2090,28 @@
               ]
             },
             "documentation": null,
-            "id": 1091,
+            "id": 959,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "unlockableUpdates",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1065,
+              "id": 933,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1390:2:5"
             },
             "returnParameters": {
-              "id": 1068,
+              "id": 936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1067,
+                  "id": 935,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1091,
+                  "scope": 959,
                   "src": "1414:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2120,7 +2120,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1066,
+                    "id": 934,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1414:4:5",
@@ -2135,14 +2135,14 @@
               ],
               "src": "1413:6:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "1364:218:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1093,
+        "scope": 961,
         "src": "99:1485:5"
       }
     ],
@@ -2152,14 +2152,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/DatabaseIndexer.sol",
     "exportedSymbols": {
       "DatabaseIndexer": [
-        1092
+        960
       ]
     },
-    "id": 1093,
+    "id": 961,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 941,
+        "id": 809,
         "literals": [
           "solidity",
           ">=",
@@ -2175,10 +2175,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
         "file": "./IndexerModel.sol",
-        "id": 942,
+        "id": 810,
         "nodeType": "ImportDirective",
-        "scope": 1093,
-        "sourceUnit": 1980,
+        "scope": 961,
+        "sourceUnit": 1848,
         "src": "33:28:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2186,10 +2186,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
         "file": "./IndexerAdminService.sol",
-        "id": 943,
+        "id": 811,
         "nodeType": "ImportDirective",
-        "scope": 1093,
-        "sourceUnit": 1891,
+        "scope": 961,
+        "sourceUnit": 1759,
         "src": "62:35:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2200,17 +2200,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 944,
+              "id": 812,
               "name": "IndexerModel",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1979,
+              "referencedDeclaration": 1847,
               "src": "127:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerModel_$1979",
+                "typeIdentifier": "t_contract$_IndexerModel_$1847",
                 "typeString": "contract IndexerModel"
               }
             },
-            "id": 945,
+            "id": 813,
             "nodeType": "InheritanceSpecifier",
             "src": "127:12:5"
           },
@@ -2218,62 +2218,62 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 946,
+              "id": 814,
               "name": "IndexerAdminService",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1890,
+              "referencedDeclaration": 1758,
               "src": "141:19:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerAdminService_$1890",
+                "typeIdentifier": "t_contract$_IndexerAdminService_$1758",
                 "typeString": "contract IndexerAdminService"
               }
             },
-            "id": 947,
+            "id": 815,
             "nodeType": "InheritanceSpecifier",
             "src": "141:19:5"
           }
         ],
         "contractDependencies": [
           85,
-          939,
-          1890,
-          1979
+          807,
+          1758,
+          1847
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1092,
+        "id": 960,
         "linearizedBaseContracts": [
-          1092,
-          1890,
-          1979,
+          960,
+          1758,
+          1847,
           85,
-          939
+          807
         ],
         "name": "DatabaseIndexer",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 982,
+              "id": 850,
               "nodeType": "Block",
               "src": "341:193:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 966,
+                    "id": 834,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 961,
+                      "id": 829,
                       "name": "multihashDigest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 955,
+                      "referencedDeclaration": 823,
                       "src": "347:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -2288,25 +2288,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 962,
+                          "id": 830,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "365:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 964,
+                        "id": 832,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 963,
+                          "id": 831,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "380:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2320,18 +2320,18 @@
                         "nodeType": "IndexAccess",
                         "src": "365:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 965,
+                      "id": 833,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "digest",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 933,
+                      "referencedDeclaration": 801,
                       "src": "365:36:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -2344,25 +2344,25 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 967,
+                  "id": 835,
                   "nodeType": "ExpressionStatement",
                   "src": "347:54:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 973,
+                    "id": 841,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 968,
+                      "id": 836,
                       "name": "multihashHashFunction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 957,
+                      "referencedDeclaration": 825,
                       "src": "407:21:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2377,25 +2377,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 969,
+                          "id": 837,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "431:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 971,
+                        "id": 839,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 970,
+                          "id": 838,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "446:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2409,18 +2409,18 @@
                         "nodeType": "IndexAccess",
                         "src": "431:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 972,
+                      "id": 840,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hashFunction",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 935,
+                      "referencedDeclaration": 803,
                       "src": "431:42:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2433,25 +2433,25 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 974,
+                  "id": 842,
                   "nodeType": "ExpressionStatement",
                   "src": "407:66:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 980,
+                    "id": 848,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 975,
+                      "id": 843,
                       "name": "multihashSize",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 959,
+                      "referencedDeclaration": 827,
                       "src": "479:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2466,25 +2466,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 976,
+                          "id": 844,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "495:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 978,
+                        "id": 846,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 977,
+                          "id": 845,
                           "name": "databaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 949,
+                          "referencedDeclaration": 817,
                           "src": "510:13:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2498,18 +2498,18 @@
                         "nodeType": "IndexAccess",
                         "src": "495:29:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 979,
+                      "id": 847,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "size",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 937,
+                      "referencedDeclaration": 805,
                       "src": "495:34:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2522,14 +2522,14 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 981,
+                  "id": 849,
                   "nodeType": "ExpressionStatement",
                   "src": "479:50:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 983,
+            "id": 851,
             "implemented": true,
             "kind": "function",
             "modifiers": [
@@ -2537,11 +2537,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 952,
+                    "id": 820,
                     "name": "databaseIndex",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 949,
+                    "referencedDeclaration": 817,
                     "src": "240:13:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -2549,14 +2549,14 @@
                     }
                   }
                 ],
-                "id": 953,
+                "id": 821,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 951,
+                  "id": 819,
                   "name": "requireIndexed",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1944,
+                  "referencedDeclaration": 1812,
                   "src": "225:14:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_uint256_$",
@@ -2570,15 +2570,15 @@
             "name": "getDatabaseHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 950,
+              "id": 818,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 949,
+                  "id": 817,
                   "name": "databaseIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "193:18:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2587,7 +2587,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 948,
+                    "id": 816,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "193:4:5",
@@ -2603,15 +2603,15 @@
               "src": "192:20:5"
             },
             "returnParameters": {
-              "id": 960,
+              "id": 828,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 955,
+                  "id": 823,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "265:23:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2620,7 +2620,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 954,
+                    "id": 822,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "265:7:5",
@@ -2634,10 +2634,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 957,
+                  "id": 825,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "290:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2646,7 +2646,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 956,
+                    "id": 824,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "290:5:5",
@@ -2660,10 +2660,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 959,
+                  "id": 827,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 983,
+                  "scope": 851,
                   "src": "319:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2672,7 +2672,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 958,
+                    "id": 826,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "319:5:5",
@@ -2687,7 +2687,7 @@
               ],
               "src": "263:77:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "168:366:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -2695,25 +2695,25 @@
           },
           {
             "body": {
-              "id": 1025,
+              "id": 893,
               "nodeType": "Block",
               "src": "704:285:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 998,
+                    "id": 866,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 996,
+                      "id": 864,
                       "name": "latestIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 986,
+                      "referencedDeclaration": 854,
                       "src": "710:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2724,11 +2724,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 997,
+                      "id": 865,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "724:19:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2741,25 +2741,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 999,
+                  "id": 867,
                   "nodeType": "ExpressionStatement",
                   "src": "710:33:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1002,
+                    "id": 870,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1000,
+                      "id": 868,
                       "name": "paidIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 988,
+                      "referencedDeclaration": 856,
                       "src": "749:9:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2770,11 +2770,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1001,
+                      "id": 869,
                       "name": "paidDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1966,
+                      "referencedDeclaration": 1834,
                       "src": "761:17:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2787,25 +2787,25 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1003,
+                  "id": 871,
                   "nodeType": "ExpressionStatement",
                   "src": "749:29:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1009,
+                    "id": 877,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1004,
+                      "id": 872,
                       "name": "multihashDigest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 990,
+                      "referencedDeclaration": 858,
                       "src": "784:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -2820,25 +2820,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1005,
+                          "id": 873,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "802:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1007,
+                        "id": 875,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1006,
+                          "id": 874,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "817:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2852,18 +2852,18 @@
                         "nodeType": "IndexAccess",
                         "src": "802:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1008,
+                      "id": 876,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "digest",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 933,
+                      "referencedDeclaration": 801,
                       "src": "802:42:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -2876,25 +2876,25 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "id": 1010,
+                  "id": 878,
                   "nodeType": "ExpressionStatement",
                   "src": "784:60:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1016,
+                    "id": 884,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1011,
+                      "id": 879,
                       "name": "multihashHashFunction",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 992,
+                      "referencedDeclaration": 860,
                       "src": "850:21:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2909,25 +2909,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1012,
+                          "id": 880,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "874:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1014,
+                        "id": 882,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1013,
+                          "id": 881,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "889:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2941,18 +2941,18 @@
                         "nodeType": "IndexAccess",
                         "src": "874:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1015,
+                      "id": 883,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hashFunction",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 935,
+                      "referencedDeclaration": 803,
                       "src": "874:48:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2965,25 +2965,25 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 1017,
+                  "id": 885,
                   "nodeType": "ExpressionStatement",
                   "src": "850:72:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1023,
+                    "id": 891,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1018,
+                      "id": 886,
                       "name": "multihashSize",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 994,
+                      "referencedDeclaration": 862,
                       "src": "928:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -2998,25 +2998,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 1019,
+                          "id": 887,
                           "name": "databaseHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1970,
+                          "referencedDeclaration": 1838,
                           "src": "944:14:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                             "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                           }
                         },
-                        "id": 1021,
+                        "id": 889,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 1020,
+                          "id": 888,
                           "name": "latestDatabaseIndex",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 1831,
                           "src": "959:19:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -3030,18 +3030,18 @@
                         "nodeType": "IndexAccess",
                         "src": "944:35:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                          "typeIdentifier": "t_struct$_Multihash_$806_storage",
                           "typeString": "struct CommonModel.Multihash storage ref"
                         }
                       },
-                      "id": 1022,
+                      "id": 890,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "size",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 937,
+                      "referencedDeclaration": 805,
                       "src": "944:40:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
@@ -3054,35 +3054,35 @@
                       "typeString": "uint8"
                     }
                   },
-                  "id": 1024,
+                  "id": 892,
                   "nodeType": "ExpressionStatement",
                   "src": "928:56:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1026,
+            "id": 894,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getLatestDatabaseState",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 984,
+              "id": 852,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "569:2:5"
             },
             "returnParameters": {
-              "id": 995,
+              "id": 863,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 986,
+                  "id": 854,
                   "name": "latestIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "594:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3091,7 +3091,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 985,
+                    "id": 853,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "594:4:5",
@@ -3105,10 +3105,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 988,
+                  "id": 856,
                   "name": "paidIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "612:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3117,7 +3117,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 987,
+                    "id": 855,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "612:4:5",
@@ -3131,10 +3131,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 990,
+                  "id": 858,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "628:23:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3143,7 +3143,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 989,
+                    "id": 857,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "628:7:5",
@@ -3157,10 +3157,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 992,
+                  "id": 860,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "653:27:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3169,7 +3169,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 991,
+                    "id": 859,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "653:5:5",
@@ -3183,10 +3183,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 994,
+                  "id": 862,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1026,
+                  "scope": 894,
                   "src": "682:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3195,7 +3195,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 993,
+                    "id": 861,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "682:5:5",
@@ -3210,7 +3210,7 @@
               ],
               "src": "592:111:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "538:451:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -3218,7 +3218,7 @@
           },
           {
             "body": {
-              "id": 1053,
+              "id": 921,
               "nodeType": "Block",
               "src": "1065:186:5",
               "statements": [
@@ -3229,7 +3229,7 @@
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     },
-                    "id": 1034,
+                    "id": 902,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3238,18 +3238,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1031,
+                        "id": 899,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2066,
+                        "referencedDeclaration": 1934,
                         "src": "1074:3:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 1032,
+                      "id": 900,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3267,11 +3267,11 @@
                     "operator": "!=",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1033,
+                      "id": 901,
                       "name": "indexerAdmin",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1902,
+                      "referencedDeclaration": 1770,
                       "src": "1088:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
@@ -3285,11 +3285,11 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1042,
+                  "id": 910,
                   "nodeType": "IfStatement",
                   "src": "1071:82:5",
                   "trueBody": {
-                    "id": 1041,
+                    "id": 909,
                     "nodeType": "Block",
                     "src": "1102:51:5",
                     "statements": [
@@ -3299,11 +3299,11 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 1038,
+                              "id": 906,
                               "name": "unlockPrice",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1900,
+                              "referencedDeclaration": 1768,
                               "src": "1132:11:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3320,18 +3320,18 @@
                             ],
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1035,
+                              "id": 903,
                               "name": "indexerAdmin",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1902,
+                              "referencedDeclaration": 1770,
                               "src": "1110:12:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address_payable",
                                 "typeString": "address payable"
                               }
                             },
-                            "id": 1037,
+                            "id": 905,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3345,7 +3345,7 @@
                               "typeString": "function (uint256)"
                             }
                           },
-                          "id": 1039,
+                          "id": 907,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3359,7 +3359,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 1040,
+                        "id": 908,
                         "nodeType": "ExpressionStatement",
                         "src": "1110:34:5"
                       }
@@ -3369,18 +3369,18 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1047,
+                    "id": 915,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1043,
+                      "id": 911,
                       "name": "paidDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1966,
+                      "referencedDeclaration": 1834,
                       "src": "1158:17:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3395,14 +3395,14 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1046,
+                      "id": 914,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1044,
+                        "id": 912,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -3418,7 +3418,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1045,
+                        "id": 913,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3445,7 +3445,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1048,
+                  "id": 916,
                   "nodeType": "ExpressionStatement",
                   "src": "1158:36:5"
                 },
@@ -3455,11 +3455,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1050,
+                        "id": 918,
                         "name": "paidDatabaseIndex",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1966,
+                        "referencedDeclaration": 1834,
                         "src": "1228:17:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -3474,18 +3474,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1049,
+                      "id": 917,
                       "name": "DatabaseIndexPaidEvent",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1974,
+                      "referencedDeclaration": 1842,
                       "src": "1205:22:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 1051,
+                    "id": 919,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3499,27 +3499,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1052,
+                  "id": 920,
                   "nodeType": "EmitStatement",
                   "src": "1200:46:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1054,
+            "id": 922,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1029,
+                "id": 897,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1028,
+                  "id": 896,
                   "name": "requireDatabasePayable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1932,
+                  "referencedDeclaration": 1800,
                   "src": "1042:22:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3533,18 +3533,18 @@
             "name": "unlockNewestDatabase",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1027,
+              "id": 895,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1024:2:5"
             },
             "returnParameters": {
-              "id": 1030,
+              "id": 898,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1065:0:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "995:256:5",
             "stateMutability": "payable",
             "superFunction": null,
@@ -3552,7 +3552,7 @@
           },
           {
             "body": {
-              "id": 1063,
+              "id": 931,
               "nodeType": "Block",
               "src": "1336:22:5",
               "statements": [
@@ -3560,7 +3560,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1061,
+                    "id": 929,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -3575,28 +3575,28 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1060,
-                  "id": 1062,
+                  "functionReturnParameters": 928,
+                  "id": 930,
                   "nodeType": "Return",
                   "src": "1342:11:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1064,
+            "id": 932,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1057,
+                "id": 925,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1056,
+                  "id": 924,
                   "name": "requireDatabasePayable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1932,
+                  "referencedDeclaration": 1800,
                   "src": "1298:22:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3610,21 +3610,21 @@
             "name": "isDatabasePayable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1055,
+              "id": 923,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1283:2:5"
             },
             "returnParameters": {
-              "id": 1060,
+              "id": 928,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1059,
+                  "id": 927,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1064,
+                  "scope": 932,
                   "src": "1330:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3633,7 +3633,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1058,
+                    "id": 926,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1330:4:5",
@@ -3648,7 +3648,7 @@
               ],
               "src": "1329:6:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "1257:101:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -3656,7 +3656,7 @@
           },
           {
             "body": {
-              "id": 1090,
+              "id": 958,
               "nodeType": "Block",
               "src": "1420:162:5",
               "statements": [
@@ -3667,7 +3667,7 @@
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     },
-                    "id": 1078,
+                    "id": 946,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3678,14 +3678,14 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1071,
+                      "id": 939,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1069,
+                        "id": 937,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -3701,7 +3701,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "30",
-                        "id": 1070,
+                        "id": 938,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3730,7 +3730,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1077,
+                      "id": 945,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3744,18 +3744,18 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 1074,
+                            "id": 942,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1072,
+                              "id": 940,
                               "name": "paidDatabaseIndex",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1966,
+                              "referencedDeclaration": 1834,
                               "src": "1451:17:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3767,7 +3767,7 @@
                             "rightExpression": {
                               "argumentTypes": null,
                               "hexValue": "31",
-                              "id": 1073,
+                              "id": 941,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3789,7 +3789,7 @@
                             }
                           }
                         ],
-                        "id": 1075,
+                        "id": 943,
                         "isConstant": false,
                         "isInlineArray": false,
                         "isLValue": false,
@@ -3806,7 +3806,7 @@
                       "operator": ">=",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 1076,
+                        "id": 944,
                         "name": "nextActionId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -3830,7 +3830,7 @@
                     }
                   },
                   "falseBody": {
-                    "id": 1088,
+                    "id": 956,
                     "nodeType": "Block",
                     "src": "1520:58:5",
                     "statements": [
@@ -3841,7 +3841,7 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 1086,
+                          "id": 954,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3852,14 +3852,14 @@
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             },
-                            "id": 1084,
+                            "id": 952,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "leftExpression": {
                               "argumentTypes": null,
-                              "id": 1082,
+                              "id": 950,
                               "name": "nextActionId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
@@ -3874,11 +3874,11 @@
                             "operator": "-",
                             "rightExpression": {
                               "argumentTypes": null,
-                              "id": 1083,
+                              "id": 951,
                               "name": "paidDatabaseIndex",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1966,
+                              "referencedDeclaration": 1834,
                               "src": "1550:17:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3896,7 +3896,7 @@
                           "rightExpression": {
                             "argumentTypes": null,
                             "hexValue": "31",
-                            "id": 1085,
+                            "id": 953,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -3917,18 +3917,18 @@
                             "typeString": "uint256"
                           }
                         },
-                        "functionReturnParameters": 1068,
-                        "id": 1087,
+                        "functionReturnParameters": 936,
+                        "id": 955,
                         "nodeType": "Return",
                         "src": "1528:43:5"
                       }
                     ]
                   },
-                  "id": 1089,
+                  "id": 957,
                   "nodeType": "IfStatement",
                   "src": "1426:152:5",
                   "trueBody": {
-                    "id": 1081,
+                    "id": 949,
                     "nodeType": "Block",
                     "src": "1491:23:5",
                     "statements": [
@@ -3936,7 +3936,7 @@
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "30",
-                          "id": 1079,
+                          "id": 947,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -3951,8 +3951,8 @@
                           },
                           "value": "0"
                         },
-                        "functionReturnParameters": 1068,
-                        "id": 1080,
+                        "functionReturnParameters": 936,
+                        "id": 948,
                         "nodeType": "Return",
                         "src": "1499:8:5"
                       }
@@ -3962,28 +3962,28 @@
               ]
             },
             "documentation": null,
-            "id": 1091,
+            "id": 959,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "unlockableUpdates",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1065,
+              "id": 933,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1390:2:5"
             },
             "returnParameters": {
-              "id": 1068,
+              "id": 936,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1067,
+                  "id": 935,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1091,
+                  "scope": 959,
                   "src": "1414:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3992,7 +3992,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1066,
+                    "id": 934,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "1414:4:5",
@@ -4007,14 +4007,14 @@
               ],
               "src": "1413:6:5"
             },
-            "scope": 1092,
+            "scope": 960,
             "src": "1364:218:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1093,
+        "scope": 961,
         "src": "99:1485:5"
       }
     ],
@@ -4026,7 +4026,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-03T18:14:35.718Z",
+  "updatedAt": "2019-01-07T17:41:59.951Z",
   "devdoc": {
     "methods": {}
   },

@@ -186,14 +186,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
     "exportedSymbols": {
       "IndexerAdminService": [
-        1890
+        1758
       ]
     },
-    "id": 1891,
+    "id": 1759,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1828,
+        "id": 1696,
         "literals": [
           "solidity",
           ">=",
@@ -209,10 +209,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
         "file": "./IndexerModel.sol",
-        "id": 1829,
+        "id": 1697,
         "nodeType": "ImportDirective",
-        "scope": 1891,
-        "sourceUnit": 1980,
+        "scope": 1759,
+        "sourceUnit": 1848,
         "src": "33:28:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -223,60 +223,60 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1830,
+              "id": 1698,
               "name": "IndexerModel",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1979,
+              "referencedDeclaration": 1847,
               "src": "95:12:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerModel_$1979",
+                "typeIdentifier": "t_contract$_IndexerModel_$1847",
                 "typeString": "contract IndexerModel"
               }
             },
-            "id": 1831,
+            "id": 1699,
             "nodeType": "InheritanceSpecifier",
             "src": "95:12:9"
           }
         ],
         "contractDependencies": [
           85,
-          939,
-          1979
+          807,
+          1847
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1890,
+        "id": 1758,
         "linearizedBaseContracts": [
-          1890,
-          1979,
+          1758,
+          1847,
           85,
-          939
+          807
         ],
         "name": "IndexerAdminService",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1842,
+              "id": 1710,
               "nodeType": "Block",
               "src": "176:30:9",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1840,
+                    "id": 1708,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1838,
+                      "id": 1706,
                       "name": "unlockPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1900,
+                      "referencedDeclaration": 1768,
                       "src": "182:11:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -287,11 +287,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1839,
+                      "id": 1707,
                       "name": "price",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1833,
+                      "referencedDeclaration": 1701,
                       "src": "196:5:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -304,27 +304,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1841,
+                  "id": 1709,
                   "nodeType": "ExpressionStatement",
                   "src": "182:19:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1843,
+            "id": 1711,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1836,
+                "id": 1704,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1835,
+                  "id": 1703,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "156:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -338,15 +338,15 @@
             "name": "setUnlockPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1834,
+              "id": 1702,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1833,
+                  "id": 1701,
                   "name": "price",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1843,
+                  "scope": 1711,
                   "src": "137:10:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -355,7 +355,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1832,
+                    "id": 1700,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "137:4:9",
@@ -371,12 +371,12 @@
               "src": "136:12:9"
             },
             "returnParameters": {
-              "id": 1837,
+              "id": 1705,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "176:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "113:93:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -384,7 +384,7 @@
           },
           {
             "body": {
-              "id": 1878,
+              "id": 1746,
               "nodeType": "Block",
               "src": "389:257:9",
               "statements": [
@@ -395,18 +395,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1861,
+                    "id": 1729,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1859,
+                      "id": 1727,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "398:19:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -417,11 +417,11 @@
                     "operator": "<",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1860,
+                      "id": 1728,
                       "name": "databaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1845,
+                      "referencedDeclaration": 1713,
                       "src": "420:13:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -435,29 +435,29 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1867,
+                  "id": 1735,
                   "nodeType": "IfStatement",
                   "src": "395:90:9",
                   "trueBody": {
-                    "id": 1866,
+                    "id": 1734,
                     "nodeType": "Block",
                     "src": "435:50:9",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1864,
+                          "id": 1732,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "argumentTypes": null,
-                            "id": 1862,
+                            "id": 1730,
                             "name": "latestDatabaseIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1963,
+                            "referencedDeclaration": 1831,
                             "src": "443:19:9",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -468,11 +468,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 1863,
+                            "id": 1731,
                             "name": "databaseIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1845,
+                            "referencedDeclaration": 1713,
                             "src": "465:13:9",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -485,7 +485,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1865,
+                        "id": 1733,
                         "nodeType": "ExpressionStatement",
                         "src": "443:35:9"
                       }
@@ -495,7 +495,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1876,
+                    "id": 1744,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -504,25 +504,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1868,
+                        "id": 1736,
                         "name": "databaseHashes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1970,
+                        "referencedDeclaration": 1838,
                         "src": "491:14:9",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                           "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                         }
                       },
-                      "id": 1870,
+                      "id": 1738,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1869,
+                        "id": 1737,
                         "name": "databaseIndex",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1845,
+                        "referencedDeclaration": 1713,
                         "src": "506:13:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -536,7 +536,7 @@
                       "nodeType": "IndexAccess",
                       "src": "491:29:9",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                        "typeIdentifier": "t_struct$_Multihash_$806_storage",
                         "typeString": "struct CommonModel.Multihash storage ref"
                       }
                     },
@@ -547,11 +547,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1872,
+                          "id": 1740,
                           "name": "multihashDigest",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1847,
+                          "referencedDeclaration": 1715,
                           "src": "549:15:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
@@ -560,11 +560,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1873,
+                          "id": 1741,
                           "name": "multihashHashFunction",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1849,
+                          "referencedDeclaration": 1717,
                           "src": "586:21:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
@@ -573,11 +573,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1874,
+                          "id": 1742,
                           "name": "multihashSize",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1851,
+                          "referencedDeclaration": 1719,
                           "src": "621:13:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
@@ -587,18 +587,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1871,
+                        "id": 1739,
                         "name": "Multihash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 938,
+                        "referencedDeclaration": 806,
                         "src": "523:9:9",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Multihash_$938_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Multihash_$806_storage_ptr_$",
                           "typeString": "type(struct CommonModel.Multihash storage pointer)"
                         }
                       },
-                      "id": 1875,
+                      "id": 1743,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -612,37 +612,37 @@
                       "nodeType": "FunctionCall",
                       "src": "523:118:9",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Multihash_$938_memory",
+                        "typeIdentifier": "t_struct$_Multihash_$806_memory",
                         "typeString": "struct CommonModel.Multihash memory"
                       }
                     },
                     "src": "491:150:9",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                      "typeIdentifier": "t_struct$_Multihash_$806_storage",
                       "typeString": "struct CommonModel.Multihash storage ref"
                     }
                   },
-                  "id": 1877,
+                  "id": 1745,
                   "nodeType": "ExpressionStatement",
                   "src": "491:150:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1879,
+            "id": 1747,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1854,
+                "id": 1722,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1853,
+                  "id": 1721,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "338:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -656,11 +656,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1856,
+                    "id": 1724,
                     "name": "databaseIndex",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1845,
+                    "referencedDeclaration": 1713,
                     "src": "375:13:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -668,14 +668,14 @@
                     }
                   }
                 ],
-                "id": 1857,
+                "id": 1725,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1855,
+                  "id": 1723,
                   "name": "requireIndexable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1960,
+                  "referencedDeclaration": 1828,
                   "src": "358:16:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_uint256_$",
@@ -689,15 +689,15 @@
             "name": "setDatabaseIndex",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1852,
+              "id": 1720,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1845,
+                  "id": 1713,
                   "name": "databaseIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "236:18:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -706,7 +706,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1844,
+                    "id": 1712,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "236:4:9",
@@ -720,10 +720,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1847,
+                  "id": 1715,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "256:23:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -732,7 +732,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1846,
+                    "id": 1714,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "256:7:9",
@@ -746,10 +746,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1849,
+                  "id": 1717,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "281:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -758,7 +758,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1848,
+                    "id": 1716,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "281:5:9",
@@ -772,10 +772,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1851,
+                  "id": 1719,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "310:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -784,7 +784,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1850,
+                    "id": 1718,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:5:9",
@@ -800,12 +800,12 @@
               "src": "235:95:9"
             },
             "returnParameters": {
-              "id": 1858,
+              "id": 1726,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "389:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "210:436:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -813,25 +813,25 @@
           },
           {
             "body": {
-              "id": 1888,
+              "id": 1756,
               "nodeType": "Block",
               "src": "704:34:9",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1886,
+                    "id": 1754,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1884,
+                      "id": 1752,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "710:19:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -843,7 +843,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1885,
+                      "id": 1753,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -864,27 +864,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1887,
+                  "id": 1755,
                   "nodeType": "ExpressionStatement",
                   "src": "710:23:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1889,
+            "id": 1757,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1882,
+                "id": 1750,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1881,
+                  "id": 1749,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "684:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -898,25 +898,25 @@
             "name": "resetDatabase",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1880,
+              "id": 1748,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "674:2:9"
             },
             "returnParameters": {
-              "id": 1883,
+              "id": 1751,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "704:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "652:86:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1891,
+        "scope": 1759,
         "src": "63:677:9"
       }
     ],
@@ -926,14 +926,14 @@
     "absolutePath": "/Users/kent/git/permachat/contracts/IndexerAdminService.sol",
     "exportedSymbols": {
       "IndexerAdminService": [
-        1890
+        1758
       ]
     },
-    "id": 1891,
+    "id": 1759,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1828,
+        "id": 1696,
         "literals": [
           "solidity",
           ">=",
@@ -949,10 +949,10 @@
       {
         "absolutePath": "/Users/kent/git/permachat/contracts/IndexerModel.sol",
         "file": "./IndexerModel.sol",
-        "id": 1829,
+        "id": 1697,
         "nodeType": "ImportDirective",
-        "scope": 1891,
-        "sourceUnit": 1980,
+        "scope": 1759,
+        "sourceUnit": 1848,
         "src": "33:28:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -963,60 +963,60 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1830,
+              "id": 1698,
               "name": "IndexerModel",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1979,
+              "referencedDeclaration": 1847,
               "src": "95:12:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IndexerModel_$1979",
+                "typeIdentifier": "t_contract$_IndexerModel_$1847",
                 "typeString": "contract IndexerModel"
               }
             },
-            "id": 1831,
+            "id": 1699,
             "nodeType": "InheritanceSpecifier",
             "src": "95:12:9"
           }
         ],
         "contractDependencies": [
           85,
-          939,
-          1979
+          807,
+          1847
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1890,
+        "id": 1758,
         "linearizedBaseContracts": [
-          1890,
-          1979,
+          1758,
+          1847,
           85,
-          939
+          807
         ],
         "name": "IndexerAdminService",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1842,
+              "id": 1710,
               "nodeType": "Block",
               "src": "176:30:9",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1840,
+                    "id": 1708,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1838,
+                      "id": 1706,
                       "name": "unlockPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1900,
+                      "referencedDeclaration": 1768,
                       "src": "182:11:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1027,11 +1027,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1839,
+                      "id": 1707,
                       "name": "price",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1833,
+                      "referencedDeclaration": 1701,
                       "src": "196:5:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1044,27 +1044,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1841,
+                  "id": 1709,
                   "nodeType": "ExpressionStatement",
                   "src": "182:19:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1843,
+            "id": 1711,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1836,
+                "id": 1704,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1835,
+                  "id": 1703,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "156:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1078,15 +1078,15 @@
             "name": "setUnlockPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1834,
+              "id": 1702,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1833,
+                  "id": 1701,
                   "name": "price",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1843,
+                  "scope": 1711,
                   "src": "137:10:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1095,7 +1095,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1832,
+                    "id": 1700,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "137:4:9",
@@ -1111,12 +1111,12 @@
               "src": "136:12:9"
             },
             "returnParameters": {
-              "id": 1837,
+              "id": 1705,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "176:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "113:93:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1124,7 +1124,7 @@
           },
           {
             "body": {
-              "id": 1878,
+              "id": 1746,
               "nodeType": "Block",
               "src": "389:257:9",
               "statements": [
@@ -1135,18 +1135,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1861,
+                    "id": 1729,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1859,
+                      "id": 1727,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "398:19:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1157,11 +1157,11 @@
                     "operator": "<",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1860,
+                      "id": 1728,
                       "name": "databaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1845,
+                      "referencedDeclaration": 1713,
                       "src": "420:13:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1175,29 +1175,29 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1867,
+                  "id": 1735,
                   "nodeType": "IfStatement",
                   "src": "395:90:9",
                   "trueBody": {
-                    "id": 1866,
+                    "id": 1734,
                     "nodeType": "Block",
                     "src": "435:50:9",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1864,
+                          "id": 1732,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "argumentTypes": null,
-                            "id": 1862,
+                            "id": 1730,
                             "name": "latestDatabaseIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1963,
+                            "referencedDeclaration": 1831,
                             "src": "443:19:9",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -1208,11 +1208,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 1863,
+                            "id": 1731,
                             "name": "databaseIndex",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1845,
+                            "referencedDeclaration": 1713,
                             "src": "465:13:9",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -1225,7 +1225,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1865,
+                        "id": 1733,
                         "nodeType": "ExpressionStatement",
                         "src": "443:35:9"
                       }
@@ -1235,7 +1235,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1876,
+                    "id": 1744,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1244,25 +1244,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1868,
+                        "id": 1736,
                         "name": "databaseHashes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1970,
+                        "referencedDeclaration": 1838,
                         "src": "491:14:9",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$938_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Multihash_$806_storage_$",
                           "typeString": "mapping(uint256 => struct CommonModel.Multihash storage ref)"
                         }
                       },
-                      "id": 1870,
+                      "id": 1738,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1869,
+                        "id": 1737,
                         "name": "databaseIndex",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1845,
+                        "referencedDeclaration": 1713,
                         "src": "506:13:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1276,7 +1276,7 @@
                       "nodeType": "IndexAccess",
                       "src": "491:29:9",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                        "typeIdentifier": "t_struct$_Multihash_$806_storage",
                         "typeString": "struct CommonModel.Multihash storage ref"
                       }
                     },
@@ -1287,11 +1287,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1872,
+                          "id": 1740,
                           "name": "multihashDigest",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1847,
+                          "referencedDeclaration": 1715,
                           "src": "549:15:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
@@ -1300,11 +1300,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1873,
+                          "id": 1741,
                           "name": "multihashHashFunction",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1849,
+                          "referencedDeclaration": 1717,
                           "src": "586:21:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
@@ -1313,11 +1313,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 1874,
+                          "id": 1742,
                           "name": "multihashSize",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1851,
+                          "referencedDeclaration": 1719,
                           "src": "621:13:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
@@ -1327,18 +1327,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1871,
+                        "id": 1739,
                         "name": "Multihash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 938,
+                        "referencedDeclaration": 806,
                         "src": "523:9:9",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Multihash_$938_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Multihash_$806_storage_ptr_$",
                           "typeString": "type(struct CommonModel.Multihash storage pointer)"
                         }
                       },
-                      "id": 1875,
+                      "id": 1743,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1352,37 +1352,37 @@
                       "nodeType": "FunctionCall",
                       "src": "523:118:9",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Multihash_$938_memory",
+                        "typeIdentifier": "t_struct$_Multihash_$806_memory",
                         "typeString": "struct CommonModel.Multihash memory"
                       }
                     },
                     "src": "491:150:9",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Multihash_$938_storage",
+                      "typeIdentifier": "t_struct$_Multihash_$806_storage",
                       "typeString": "struct CommonModel.Multihash storage ref"
                     }
                   },
-                  "id": 1877,
+                  "id": 1745,
                   "nodeType": "ExpressionStatement",
                   "src": "491:150:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1879,
+            "id": 1747,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1854,
+                "id": 1722,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1853,
+                  "id": 1721,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "338:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1396,11 +1396,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1856,
+                    "id": 1724,
                     "name": "databaseIndex",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1845,
+                    "referencedDeclaration": 1713,
                     "src": "375:13:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -1408,14 +1408,14 @@
                     }
                   }
                 ],
-                "id": 1857,
+                "id": 1725,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1855,
+                  "id": 1723,
                   "name": "requireIndexable",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1960,
+                  "referencedDeclaration": 1828,
                   "src": "358:16:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_uint256_$",
@@ -1429,15 +1429,15 @@
             "name": "setDatabaseIndex",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1852,
+              "id": 1720,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1845,
+                  "id": 1713,
                   "name": "databaseIndex",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "236:18:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1446,7 +1446,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1844,
+                    "id": 1712,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "236:4:9",
@@ -1460,10 +1460,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1847,
+                  "id": 1715,
                   "name": "multihashDigest",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "256:23:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1472,7 +1472,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1846,
+                    "id": 1714,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "256:7:9",
@@ -1486,10 +1486,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1849,
+                  "id": 1717,
                   "name": "multihashHashFunction",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "281:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1498,7 +1498,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1848,
+                    "id": 1716,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "281:5:9",
@@ -1512,10 +1512,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1851,
+                  "id": 1719,
                   "name": "multihashSize",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1879,
+                  "scope": 1747,
                   "src": "310:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1524,7 +1524,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1850,
+                    "id": 1718,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:5:9",
@@ -1540,12 +1540,12 @@
               "src": "235:95:9"
             },
             "returnParameters": {
-              "id": 1858,
+              "id": 1726,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "389:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "210:436:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1553,25 +1553,25 @@
           },
           {
             "body": {
-              "id": 1888,
+              "id": 1756,
               "nodeType": "Block",
               "src": "704:34:9",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1886,
+                    "id": 1754,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1884,
+                      "id": 1752,
                       "name": "latestDatabaseIndex",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1963,
+                      "referencedDeclaration": 1831,
                       "src": "710:19:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1583,7 +1583,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1885,
+                      "id": 1753,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1604,27 +1604,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1887,
+                  "id": 1755,
                   "nodeType": "ExpressionStatement",
                   "src": "710:23:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 1889,
+            "id": 1757,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1882,
+                "id": 1750,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1881,
+                  "id": 1749,
                   "name": "requireIndexerAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1922,
+                  "referencedDeclaration": 1790,
                   "src": "684:19:9",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1638,25 +1638,25 @@
             "name": "resetDatabase",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1880,
+              "id": 1748,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "674:2:9"
             },
             "returnParameters": {
-              "id": 1883,
+              "id": 1751,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "704:0:9"
             },
-            "scope": 1890,
+            "scope": 1758,
             "src": "652:86:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1891,
+        "scope": 1759,
         "src": "63:677:9"
       }
     ],
@@ -1668,7 +1668,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-03T18:14:35.721Z",
+  "updatedAt": "2019-01-07T17:41:59.954Z",
   "devdoc": {
     "methods": {}
   },

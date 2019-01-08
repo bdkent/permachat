@@ -10,7 +10,7 @@ import ContractHelper from "./ContractHelper";
 
 import StringUtils from "../utils/StringUtils";
 import ClassUtils from "../utils/ClassUtils";
-import Multihash from "../utils/multihash";
+import Multihash from "../utils/Multihash";
 
 const RecentTweetsKey = "recent-tweets";
 const RecentTweetsToPersist = 50;

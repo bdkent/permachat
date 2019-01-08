@@ -66,10 +66,13 @@ class IdentityService {
     } else {
       const { id, providerCount } = identity;
       const providers = await Promise.all(
-        _.map(
-          _.range(providerCount),
-          async index => await self.contract.getProviderInfo(id, index)
-        )
+        _.map(_.range(providerCount), async index => {
+          const provider = await self.contract.getProviderInfo(id, index);
+          const request = await this.contract.getRequestById(
+            provider.requestId
+          );
+          return _.assign({}, provider, { request });
+        })
       );
 
       return providers;

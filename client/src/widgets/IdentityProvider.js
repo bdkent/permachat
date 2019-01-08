@@ -21,17 +21,17 @@ const BaseIdentityProvider = props => {
         </ExternalAnchor>
       </CardHeader>
       <CardImg src={props.iconUri} title="icon" className="" />
-      <CardBody>
-        <p>
+      <CardBody className="p-0">
+        <p className="m-2">
           <ExternalAnchor href={props.evidenceUri}>evidence</ExternalAnchor>
         </p>
-        <p className="mb-0">
-          <span className="text-muted">
+        <p className="m-2 mb-0">
+          <small className="text-muted">
             validated{" "}
             <Timestamp
               timestamp={props.identityProvider.timestamp.toString()}
             />
-          </span>
+          </small>
         </p>
       </CardBody>
     </Card>

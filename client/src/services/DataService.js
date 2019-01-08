@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import Multihash from "../utils/multihash";
+import Multihash from "../utils/Multihash";
 import ClassUtils from "../utils/ClassUtils";
 
 class DataService {
