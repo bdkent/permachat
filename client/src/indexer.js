@@ -28,23 +28,31 @@ const getSecret = name => {
   return null;
 };
 
-const newNetworkConfig = networkType => {
+const newNetworkConfig = ({ networkType, address, port }) => {
   logger.debug("newNetworkConfig", networkType);
   try {
     switch (networkType) {
       case "private":
       case "ganache":
+        address = address || "127.0.0.1";
+        port = port || "7545";
         return {
-          provider: new Web3.providers.WebsocketProvider("ws://127.0.0.1:7545")
+          provider: new Web3.providers.WebsocketProvider(
+            "ws://" + address + ":" + port
+          )
         };
       case "rinkeby":
+        address = address || "127.0.0.1";
+        port = port || "8546";
         return {
           // provider: new Web3.providers.WebsocketProvider(
           //   "wss://rinkeby.infura.io/ws"
           // )
           // ,
           // WSS ???
-          provider: new Web3.providers.WebsocketProvider("ws://127.0.0.1:8546"),
+          provider: new Web3.providers.WebsocketProvider(
+            "ws://" + address + ":" + port
+          ),
           networkAccount: getSecret("PERMACHAT_ACCOUNT"),
           password: getSecret("PERMACHAT_PASSWORD")
         };
@@ -102,8 +110,8 @@ const newWeb3 = provider => {
   });
 };
 
-const config = async networkType => {
-  const { provider, networkAccount, password } = newNetworkConfig(networkType);
+const config = async props => {
+  const { provider, networkAccount, password } = newNetworkConfig(props);
   console.log("provider", !_.isNil(provider), networkAccount);
 
   const web3 = await newWeb3(provider);
@@ -140,8 +148,8 @@ const config = async networkType => {
   };
 };
 
-const init = async networkType => {
-  const { web3, accounts, account, contract } = await config(networkType);
+const init = async props => {
+  const { web3, accounts, account, contract } = await config(props);
 
   const indexerContractService = new IndexerContractService(
     contract,
@@ -161,7 +169,7 @@ const init = async networkType => {
   });
 };
 
-const reset = async networkType => {
+const reset = async ({ networkType }) => {
   const { web3, accounts, account, contract } = await config(networkType);
 
   const dir = "/empty-" + String(Math.random() + Date.now());
@@ -181,5 +189,11 @@ console.log("args", args);
 const networkType = args.network || "private";
 console.log("network type", networkType);
 
-init(networkType);
+const address = args.address || "127.0.0.1";
+console.log("address", address);
+
+const port = args.port;
+console.log("port", port);
+
+init({ networkType, address, port });
 // reset(networkType);
