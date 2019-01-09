@@ -1,4 +1,4 @@
-version: "3"
+version: "3.5"
 services:
   ipfs_host:
     image: ipfs/go-ipfs:v0.4.18
@@ -7,17 +7,21 @@ services:
       - "/tmp/ipfs/data:/data/ipfs"
     ports:
       - "4001:4001"
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
       - "5001:5001"
+    network_mode: host
+
   ethereum-node:
     image: ethereum/client-go:v1.8.19
     volumes:
       - "/tmp/ethereum:/root"
     ports:
       - "8545:8545"
-      - "8546:8546"
+      - "127.0.0.1:8546:8546"
       - "30303:30303"
+    network_mode: host
     command: --rinkeby --rpc --rpcapi db,eth,net,web3,personal --rpcport 8545 --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsapi db,eth,net,web3,personal --wsaddr "0.0.0.0" --wsport 8546 --wsorigins="*" --syncmode=light
+
   indexer-service:
     build:
       context: .
@@ -25,3 +29,18 @@ services:
     depends_on:
       - "ethereum-node"
       - "ipfs_host"
+    environment:
+      - ADDRESS=localhost
+    network_mode: host
+    command: --network rinkeby
+    secrets:
+      - PERMACHAT_ACCOUNT
+      - PERMACHAT_PASSWORD
+
+secrets:
+  PERMACHAT_ACCOUNT:
+    file: "./secrets/PERMACHAT_ACCOUNT"
+    name: "PERMACHAT_ACCOUNT"
+  PERMACHAT_PASSWORD:
+    file: "./secrets/PERMACHAT_PASSWORD"
+    name: "PERMACHAT_PASSWORD"

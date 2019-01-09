@@ -1,8 +1,10 @@
 #!/bin/sh
 
 # docker stack rm pc
-# docker-compose build
 # docker stack deploy -c docker-compose.yml pc
+
+# docker-compose build --no-cache indexer-service
+# docker-compose up -d --force-recreate --remove-orphans 
 
 export ipfs_staging=/tmp/ipfs/staging
 export ipfs_data=/tmp/ipfs/data
