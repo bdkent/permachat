@@ -34,16 +34,16 @@ const newNetworkConfig = ({ networkType, address, port }) => {
     switch (networkType) {
       case "private":
       case "ganache":
-        address = address || "127.0.0.1";
-        port = port || "7545";
+        address = address || process.env.ADDRESS || "127.0.0.1";
+        port = port || process.env.PORT || "7545";
         return {
           provider: new Web3.providers.WebsocketProvider(
             "ws://" + address + ":" + port
           )
         };
       case "rinkeby":
-        address = address || "127.0.0.1";
-        port = port || "8546";
+        address = address || process.env.ADDRESS || "127.0.0.1";
+        port = port || process.env.PORT || "8546";
         return {
           // provider: new Web3.providers.WebsocketProvider(
           //   "wss://rinkeby.infura.io/ws"
@@ -182,6 +182,8 @@ const reset = async ({ networkType }) => {
 };
 
 console.log("argv", process.argv);
+
+console.log("env", process.env);
 
 const args = Minimist(process.argv);
 console.log("args", args);
