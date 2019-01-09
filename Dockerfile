@@ -1,4 +1,5 @@
 # indexer service
+# bdkent/permachat-indexer
 
 FROM node:11.3.0
 
@@ -9,5 +10,5 @@ USER node
 
 RUN npm install
 
-CMD npm run indexer --network rinkeby
+CMD npm run indexer -- --network rinkeby
 # CMD ls
