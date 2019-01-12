@@ -42,7 +42,6 @@ jobs:
       #       apt-get update && apt-get install jq
 
       - run: curl -F file=@"build" -o /tmp/ipfs.out https://ipfs.infura.io:5001/api/v0/add?recursive=true&pin=true
-
       # - run: cat ipfs.out
-      - store_artifacts:
-          path: /tmp/ipfs.out
+      # - store_artifacts:
+      #    path: /tmp/ipfs.out
