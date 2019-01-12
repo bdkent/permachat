@@ -38,6 +38,7 @@ const NetworkBanner = props => {
 
 const ErrorType = {
   NoWeb3: "no-web3",
+  UnconnectedWeb3: "unconnected-web3",
   NoContract: "no-contract",
   UnknownNetwork: "unknown-network",
   Unknown: "unknown"
@@ -78,6 +79,11 @@ class App extends Component {
       // Get network provider and web3 instance.
       const web3 = await getWeb3().catch(this.withError(ErrorType.NoWeb3));
       this.setState({ web3 });
+
+      const isListening = await web3.eth.net
+        .isListening()
+        .catch(this.withError(ErrorType.UnconnectedWeb3));
+      console.log("isListening", isListening);
 
       const networkType = await web3.eth.net
         .getNetworkType()
@@ -149,7 +155,8 @@ class App extends Component {
         );
       } else {
         switch (this.state.error) {
-          case ErrorType.NoWeb3: {
+          case ErrorType.NoWeb3:
+          case ErrorType.UnconnectedWeb3: {
             return (
               <div className="pt-4">
                 <div className="container">
@@ -201,7 +208,6 @@ class App extends Component {
               <div>
                 <NetworkBanner networkType={this.state.networkType} />
                 <div className="container">
-                  <NetworkBanner networkType={this.state.networkType} />
                   <Alert color="danger" className="text-center">
                     <h3>Unknown Error</h3>
                   </Alert>

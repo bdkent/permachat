@@ -35,7 +35,7 @@ const AnonymousBlurb = () => {
         </h2>
         <h2>It's going to take a little work on your part.</h2>
         <h2>In order to get started, you need to follow these steps:</h2>
-        <ol>
+        <ol className="text-left">
           <li>
             go install a (weird) browser extension called{" "}
             <a href="https://metamask.io/">MetaMask</a>.
