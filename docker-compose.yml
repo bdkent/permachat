@@ -16,31 +16,50 @@ services:
     volumes:
       - "/tmp/ethereum:/root"
     ports:
-      - "8545:8545"
+      # - "8545:8545"
       - "127.0.0.1:8546:8546"
       - "30303:30303"
     network_mode: host
-    command: --rinkeby --rpc --rpcapi db,eth,net,web3,personal --rpcport 8545 --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsapi db,eth,net,web3,personal --wsaddr "0.0.0.0" --wsport 8546 --wsorigins="*" --syncmode=light
+    # command: --rinkeby --rpc --rpcapi db,eth,net,web3,personal --rpcport 8545 --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsapi db,eth,net,web3,personal --wsaddr "0.0.0.0" --wsport 8546 --wsorigins="*" --syncmode=light
+    command: ${GETH_NETWORK} --ws --wsapi db,eth,net,web3,personal --wsaddr "0.0.0.0" --wsport 8546 --wsorigins="*" --syncmode=light
 
   indexer-service:
-    build:
-      context: .
-    image: indexer
+    image: bdkent/permachat-indexer-service
     depends_on:
       - "ethereum-node"
       - "ipfs_host"
     environment:
-      - ADDRESS=localhost
+      - permachat.ethereum.ws.address=${permachat.ethereum.ws.address}
+      - permachat.ethereum.ws.port=${permachat.ethereum.ws.port}
+      - permachat.indexer.admin.address=${permachat.indexer.admin.address}
     network_mode: host
-    command: --network rinkeby
     secrets:
-      - PERMACHAT_ACCOUNT
-      - PERMACHAT_PASSWORD
+      - INDEXER_ADMIN_PASSWORD
+
+  identity-service:
+    image: bdkent/permachat-identity-service
+    depends_on:
+      - "ethereum-node"
+    environment:
+      - permachat.ethereum.ws.address=${permachat.ethereum.ws.address}
+      - permachat.ethereum.ws.port=${permachat.ethereum.ws.port}
+      - permachat.identity.contract.address=${permachat.identity.contract.address}
+    network_mode: host
+    secrets:
+      - IDENTITY_ADMIN_KEY
+      - IDENTITY_VALIDATOR_TWITTER_KEY
+      - IDENTITY_VALIDATOR_TWITTER_SECRET_KEY
 
 secrets:
-  PERMACHAT_ACCOUNT:
-    file: "./secrets/PERMACHAT_ACCOUNT"
-    name: "PERMACHAT_ACCOUNT"
-  PERMACHAT_PASSWORD:
-    file: "./secrets/PERMACHAT_PASSWORD"
-    name: "PERMACHAT_PASSWORD"
+  INDEXER_ADMIN_PASSWORD:
+    file: "./secrets/permachat.indexer.admin.password"
+    name: "permachat.indexer.admin.password"
+  IDENTITY_ADMIN_KEY:
+    file: "./secrets/permachat.identity.admin.privateKeyHex"
+    name: "permachat.identity.admin.privateKeyHex"
+  IDENTITY_VALIDATOR_TWITTER_KEY:
+    file: "./secrets/permachat.identity.validators.twitter.apiKey"
+    name: "permachat.identity.validators.twitter.apiKey"
+  IDENTITY_VALIDATOR_TWITTER_SECRET_KEY:
+    file: "./secrets/permachat.identity.validators.twitter.apiSecretKey"
+    name: "permachat.identity.validators.twitter.apiSecretKey"

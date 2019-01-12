@@ -1,5 +1,4 @@
-# indexer service
-# bdkent/permachat-indexer
+# bkent/permachat-indexer-service
 
 FROM node:11.3.0
 
