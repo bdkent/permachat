@@ -27,7 +27,6 @@ const UserDetails = LoadableHOC(
             );
           })}
         </Row>
-        <h2 />
         <dl>
           <dt>Ethereum Address</dt>
           <dd>{userId}</dd>
