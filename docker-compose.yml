@@ -28,10 +28,8 @@ services:
     depends_on:
       - "ethereum-node"
       - "ipfs_host"
-    environment:
-      - permachat.ethereum.ws.address=${permachat.ethereum.ws.address}
-      - permachat.ethereum.ws.port=${permachat.ethereum.ws.port}
-      - permachat.indexer.admin.address=${permachat.indexer.admin.address}
+    env_file:
+      - docker.env
     network_mode: host
     secrets:
       - INDEXER_ADMIN_PASSWORD
@@ -40,10 +38,8 @@ services:
     image: bdkent/permachat-identity-service
     depends_on:
       - "ethereum-node"
-    environment:
-      - permachat.ethereum.ws.address=${permachat.ethereum.ws.address}
-      - permachat.ethereum.ws.port=${permachat.ethereum.ws.port}
-      - permachat.identity.contract.address=${permachat.identity.contract.address}
+    env_file:
+      - docker.env
     network_mode: host
     secrets:
       - IDENTITY_ADMIN_KEY
