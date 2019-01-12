@@ -28,41 +28,16 @@ const getSecret = name => {
   return null;
 };
 
-const newNetworkConfig = ({ networkType, address, port }) => {
-  logger.debug("newNetworkConfig", networkType);
-  try {
-    switch (networkType) {
-      case "private":
-      case "ganache":
-        address = address || process.env.ADDRESS || "127.0.0.1";
-        port = port || process.env.PORT || "7545";
-        return {
-          provider: new Web3.providers.WebsocketProvider(
-            "ws://" + address + ":" + port
-          )
-        };
-      case "rinkeby":
-        address = address || process.env.ADDRESS || "127.0.0.1";
-        port = port || process.env.PORT || "8546";
-        return {
-          // provider: new Web3.providers.WebsocketProvider(
-          //   "wss://rinkeby.infura.io/ws"
-          // )
-          // ,
-          // WSS ???
-          provider: new Web3.providers.WebsocketProvider(
-            "ws://" + address + ":" + port
-          ),
-          networkAccount: getSecret("PERMACHAT_ACCOUNT"),
-          password: getSecret("PERMACHAT_PASSWORD")
-        };
-      default:
-        throw new Error("unknown network: " + networkType);
-    }
-  } catch (e) {
-    console.error("unable to create new network config", e);
-    throw new Error("error: " + networkType);
-  }
+const newNetworkConfig = () => {
+  const address = process.env["permachat.ethereum.ws.address"] || "127.0.0.1";
+  const port = process.env["permachat.ethereum.ws.port"] || "7545";
+  const uri = "ws://" + address + ":" + port;
+  logger.info("ethereum uri", uri);
+  return {
+    provider: new Web3.providers.WebsocketProvider(uri),
+    networkAccount: getSecret("permachat.indexer.admin.address"),
+    password: getSecret("permachat.indexer.admin.password")
+  };
 };
 
 const newWeb3 = provider => {
@@ -110,8 +85,8 @@ const newWeb3 = provider => {
   });
 };
 
-const config = async props => {
-  const { provider, networkAccount, password } = newNetworkConfig(props);
+const config = async () => {
+  const { provider, networkAccount, password } = newNetworkConfig();
   console.log("provider", !_.isNil(provider), networkAccount);
 
   const web3 = await newWeb3(provider);
@@ -127,11 +102,14 @@ const config = async props => {
   const account = networkAccount || accounts[0];
   console.log("account", account);
 
+  web3.eth.defaultAccount = account;
+  console.log("defaultAccount", web3.eth.defaultAccount);
+
   const balance = await web3.eth.getBalance(account);
   console.log("balance", balance, web3.utils.fromWei(balance));
 
   if (!_.isNil(password)) {
-    await web3.eth.personal.unlockAccount(networkAccount, password); //, 600);
+    await web3.eth.personal.unlockAccount(networkAccount, password);
   }
 
   const Contract = truffleContract(PermaChatContract);
@@ -148,8 +126,8 @@ const config = async props => {
   };
 };
 
-const init = async props => {
-  const { web3, accounts, account, contract } = await config(props);
+const init = async () => {
+  const { web3, accounts, account, contract } = await config();
 
   const indexerContractService = new IndexerContractService(
     contract,
@@ -169,8 +147,8 @@ const init = async props => {
   });
 };
 
-const reset = async ({ networkType }) => {
-  const { web3, accounts, account, contract } = await config(networkType);
+const reset = async () => {
+  const { web3, accounts, account, contract } = await config();
 
   const dir = "/empty-" + String(Math.random() + Date.now());
   await ipfs.files.mkdir(dir);
@@ -181,21 +159,21 @@ const reset = async ({ networkType }) => {
   console.log("db reset");
 };
 
-console.log("argv", process.argv);
+// console.log("argv", process.argv);
+//
+// console.log("env", process.env);
+//
+// const args = Minimist(process.argv);
+// console.log("args", args);
+//
+// const networkType = args.network || "private";
+// console.log("network type", networkType);
+//
+// const address = args.address || "127.0.0.1";
+// console.log("address", address);
+//
+// const port = args.port;
+// console.log("port", port);
 
-console.log("env", process.env);
-
-const args = Minimist(process.argv);
-console.log("args", args);
-
-const networkType = args.network || "private";
-console.log("network type", networkType);
-
-const address = args.address || "127.0.0.1";
-console.log("address", address);
-
-const port = args.port;
-console.log("port", port);
-
-init({ networkType, address, port });
+init(); //{ networkType, address, port });
 // reset(networkType);
