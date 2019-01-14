@@ -83,7 +83,6 @@ class App extends Component {
       const isListening = await web3.eth.net
         .isListening()
         .catch(this.withError(ErrorType.UnconnectedWeb3));
-      console.log("isListening", isListening);
 
       const networkType = await web3.eth.net
         .getNetworkType()
