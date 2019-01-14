@@ -22,5 +22,7 @@ docker tag identity-service bkent/permachat-identity-service
 docker login
 docker push bkent/permachat-identity-service
 
-docker-compose up -d --force-recreate --remove-orphans -e GETH_NETWORK=--rinkeby
+docker-compose up -d --force-recreate --remove-orphans    #-e GETH_NETWORK=--rinkeby
   
+docker stack rm permachat
+docker stack deploy -c docker-compose.yml permachat

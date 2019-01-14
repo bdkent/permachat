@@ -21,16 +21,25 @@ const getSecret = name => {
   if (fs.existsSync(dockerSecretPath)) {
     return _.trim(fs.readFileSync(dockerSecretPath, "utf8"));
   }
-  if (_.has(process.env, [name])) {
-    return _.trim(process.env[name]);
+  const fromEnv = getEnv(name);
+  if (!_.isNil(fromEnv)) {
+    return fromEnv;
   }
   logger.error("cannot find secret", name);
   return null;
 };
 
+const toEnvName = name => {
+  return _.replace(_.toUpper(name), new RegExp("\\.", "g"), "_");
+};
+
+const getEnv = name => {
+  return process.env[name] || process.env[toEnvName(name)];
+};
+
 const newNetworkConfig = () => {
-  const address = process.env["permachat.ethereum.ws.address"] || "127.0.0.1";
-  const port = process.env["permachat.ethereum.ws.port"] || "7545";
+  const address = getEnv("permachat.ethereum.ws.address") || "127.0.0.1";
+  const port = getEnv("permachat.ethereum.ws.port") || "7545";
   const uri = "ws://" + address + ":" + port;
   logger.info("ethereum uri", uri);
   return {

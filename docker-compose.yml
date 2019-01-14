@@ -24,7 +24,7 @@ services:
     command: ${GETH_NETWORK} --ws --wsapi db,eth,net,web3,personal --wsaddr "0.0.0.0" --wsport 8546 --wsorigins="*" --syncmode=light
 
   indexer-service:
-    image: bdkent/permachat-indexer-service
+    image: bkent/permachat-indexer-service
     depends_on:
       - "ethereum-node"
       - "ipfs_host"
@@ -32,30 +32,30 @@ services:
       - docker.env
     network_mode: host
     secrets:
-      - INDEXER_ADMIN_PASSWORD
+      - source: INDEXER_ADMIN_PASSWORD
+        target: "permachat.indexer.admin.password"
 
   identity-service:
-    image: bdkent/permachat-identity-service
+    image: bkent/permachat-identity-service
     depends_on:
       - "ethereum-node"
     env_file:
       - docker.env
     network_mode: host
     secrets:
-      - IDENTITY_ADMIN_KEY
-      - IDENTITY_VALIDATOR_TWITTER_KEY
-      - IDENTITY_VALIDATOR_TWITTER_SECRET_KEY
+      - source: IDENTITY_ADMIN_KEY
+        target: "permachat.identity.admin.privateKeyHex"
+      - source: IDENTITY_VALIDATOR_TWITTER_KEY
+        target: "permachat.identity.validators.twitter.apiKey"
+      - source: IDENTITY_VALIDATOR_TWITTER_SECRET_KEY
+        target: "permachat.identity.validators.twitter.apiSecretKey"
 
 secrets:
   INDEXER_ADMIN_PASSWORD:
     file: "./secrets/permachat.indexer.admin.password"
-    name: "permachat.indexer.admin.password"
   IDENTITY_ADMIN_KEY:
     file: "./secrets/permachat.identity.admin.privateKeyHex"
-    name: "permachat.identity.admin.privateKeyHex"
   IDENTITY_VALIDATOR_TWITTER_KEY:
     file: "./secrets/permachat.identity.validators.twitter.apiKey"
-    name: "permachat.identity.validators.twitter.apiKey"
   IDENTITY_VALIDATOR_TWITTER_SECRET_KEY:
     file: "./secrets/permachat.identity.validators.twitter.apiSecretKey"
-    name: "permachat.identity.validators.twitter.apiSecretKey"
