@@ -32,8 +32,7 @@ services:
       - docker.env
     network_mode: host
     secrets:
-      - source: INDEXER_ADMIN_PASSWORD
-        target: "permachat.indexer.admin.password"
+      - PERMACHAT_INDEXER_ADMIN_PASSWORD
 
   identity-service:
     image: bkent/permachat-identity-service
@@ -43,19 +42,16 @@ services:
       - docker.env
     network_mode: host
     secrets:
-      - source: IDENTITY_ADMIN_KEY
-        target: "permachat.identity.admin.privateKeyHex"
-      - source: IDENTITY_VALIDATOR_TWITTER_KEY
-        target: "permachat.identity.validators.twitter.apiKey"
-      - source: IDENTITY_VALIDATOR_TWITTER_SECRET_KEY
-        target: "permachat.identity.validators.twitter.apiSecretKey"
+      - PERMACHAT_IDENTITY_ADMIN_PRIVATEKEYHEX
+      - PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APIKEY
+      - PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APISECRETKEY
 
 secrets:
-  INDEXER_ADMIN_PASSWORD:
-    file: "./secrets/permachat.indexer.admin.password"
-  IDENTITY_ADMIN_KEY:
-    file: "./secrets/permachat.identity.admin.privateKeyHex"
-  IDENTITY_VALIDATOR_TWITTER_KEY:
-    file: "./secrets/permachat.identity.validators.twitter.apiKey"
-  IDENTITY_VALIDATOR_TWITTER_SECRET_KEY:
-    file: "./secrets/permachat.identity.validators.twitter.apiSecretKey"
+  PERMACHAT_INDEXER_ADMIN_PASSWORD:
+    file: "./secrets/PERMACHAT_INDEXER_ADMIN_PASSWORD"
+  PERMACHAT_IDENTITY_ADMIN_PRIVATEKEYHEX:
+    file: "./secrets/PERMACHAT_IDENTITY_ADMIN_PRIVATEKEYHEX"
+  PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APIKEY:
+    file: "./secrets/PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APIKEY"
+  PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APISECRETKEY:
+    file: "./secrets/PERMACHAT_IDENTITY_VALIDATORS_TWITTER_APISECRETKEY"

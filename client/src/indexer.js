@@ -19,7 +19,10 @@ dotenv.config();
 const getSecret = name => {
   const dockerSecretPath = "/run/secrets/" + name;
   if (fs.existsSync(dockerSecretPath)) {
-    return _.trim(fs.readFileSync(dockerSecretPath, "utf8"));
+    const maybeSecret = _.trim(fs.readFileSync(dockerSecretPath, "utf8"));
+    if (!_.isEmpty(maybeSecret)) {
+      return maybeSecret;
+    }
   }
   const fromEnv = getEnv(name);
   if (!_.isNil(fromEnv)) {
@@ -29,23 +32,19 @@ const getSecret = name => {
   return null;
 };
 
-const toEnvName = name => {
-  return _.replace(_.toUpper(name), new RegExp("\\.", "g"), "_");
-};
-
 const getEnv = name => {
-  return process.env[name] || process.env[toEnvName(name)];
+  return process.env[name];
 };
 
 const newNetworkConfig = () => {
-  const address = getEnv("permachat.ethereum.ws.address") || "127.0.0.1";
-  const port = getEnv("permachat.ethereum.ws.port") || "7545";
+  const address = getEnv("PERMACHAT_ETHEREUM_WS_ADDRESS") || "127.0.0.1";
+  const port = getEnv("PERMACHAT_ETHEREUM_WS_PORT") || "7545";
   const uri = "ws://" + address + ":" + port;
   logger.info("ethereum uri", uri);
   return {
     provider: new Web3.providers.WebsocketProvider(uri),
-    networkAccount: getSecret("permachat.indexer.admin.address"),
-    password: getSecret("permachat.indexer.admin.password")
+    networkAccount: getEnv("PERMACHAT_INDEXER_ADMIN_ADDRESS"),
+    password: getSecret("PERMACHAT_INDEXER_ADMIN_PASSWORD")
   };
 };
 
