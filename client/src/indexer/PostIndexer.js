@@ -2,14 +2,11 @@ import _ from "lodash";
 
 import BN from "bn.js";
 
-import ipfs from "../utils/ipfs-local";
 import SaneIPFS from "../utils/SaneIPFS";
-
+import ClassUtils from "../utils/ClassUtils";
 import LogUtils from "../utils/LogUtils";
 
 LogUtils.setLowest(logger, "info");
-
-const saneIPFS = new SaneIPFS(ipfs);
 
 const DataPageSize = 1;
 
@@ -62,8 +59,14 @@ const DataStatus = {
   NotFound: "not-found"
 };
 
-const PostIndexer = {
-  indexPost: async (rootDir, post, domain) => {
+class PostIndexer {
+  constructor(ipfs) {
+    ClassUtils.bindAllMethods(PostIndexer.prototype, this);
+    this.saneIPFS = new SaneIPFS(ipfs);
+  }
+
+  async indexPost(rootDir, post, domain) {
+    const self = this;
     logger.debug("indexPost", rootDir, post, domain);
     const now = toDateFromTimestamp(post.timestamp);
 
@@ -89,12 +92,12 @@ const PostIndexer = {
       [...Array(depths.length + 1).keys()].map(async i => {
         const path = toDataFilePath(depths, i);
         logger.debug("path", path);
-        const foundFile = await saneIPFS.exists(path);
+        const foundFile = await self.saneIPFS.exists(path);
         if (foundFile) {
           return DataStatus.FileExists;
         } else {
           // const dir = toDataFileDir(depths, i);
-          // const foundDir = await saneIPFS.exists(dir);
+          // const foundDir = await self.saneIPFS.exists(dir);
           // if (foundDir) {
           //   return DataStatus.DirExists;
           // } else {
@@ -116,7 +119,7 @@ const PostIndexer = {
       logger.debug(1);
       const path = toDataFilePath(depths, 0);
       logger.debug("path", path);
-      await saneIPFS.writeJSON(path, [post]);
+      await self.saneIPFS.writeJSON(path, [post]);
       logger.debug(2);
       return path;
     };
@@ -125,7 +128,7 @@ const PostIndexer = {
       logger.debug("nextPost", depthIndex);
       const path = toDataFilePath(depths, dataFilePingIndex);
       logger.debug("path", path);
-      const existingPosts = await saneIPFS.readJSON(path);
+      const existingPosts = await self.saneIPFS.readJSON(path);
       const content = _.defaultTo(existingPosts, []).concat([post]);
       logger.debug("content", content);
       const dataFileStatus = dataFilePingResults[depthIndex];
@@ -175,7 +178,7 @@ const PostIndexer = {
                     );
                     const sortedPosts = _.sortBy(posts, "timestamp");
                     logger.debug("dist write", distPath, sortedPosts);
-                    await saneIPFS.writeJSON(distPath, sortedPosts);
+                    await self.saneIPFS.writeJSON(distPath, sortedPosts);
                     return distPath;
                   } else {
                     return null;
@@ -187,11 +190,11 @@ const PostIndexer = {
 
           const distPaths = handleDistributions();
 
-          await saneIPFS.remove(path);
+          await self.saneIPFS.remove(path);
 
           return distPaths;
         } else {
-          await saneIPFS.writeJSON(path, content);
+          await self.saneIPFS.writeJSON(path, content);
           return path;
         }
       }
@@ -203,6 +206,6 @@ const PostIndexer = {
       return await nextPost(dataFilePingIndex);
     }
   }
-};
+}
 
 export default PostIndexer;

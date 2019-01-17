@@ -1,6 +1,5 @@
 import _ from "lodash";
 
-import ipfs from "../utils/ipfs-local";
 import ClassUtils from "../utils/ClassUtils";
 
 import ActionIndexer from "./ActionIndexer";
@@ -15,22 +14,25 @@ const DefaultIntervalMinutes = 1; // how about 30 mins ?
 const IntervalMs = 1000 * 60 * DefaultIntervalMinutes;
 
 class ScheduledIndexer {
-  constructor(indexerContractService) {
+  constructor(indexerContractService, ipfs) {
     ClassUtils.bindAllMethods(ScheduledIndexer.prototype, this);
 
-    const indexPersister = new IndexPersister(indexerContractService);
+    this.ipfs = ipfs;
+
+    const indexPersister = new IndexPersister(indexerContractService, ipfs);
 
     this.intervalId = null;
     this.indexing = null;
 
     this.actionIndexer = new ActionIndexer(
       indexerContractService,
-      indexPersister
+      indexPersister,
+      ipfs
     );
   }
 
   start() {
-    ipfs.files
+    this.ipfs.files
       .ls("/")
       .catch(e =>
         logger.warn("!!! ALERT: verify IPFS is actually running !!!")

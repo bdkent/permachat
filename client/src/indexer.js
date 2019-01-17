@@ -7,7 +7,7 @@ import truffleContract from "truffle-contract";
 import Web3 from "web3";
 import Minimist from "minimist";
 import "./logger-init.js";
-import ipfs from "./utils/ipfs-local";
+import IPFS from "ipfs-http-client";
 
 import IndexerContractService from "./indexer/IndexerContractService";
 import ScheduledIndexer from "./indexer/ScheduledIndexer";
@@ -156,16 +156,22 @@ const config = async () => {
 const init = async () => {
   const { web3, accounts, account, contract } = await config();
 
+  const ipfs = new IPFS({
+    host: getEnv("PERMACHAT_IPFS_ADDRESS"),
+    port: getEnv("PERMACHAT_IPFS_PORT"),
+    protocol: "http"
+  });
+
   const indexerContractService = new IndexerContractService(
     contract,
     account,
     web3
   );
 
-  const indexPricer = new IndexPricer(indexerContractService);
+  const indexPricer = new IndexPricer(indexerContractService, ipfs);
   indexPricer.start();
 
-  const scheduledIndexer = new ScheduledIndexer(indexerContractService);
+  const scheduledIndexer = new ScheduledIndexer(indexerContractService, ipfs);
   scheduledIndexer.start();
   scheduledIndexer.index();
 

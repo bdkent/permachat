@@ -1,7 +1,5 @@
 import _ from "lodash";
 
-import ipfs from "../utils/ipfs-local";
-
 import IndexInitializer from "./IndexInitializer";
 import Primer from "./Primer";
 
@@ -10,13 +8,15 @@ import LogUtils from "../utils/LogUtils";
 LogUtils.setLowest(logger, "info");
 
 class IndexPersister {
-  constructor(indexerContractService) {
+  constructor(indexerContractService, ipfs) {
     this.indexerContractService = indexerContractService;
+    this.indexInitializer = new IndexInitializer(ipfs);
+    this.ipfs = ipfs;
   }
 
   async persistWith(currentHash, nextDatabaseIndex, f) {
     logger.debug("persistWith", currentHash, nextDatabaseIndex);
-    const rootDir = await IndexInitializer.initialize(currentHash);
+    const rootDir = await this.indexInitializer.initialize(currentHash);
     logger.debug("initialization complete");
     const mfsPaths = await f(rootDir);
     const newHash = await this.updateDatabase(rootDir, nextDatabaseIndex);
@@ -26,13 +26,13 @@ class IndexPersister {
 
   async updateDatabase(rootDir, nextDatabaseIndex) {
     logger.debug("updateDatabase", rootDir, _.toString(nextDatabaseIndex));
-    const stat = await ipfs.files.stat(rootDir);
+    const stat = await this.ipfs.files.stat(rootDir);
     logger.debug("stat", stat);
 
     const newDbHash = stat.hash;
     logger.debug("newDbHash", newDbHash);
 
-    const added = await ipfs.files.flush();
+    const added = await this.ipfs.files.flush();
     logger.debug("added (flush)", added);
 
     await this.indexerContractService.setDatabaseIndex(

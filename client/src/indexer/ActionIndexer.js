@@ -12,9 +12,10 @@ LogUtils.setLowest(logger, "info");
 const ActionType = Model.ActionType;
 
 class ActionIndexer {
-  constructor(indexerContractService, indexPersister) {
+  constructor(indexerContractService, indexPersister, ipfs) {
     this.service = indexerContractService;
     this.indexPersister = indexPersister;
+    this.postIndexer = new PostIndexer(ipfs);
   }
 
   async indexNextAction() {
@@ -72,7 +73,7 @@ class ActionIndexer {
 
     const pathsPerPost = await Promise.all(
       _.map(indexDomains, domain =>
-        PostIndexer.indexPost(rootDir, post, domain)
+        self.postIndexer.indexPost(rootDir, post, domain)
       )
     );
 

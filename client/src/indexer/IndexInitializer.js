@@ -1,67 +1,75 @@
 import _ from "lodash";
 
-import ipfs from "../utils/ipfs-local";
 import LogUtils from "../utils/LogUtils";
+import ClassUtils from "../utils/ClassUtils";
 
 LogUtils.setLowest(logger, "info");
 
-const IndexInitializer = {
-  bootstrapInitialize: async () => {
+class IndexInitializer {
+  constructor(ipfs) {
+    ClassUtils.bindAllMethods(IndexInitializer.prototype, this);
+    this.ipfs = ipfs;
+  }
+  async bootstrapInitialize() {
+    const self = this;
     try {
-      await ipfs.files.mkdir("/root");
+      await self.ipfs.files.mkdir("/root");
     } catch (e) {
       logger.error(e);
     }
 
-    const stat = await ipfs.files.stat("/root");
+    const stat = await self.ipfs.files.stat("/root");
     logger.debug("stat", stat);
 
     const firstDBHash = stat.hash;
     logger.debug("firstDB", firstDBHash);
 
-    return await IndexInitializer.doInitialize(firstDBHash);
-  },
+    return await self.doInitialize(firstDBHash);
+  }
 
-  nextInitialize: async currentDBHash => {
+  async nextInitialize(currentDBHash) {
+    const self = this;
     const rootDir = "/root-" + currentDBHash;
 
     try {
-      await ipfs.files.rm(rootDir, { recursive: true });
+      await self.ipfs.files.rm(rootDir, { recursive: true });
     } catch (e) {
       // console.error(e);
     }
 
     try {
-      await ipfs.files.cp("/ipfs/" + currentDBHash, rootDir, {
+      await self.ipfs.files.cp("/ipfs/" + currentDBHash, rootDir, {
         parents: true
       });
     } catch (e) {}
 
     return rootDir;
-  },
+  }
 
-  doInitialize: async currentDBHash => {
+  async doInitialize(currentDBHash) {
+    const self = this;
     logger.debug("initialize", "|", currentDBHash, "|");
 
     if (_.isNil(currentDBHash)) {
-      return await IndexInitializer.bootstrapInitialize();
+      return await self.bootstrapInitialize();
     } else {
-      return await IndexInitializer.nextInitialize(currentDBHash);
+      return await self.nextInitialize(currentDBHash);
     }
-  },
+  }
 
-  cleanup: async (currentDBHash, rootDir) => {
+  async cleanup(currentDBHash, rootDir) {
+    const self = this;
     logger.debug("cleanup", rootDir, currentDBHash);
-    const ls = await ipfs.files.ls("/");
+    const ls = await self.ipfs.files.ls("/");
 
     await Promise.all(
       _.map(ls, async l => {
         const path = "/" + l.name;
-        const stat = await ipfs.files.stat(path);
+        const stat = await self.ipfs.files.stat(path);
         if (path !== rootDir && stat.hash === currentDBHash) {
           logger.debug("cleaning", path, stat.hash);
           try {
-            await ipfs.files.rm(path, { recursive: true });
+            await self.ipfs.files.rm(path, { recursive: true });
           } catch (e) {
             return false;
           }
@@ -71,22 +79,23 @@ const IndexInitializer = {
     );
 
     return true;
-  },
+  }
 
-  initialize: async currentDBHash => {
+  async initialize(currentDBHash) {
+    const self = this;
     try {
-      await ipfs.files.ls("/");
+      await self.ipfs.files.ls("/");
     } catch (e) {
       logger.warn("verify IPFS is running", e);
     }
 
     logger.debug("initialize", currentDBHash);
-    const rootDir = await IndexInitializer.doInitialize(currentDBHash);
+    const rootDir = await self.doInitialize(currentDBHash);
     logger.debug("rootDir", rootDir);
-    // await IndexInitializer.cleanup(currentDBHash, rootDir);
+    // await self.cleanup(currentDBHash, rootDir);
 
     return rootDir;
   }
-};
+}
 
 export default IndexInitializer;
