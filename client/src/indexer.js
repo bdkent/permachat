@@ -44,7 +44,8 @@ const newNetworkConfig = () => {
   return {
     provider: new Web3.providers.WebsocketProvider(uri),
     networkAccount: getEnv("PERMACHAT_INDEXER_ADMIN_ADDRESS"),
-    password: getSecret("PERMACHAT_INDEXER_ADMIN_PASSWORD")
+    password: getSecret("PERMACHAT_INDEXER_ADMIN_PASSWORD"),
+    privateKey: getSecret("PERMACHAT_INDEXER_ADMIN_PRIVATEKEY")
   };
 };
 
@@ -101,7 +102,7 @@ const newWeb3 = provider => {
 };
 
 const config = async () => {
-  const { provider, networkAccount, password } = newNetworkConfig();
+  const { provider, networkAccount, password, privateKey } = newNetworkConfig();
   console.log("provider", !_.isNil(provider), networkAccount);
 
   const web3 = await newWeb3(provider);
@@ -122,13 +123,20 @@ const config = async () => {
 
   const balance = await web3.eth.getBalance(account);
 
-  if (!_.isNil(password)) {
-    console.log(password);
-    try {
+  if (!_.isEmpty(privateKey)) {
+    if (!_.isEmpty(password)) {
+      if (!_.includes(accounts, account)) {
+        await web3.eth.personal.importRawKey(privateKey, password);
+        console.log("added account");
+      }
+
       await web3.eth.personal.unlockAccount(account, password);
-    } catch (e) {
-      console.error("unable to unlock: ", account);
+      console.log("unlocked account");
+    } else {
+      console.warn("no password provided");
     }
+  } else {
+    console.warn("no private key provided");
   }
 
   const Contract = truffleContract(PermaChatContract);
@@ -194,5 +202,5 @@ const reset = async () => {
 // const port = args.port;
 // console.log("port", port);
 
-init().catch(e => console.error(e));
+init().catch(e => console.error("CRITICAL ERROR: ", e));
 // reset(networkType);
