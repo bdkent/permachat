@@ -65,7 +65,13 @@ const newWeb3 = provider => {
           const isListening = await web3.eth.net.isListening();
           if (isListening) {
             logger.info("web3 is listening successfully");
-            return Promise.resolve(web3);
+            const peers = await web3.eth.net.getPeerCount();
+            if (peers > 0) {
+              logger.info("web3 has peers: |", peers, "|");
+              return Promise.resolve(web3);
+            } else {
+              return Promise.reject("unable to connect to peers");
+            }
           } else {
             return Promise.reject("unable to connect with web3");
           }
@@ -80,6 +86,7 @@ const newWeb3 = provider => {
         .then(resolve)
         .catch(e => {
           if (count < MaxRetryAttempts) {
+            logger.warn("trouble:", _.toString(e));
             setTimeout(attempt, ConnectIntervalMs);
           } else {
             reject(
@@ -114,10 +121,14 @@ const config = async () => {
   console.log("defaultAccount", web3.eth.defaultAccount);
 
   const balance = await web3.eth.getBalance(account);
-  console.log("balance", balance, web3.utils.fromWei(balance));
 
   if (!_.isNil(password)) {
-    await web3.eth.personal.unlockAccount(networkAccount, password);
+    console.log(password);
+    try {
+      await web3.eth.personal.unlockAccount(account, password);
+    } catch (e) {
+      console.error("unable to unlock: ", account);
+    }
   }
 
   const Contract = truffleContract(PermaChatContract);
@@ -183,5 +194,5 @@ const reset = async () => {
 // const port = args.port;
 // console.log("port", port);
 
-init(); //{ networkType, address, port });
+init().catch(e => console.error(e));
 // reset(networkType);
