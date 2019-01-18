@@ -26,5 +26,5 @@ With more effort on your part, you could enjoy the _full_ decentralized experien
 
 # Releases
 The permachat webapp is deployed to IPFS. `perma.chat` should always point to the latest release.
-- latest: [QmabquXsuKUmQVtyb4S6rckABCCQrA3iW6mhKG5ZyytDmq](https://ipfs.io/ipfs/QmabquXsuKUmQVtyb4S6rckABCCQrA3iW6mhKG5ZyytDmq)
+- latest: [QmWsehHyu1xYGmWgLAGUhY7AvpwipR3crTx1Ka3SRZtJc5](https://ipfs.io/ipfs/QmWsehHyu1xYGmWgLAGUhY7AvpwipR3crTx1Ka3SRZtJc5)
 
