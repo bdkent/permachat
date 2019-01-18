@@ -208,5 +208,8 @@ const reset = async () => {
 // const port = args.port;
 // console.log("port", port);
 
-init().catch(e => console.error("CRITICAL ERROR: ", e));
+init().catch(e => {
+  console.error("CRITICAL ERROR: ", e);
+  process.exit(1);
+});
 // reset(networkType);

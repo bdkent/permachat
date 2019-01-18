@@ -80,7 +80,7 @@ class App extends Component {
       const web3 = await getWeb3().catch(this.withError(ErrorType.NoWeb3));
       this.setState({ web3 });
 
-      const isListening = await web3.eth.net
+      await web3.eth.net
         .isListening()
         .catch(this.withError(ErrorType.UnconnectedWeb3));
 
