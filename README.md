@@ -20,6 +20,11 @@ Now you can connect to permachat, but you aren't done yet! You need to make an a
 Now you can use permachat! So easy and worth it, right?!
 
 ## Is this really decentralized?
-Not really! Currently, permachat dependents on [infura](infura.io) to provide both the IPFS gateway and the Ethereum gateway (used by MetaMask).
+Not really! Currently, permachat dependents on [infura](https://infura.io) to provide both the IPFS gateway and the Ethereum gateway (used by MetaMask).
 
 With more effort on your part, you could enjoy the _full_ decentralized experience courtesy of the [Mist](https://github.com/ethereum/mist#installation) browser and running [IPFS](https://docs.ipfs.io/introduction/install/) locally!
+
+# Releases
+The permachat webapp is deployed to IPFS. `perma.chat` should always point to the latest release.
+- latest: [QmabquXsuKUmQVtyb4S6rckABCCQrA3iW6mhKG5ZyytDmq](https://ipfs.io/ipfs/QmabquXsuKUmQVtyb4S6rckABCCQrA3iW6mhKG5ZyytDmq)
+
