@@ -1,5 +1,19 @@
 #!/bin/sh
 
+
+# IPFS 
+# sudo ufw allow 4001
+
+# geth
+# sudo ufw allow 30303
+
+#docker
+# sudo ufw allow 2376
+
+# mkdirs 
+
+
+
 # docker build --no-cache --tag=indexer-service .
 # docker login
 # docker tag indexer-service bkent/permachat-indexer-service
