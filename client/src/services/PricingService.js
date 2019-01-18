@@ -48,14 +48,13 @@ class PricingService {
   }
 
   convertWeiToDollars(wei) {
-    if (this.current) {
-      const ether = this.web3.utils.fromWei(this.web3.utils.toBN(wei), "ether");
-      // console.log("ether", ether.toString());
-      const dollars = (ether * this.current.priceInCents) / 100;
-      // console.log("dollars", dollars.toString());
-      return dollars.toFixed(2);
-    } else {
+    if (_.isNil(this.current) || _.isNil(wei)) {
       return -1;
+    } else {
+      const weiBN = this.web3.utils.toBN(wei.toString());
+      const ether = this.web3.utils.fromWei(weiBN.toString(), "ether");
+      const dollars = (ether * this.current.priceInCents) / 100;
+      return dollars.toFixed(2);
     }
   }
 }

@@ -1,9 +1,20 @@
 import _ from "lodash";
-// import { fetch } from "whatwg-fetch";
 
 import ContractHelper from "./ContractHelper";
 
 import ClassUtils from "../utils/ClassUtils";
+
+const toNumber = n => {
+  if (_.isNil(n)) {
+    return n;
+  } else {
+    if (_.isNumber(n)) {
+      return n;
+    } else {
+      return parseInt(n.toString());
+    }
+  }
+};
 
 class IdentityService {
   constructor(contract, account, web3) {
@@ -30,6 +41,7 @@ class IdentityService {
   async getMyIdentity() {
     try {
       const result = await this.contract.getMyIdentityInfo(this.txParams);
+
       if (ContractHelper.isNullUint(result.id)) {
         return null;
       } else {
@@ -64,18 +76,7 @@ class IdentityService {
     if (_.isNil(identity)) {
       return [];
     } else {
-      const { id, providerCount } = identity;
-      const providers = await Promise.all(
-        _.map(_.range(providerCount), async index => {
-          const provider = await self.contract.getProviderInfo(id, index);
-          const request = await this.contract.getRequestById(
-            provider.requestId
-          );
-          return _.assign({}, provider, { request });
-        })
-      );
-
-      return providers;
+      return self.getIdentityProvidersFromIdentity(identity);
     }
   }
 
@@ -85,18 +86,36 @@ class IdentityService {
     if (_.isNil(myIdentity)) {
       return [];
     } else {
-      const { providerCount } = myIdentity;
+      return self.getIdentityProvidersFromIdentity(myIdentity);
+    }
+  }
+
+  async getIdentityProvidersFromIdentity(identity) {
+    const self = this;
+    if (_.isNil(identity)) {
+      return [];
+    } else {
+      const { id, providerCount } = identity;
       const providers = await Promise.all(
-        _.map(_.range(providerCount), async index => {
-          const provider = await self.contract.getMyProviderInfo(index);
-          const request = await this.contract.getRequestById(
-            provider.requestId
-          );
-          return _.assign({}, provider, { request });
+        _.map(_.range(toNumber(providerCount)), async index => {
+          try {
+            const provider = await self.contract.getProviderInfo(id, index);
+            const request = await this.contract.getRequestById(
+              provider.requestId
+            );
+            return _.assign({}, provider, { request });
+          } catch (e) {
+            console.error(
+              "bad identity provider",
+              identity,
+              providerCount,
+              index
+            );
+            return null;
+          }
         })
       );
-
-      return providers;
+      return _.compact(providers);
     }
   }
 
