@@ -4,6 +4,8 @@ import ContractHelper from "./ContractHelper";
 
 import ClassUtils from "../utils/ClassUtils";
 
+import * as Actions from "../state/actions";
+
 const toNumber = n => {
   if (_.isNil(n)) {
     return n;
@@ -17,7 +19,7 @@ const toNumber = n => {
 };
 
 class IdentityService {
-  constructor(contract, account, web3) {
+  constructor(store, contract, account, web3) {
     this.contract = contract;
     this.account = account;
     this.web3 = web3;
@@ -27,30 +29,18 @@ class IdentityService {
     };
 
     ClassUtils.bindAllMethods(IdentityService.prototype, this);
+
+    const schedule = (f, ms) => {
+      f();
+      setInterval(f, ms);
+    };
+
+    schedule(() => store.dispatch(Actions.refreshIdentityRequestPrice()), 1000 * 60 * 10);
+
   }
 
   setActiveAccount(account) {
     this.account = account;
-  }
-
-  async isMe(address) {
-    const providers = await this.getMyIdentityProviders();
-    return _.some(providers, p => p.identityAddress === address);
-  }
-
-  async getMyIdentity() {
-    try {
-      const result = await this.contract.getMyIdentityInfo(this.txParams);
-
-      if (ContractHelper.isNullUint(result.id)) {
-        return null;
-      } else {
-        return result;
-      }
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
   }
 
   async getIdentity(address) {
@@ -80,30 +70,20 @@ class IdentityService {
     }
   }
 
-  async getMyIdentityProviders() {
-    const self = this;
-    const myIdentity = await this.getMyIdentity();
-    if (_.isNil(myIdentity)) {
-      return [];
-    } else {
-      return self.getIdentityProvidersFromIdentity(myIdentity);
-    }
-  }
-
   async getIdentityProvidersFromIdentity(identity) {
     const self = this;
     if (_.isNil(identity)) {
       return [];
     } else {
-      const { id, providerCount } = identity;
+      const {id, providerCount} = identity;
       const providers = await Promise.all(
         _.map(_.range(toNumber(providerCount)), async index => {
           try {
             const provider = await self.contract.getProviderInfo(id, index);
-            const request = await this.contract.getRequestById(
+            const request = await self.contract.getRequestById(
               provider.requestId
             );
-            return _.assign({}, provider, { request });
+            return _.assign({}, provider, {request});
           } catch (e) {
             console.error(
               "bad identity provider",
@@ -119,10 +99,6 @@ class IdentityService {
     }
   }
 
-  async getProviders() {
-    return ["twitter", "github"];
-  }
-
   async createToken(provider, userName) {
     return this.web3.utils.sha3(provider + userName + this.account);
   }
@@ -134,7 +110,7 @@ class IdentityService {
         provider,
         userName,
         identifier,
-        _.assign({}, this.txParams, { value: priceInWei })
+        _.assign({}, this.txParams, {value: priceInWei})
       );
     } catch (e) {
       console.error(
@@ -148,14 +124,6 @@ class IdentityService {
     }
   }
 
-  async getRequestById(requestId) {
-    return await this.contract.getRequestById(requestId);
-  }
-
-  async getRequestPriceInWei() {
-    const priceInWei = await this.contract.requestPrice();
-    return priceInWei;
-  }
 }
 
 export default IdentityService;

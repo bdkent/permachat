@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React from "react";
 
+import {connect} from "react-redux";
+
 import {
   Alert,
   Form,
@@ -17,10 +19,10 @@ import {
   CardTitle
 } from "reactstrap";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTwitter, faGithub} from "@fortawesome/free-brands-svg-icons";
 
-import LoadableHOC from "../hoc/LoadableHOC";
+import LoadingHOC from "../hoc/LoadingHOC";
 import ConditionalHOC from "../hoc/ConditionalHOC";
 
 import ExternalAnchor from "./ExternalAnchor";
@@ -29,14 +31,14 @@ import WorkerButton from "./WorkerButton";
 const Providers = {
   twitter: {
     label: "Twitter",
-    icon: <FontAwesomeIcon icon={faTwitter} />,
+    icon: <FontAwesomeIcon icon={faTwitter}/>,
     userNamePrefix: "@",
     userNameProfilePreview: userName =>
-      '<a class="twitter-timeline" href="https://twitter.com/' +
+      "<a class=\"twitter-timeline\" href=\"https://twitter.com/" +
       userName +
-      '?ref_src=twsrc%5Etfw">Tweets by ' +
+      "?ref_src=twsrc%5Etfw\">Tweets by " +
       userName +
-      '</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> ',
+      "</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script> ",
     evidenceUriTemplate: userName =>
       "https://twitter.com/" + userName + "/status/[[TOKEN]]",
     evidenceDirections: (
@@ -50,24 +52,24 @@ const Providers = {
     ),
     evidencePreview: (userName, evidence) => {
       return (
-        '<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">content</p>&mdash; @' +
+        "<blockquote class=\"twitter-tweet\" data-lang=\"en\"><p lang=\"en\" dir=\"ltr\">content</p>&mdash; @" +
         userName +
-        '<a href="https://twitter.com/' +
+        "<a href=\"https://twitter.com/" +
         userName +
         "/status/" +
         evidence +
-        '?ref_src=twsrc%5Etfw"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+        "?ref_src=twsrc%5Etfw\"></a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"
       );
     }
   },
   github: {
     label: "GitHub",
-    icon: <FontAwesomeIcon icon={faGithub} />,
+    icon: <FontAwesomeIcon icon={faGithub}/>,
     userNamePrefix: null,
     userNameProfilePreview: userName =>
-      '<div class="github-card" data-github="' +
+      "<div class=\"github-card\" data-github=\"" +
       userName +
-      '" data-xwidth="400" data-xheight="152" data-theme="default"></div><script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>',
+      "\" data-xwidth=\"400\" data-xheight=\"152\" data-theme=\"default\"></div><script src=\"//cdn.jsdelivr.net/github-cards/latest/widget.js\"></script>",
     evidenceUriTemplate: userName =>
       "https://gist.github.com/" + userName + "/[[TOKEN]]",
     evidenceDirections: (
@@ -84,17 +86,22 @@ const Providers = {
     ),
     evidencePreview: (userName, evidence) => {
       return (
-        '<script src="https://gist.github.com/' +
+        "<script src=\"https://gist.github.com/" +
         userName +
         "/" +
         evidence +
-        '.js"></script>'
+        ".js\"></script>"
       );
     }
   }
 };
 
-const IdentityProviderInput = LoadableHOC(
+const IdentityProviderInput = connect(state => {
+    return {
+      providers: state.providers
+    };
+  }
+)(
   props => {
     return (
       <FormGroup>
@@ -111,9 +118,6 @@ const IdentityProviderInput = LoadableHOC(
         </Input>
       </FormGroup>
     );
-  },
-  {
-    providers: props => props.identityService.getProviders()
   }
 );
 
@@ -126,8 +130,8 @@ const IdentityUserNameInput = ConditionalHOC(props => {
     <FormGroup>
       <Label>Enter {Providers[props.provider].label} User Name</Label>
       <InputGroup>
-        <UserNamePrefix prefix={props.prefix} />
-        <Input value={props.value} onChange={props.onChange} />
+        <UserNamePrefix prefix={props.prefix}/>
+        <Input value={props.value} onChange={props.onChange}/>
       </InputGroup>
     </FormGroup>
   );
@@ -173,7 +177,7 @@ const IdentityEvidenceInput = ConditionalHOC(props => {
           Now enter that crazy jumble (if there is a question mark and other
           stuff, do not include it)
         </Label>
-        <Input value={props.value} onChange={props.onChange} />
+        <Input value={props.value} onChange={props.onChange}/>
       </FormGroup>
     </React.Fragment>
   );
@@ -317,7 +321,15 @@ const VerifyForm = ConditionalHOC(props => {
   );
 }, "evidence");
 
-const IdentityForm = LoadableHOC(
+const IdentityForm = connect(state => {
+    return {
+      priceInWei: state.identityRequestPriceInWei
+    };
+  },
+  dispatch => {
+    return {};
+  }
+)(LoadingHOC(["priceInWei"],
   class extends React.Component {
     state = {
       provider: "",
@@ -409,10 +421,7 @@ const IdentityForm = LoadableHOC(
         </div>
       );
     }
-  },
-  {
-    priceInWei: props => props.identityService.getRequestPriceInWei()
   }
-);
+));
 
 export default IdentityForm;

@@ -1,18 +1,22 @@
 import _ from "lodash";
 import React from "react";
 
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Row, Col } from "reactstrap";
-import { Button } from "reactstrap";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
+import {Row, Col} from "reactstrap";
+import {Button} from "reactstrap";
+import {Card, CardBody, CardTitle} from "reactstrap";
 
-import LoadableHOC from "../hoc/LoadableHOC";
+import {connect} from "react-redux";
+
+import LoadingHOC from "../hoc/LoadingHOC";
 import IfElseHOC from "../hoc/IfElseHOC";
+import InitializeHOC from "../hoc/InitializeHOC";
 
 import IdentityForm from "../widgets/IdentityForm";
 import IdentityProvider from "../widgets/IdentityProvider";
+import * as Actions from "../state/actions";
 
-const IdentityProviders = LoadableHOC(
+const IdentityProviders = LoadingHOC(["providerGroups"],
   props => {
     return _.map(props.providerGroups, (providers, requestor) => {
       return (
@@ -34,14 +38,21 @@ const IdentityProviders = LoadableHOC(
         </React.Fragment>
       );
     });
-  },
-  {
-    providerGroups: async props => {
-      const providers = await props.identityService.getMyIdentityProviders();
-      return _.groupBy(providers, p => p.request.requestor);
-    }
   }
 );
+
+const StatefulIdentityProviders = connect(
+  state => {
+    const {myIdentityProviders} = state;
+    if (_.isNil(myIdentityProviders)) {
+      return {};
+    } else {
+      return {
+        providerGroups: _.groupBy(myIdentityProviders, p => p.request.requestor)
+      };
+    }
+  }
+)(IdentityProviders);
 
 class AddIdentityForm extends React.Component {
   state = {
@@ -55,7 +66,7 @@ class AddIdentityForm extends React.Component {
 
   toggleForm() {
     this.setState(previousState => {
-      return { show: !previousState.show };
+      return {show: !previousState.show};
     });
   }
 
@@ -66,7 +77,7 @@ class AddIdentityForm extends React.Component {
           <CardBody>
             <CardTitle className="d-flex justify-content-between w-100">
               Verify Another Identity
-              <Button close onClick={this.toggleForm} />
+              <Button close onClick={this.toggleForm}/>
             </CardTitle>
 
             <IdentityForm {...this.props} />
@@ -92,7 +103,7 @@ const IdentityDetails = props => {
           {_.toString(props.identityInfo.id)}
         </BreadcrumbItem>
       </Breadcrumb>
-      <IdentityProviders {...props} identityId={props.identityInfo.id} />
+      <StatefulIdentityProviders {...props} />
       <AddIdentityForm {...props} />
     </div>
   );
@@ -104,17 +115,19 @@ const IdentityContent = IfElseHOC(
   IdentityForm
 );
 
-const MyIdentityPage = LoadableHOC(
-  props => {
-    return (
-      <div>
-        <IdentityContent {...props} />
-      </div>
-    );
+const MyIdentityPage = connect(
+  state => {
+    return {
+      identityInfo: state.myIdentity,
+    };
   },
-  {
-    identityInfo: props => props.identityService.getMyIdentity()
+  dispatch => {
+    return {
+      fetchMyIdentity: () => {
+        dispatch(Actions.fetchMyIdentityProviders());
+      }
+    };
   }
-);
+)(InitializeHOC(props => props.fetchMyIdentity(), IdentityContent));
 
 export default MyIdentityPage;

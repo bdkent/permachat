@@ -1,20 +1,28 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import PermaChatContract from "./contracts/PermaChat.json";
 import getWeb3 from "./utils/getWeb3";
 import truffleContract from "truffle-contract";
 import localForage from "localforage";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSyncAlt} from "@fortawesome/free-solid-svg-icons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Alert } from "reactstrap";
+import {Alert} from "reactstrap";
+
+import {ConnectedRouter} from "connected-react-router";
+
+import {Provider} from "react-redux";
 
 import PermaChat from "./PermaChat";
 import AnonymousBlurb from "./widgets/AnonymousBlurb";
+
+import * as Actions from "./state/actions";
+
+import {newReduxStore} from "./utils/ReduxUtils";
 
 const deployContract = async (web3, contractDefinition) => {
   const contract = truffleContract(contractDefinition);
@@ -78,27 +86,35 @@ class App extends Component {
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3().catch(this.withError(ErrorType.NoWeb3));
-      this.setState({ web3 });
-
+      this.setState({web3});
       await web3.eth.net
-        .isListening()
-        .catch(this.withError(ErrorType.UnconnectedWeb3));
+      .isListening()
+      .catch(this.withError(ErrorType.UnconnectedWeb3));
 
       const networkType = await web3.eth.net
-        .getNetworkType()
-        .catch(this.withError(ErrorType.UnknownNetwork));
-      this.setState({ networkType });
+      .getNetworkType()
+      .catch(this.withError(ErrorType.UnknownNetwork));
 
+      this.setState({networkType});
       const accounts = await web3.eth.getAccounts();
-      this.setState({ accounts });
 
+      this.setState({accounts});
       const contract = await deployContract(web3, PermaChatContract).catch(
         this.withError(ErrorType.NoContract)
       );
 
+      const {store, history} = newReduxStore({web3, contract});
+
+      await store.dispatch(Actions.setAccounts(accounts));
+      await store.dispatch(Actions.setActiveAccount(_.head(accounts)));
+      await store.dispatch(Actions.refreshIdentityRequestPrice());
+      await store.dispatch(Actions.fetchMyIdentityProviders());
+
       this.setState({
         contract,
-        contracts: [{ definition: PermaChatContract, instance: contract }]
+        contracts: [{definition: PermaChatContract, instance: contract}],
+        store,
+        history
       });
 
       localForage.getItem("permachat-contract").then(storedAddress => {
@@ -136,21 +152,26 @@ class App extends Component {
     if (this.state.loading) {
       return (
         <div className="container text-center text-info">
-          <FontAwesomeIcon icon={faSyncAlt} spin size="5x" />
+          <FontAwesomeIcon icon={faSyncAlt} spin size="5x"/>
         </div>
       );
     } else {
-      if (_.isNil(this.state.error)) {
+      if (_.isNil(this.state.error) && !_.isNil(this.state.store) && !_.isNil(this.state.history)) {
         return (
-          <div className="">
-            <NetworkBanner networkType={this.state.networkType} />
-            <PermaChat
-              accounts={this.state.accounts}
-              contract={this.state.contract}
-              contracts={this.state.contracts}
-              web3={this.state.web3}
-            />
-          </div>
+          <Provider store={this.state.store}>
+            <ConnectedRouter history={this.state.history}>
+              <div>
+                <NetworkBanner networkType={this.state.networkType}/>
+                <PermaChat
+                  store={this.state.store}
+                  accounts={this.state.accounts}
+                  contract={this.state.contract}
+                  contracts={this.state.contracts}
+                  web3={this.state.web3}
+                />
+              </div>
+            </ConnectedRouter>
+          </Provider>
         );
       } else {
         switch (this.state.error) {
@@ -159,7 +180,7 @@ class App extends Component {
             return (
               <div className="pt-4">
                 <div className="container">
-                  <AnonymousBlurb />
+                  <AnonymousBlurb/>
                 </div>
               </div>
             );
@@ -184,7 +205,7 @@ class App extends Component {
           case ErrorType.NoContract: {
             return (
               <div>
-                <NetworkBanner networkType={this.state.networkType} />
+                <NetworkBanner networkType={this.state.networkType}/>
                 <div className="container">
                   <Alert color="danger" className="text-center">
                     <h3>
@@ -205,7 +226,7 @@ class App extends Component {
             console.log("state", this.state);
             return (
               <div>
-                <NetworkBanner networkType={this.state.networkType} />
+                <NetworkBanner networkType={this.state.networkType}/>
                 <div className="container">
                   <Alert color="danger" className="text-center">
                     <h3>Unknown Error</h3>
