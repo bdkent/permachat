@@ -1,19 +1,18 @@
 import _ from "lodash";
 import React from "react";
 
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 
 import Datastore from "../widgets/Datastore";
 
 const TagPage = props => {
-  const { tag } = props;
+  const {tag} = props;
 
   const services = _.assign(
     {},
     props.postService,
     props.pricingService,
-    props.dataService,
-    props.identityService
+    props.dataService
   );
 
   return (
@@ -24,7 +23,7 @@ const TagPage = props => {
       </Breadcrumb>
 
       <h2>Tag History</h2>
-      <Datastore services={services} domain={"tags/all/" + tag} />
+      <Datastore services={services} domain={"tags/all/" + tag}/>
     </div>
   );
 };

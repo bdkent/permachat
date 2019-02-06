@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 import {Row, Col} from "reactstrap";
 
-import LoadableHOC from "../hoc/LoadableHOC";
 import LoadingHOC from "../hoc/LoadingHOC";
 import InitializeHOC from "../hoc/InitializeHOC";
 
@@ -53,39 +52,6 @@ const UserDetails = connect(
     };
   }
 )(InitializeHOC(props => props.fetchIdentityProviders(), LoadingHOC(["providers"], PureUserDetails)));
-/*
-const UserDetails = LoadableHOC(
-  props => {
-    const { userId, providers } = props;
-    return (
-      <React.Fragment>
-        <h2>Identities</h2>
-        <Row className="mb-4">
-          {_.map(providers, (identityProvider, i) => {
-            return (
-              <Col key={i} md={4}>
-                <IdentityProvider
-                  identityProvider={identityProvider}
-                  provider={identityProvider.provider}
-                />
-              </Col>
-            );
-          })}
-        </Row>
-        <dl>
-          <dt>Ethereum Address</dt>
-          <dd>{userId}</dd>
-        </dl>
-      </React.Fragment>
-    );
-  },
-  {
-    providers: async props => {
-      return await props.identityService.getIdentityProviders(props.userId);
-    }
-  }
-);
-*/
 
 const UserPage = props => {
   const {userId} = props;
@@ -94,8 +60,7 @@ const UserPage = props => {
     {},
     props.postService,
     props.pricingService,
-    props.dataService,
-    props.identityService
+    props.dataService
   );
 
   return (
@@ -104,7 +69,7 @@ const UserPage = props => {
         <BreadcrumbItem>Users</BreadcrumbItem>
         <BreadcrumbItem active>{userId}</BreadcrumbItem>
       </Breadcrumb>
-      <UserDetails userId={userId} identityService={props.identityService}/>
+      <UserDetails userId={userId}/>
       <h2>Post History</h2>
       <Datastore services={services} domain={"users/" + userId}/>
     </div>

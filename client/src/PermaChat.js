@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 import PostService from "./services/PostService";
 import DataService from "./services/DataService";
 import PricingService from "./services/PricingService";
-import IdentityService from "./services/IdentityService";
 
 import Header from "./widgets/Header";
 import MainContent from "./widgets/MainContent";
@@ -55,13 +54,7 @@ class PermaChat extends Component {
       this.props.web3
     ),
     dataService: new DataService(this.props.accounts[0], this.props.contract),
-    pricingService: new PricingService(this.props.web3),
-    identityService: new IdentityService(
-      this.props.store,
-      this.props.contract,
-      this.props.accounts[0],
-      this.props.web3
-    )
+    pricingService: new PricingService(this.props.web3)
   };
 
   render() {
@@ -72,7 +65,6 @@ class PermaChat extends Component {
           <StatefulMainContent
             postService={this.state.postService}
             dataService={this.state.dataService}
-            identityService={this.state.identityService}
             pricingService={this.state.pricingService}
           />
         </Container>

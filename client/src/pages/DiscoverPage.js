@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import Datastore from "../widgets/Datastore";
 
@@ -10,11 +10,10 @@ class DiscoverPage extends Component {
       {},
       this.props.postService,
       this.props.pricingService,
-      this.props.dataService,
-      this.props.identityService
+      this.props.dataService
     );
 
-    return <Datastore services={services} domain={"all"} />;
+    return <Datastore services={services} domain={"all"}/>;
   }
 }
 

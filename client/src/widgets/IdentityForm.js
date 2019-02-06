@@ -22,6 +22,8 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTwitter, faGithub} from "@fortawesome/free-brands-svg-icons";
 
+import * as Actions from "../state/actions";
+
 import LoadingHOC from "../hoc/LoadingHOC";
 import ConditionalHOC from "../hoc/ConditionalHOC";
 
@@ -146,12 +148,12 @@ const IdentityTokenInput = ConditionalHOC(props => {
     <React.Fragment>
       <FormGroup>
         <Label>This code has been generated for you:</Label>
-        <p className="bg-light p-4">
+        <Alert color="secondary">
           <code>{props.token}</code>
-        </p>
+        </Alert>
         {Providers[props.provider].evidenceDirections}
         <p>It should look something like this:</p>
-        <p className="bg-light p-4">
+        <Alert color="secondary">
           {_.map(templateTokens, (token, i) => {
             return (
               <span key={i}>
@@ -163,7 +165,7 @@ const IdentityTokenInput = ConditionalHOC(props => {
               </span>
             );
           })}
-        </p>
+        </Alert>
       </FormGroup>
     </React.Fragment>
   );
@@ -321,84 +323,66 @@ const VerifyForm = ConditionalHOC(props => {
   );
 }, "evidence");
 
-const IdentityForm = connect(state => {
+const IdentityForm = connect(
+  state => {
     return {
-      priceInWei: state.identityRequestPriceInWei
+      priceInWei: state.identityRequestPriceInWei,
+      provider: _.get(state, ["identityRequestForm", "provider"], ""),
+      userName: _.get(state, ["identityRequestForm", "username"], ""),
+      token: _.get(state, ["identityRequestForm", "token"], ""),
+      evidence: _.get(state, ["identityRequestForm", "evidence"], "")
     };
   },
-  dispatch => {
-    return {};
+  (dispatch, ownProps) => {
+    return {
+      setProvider: (provider) => {
+        dispatch(Actions.setIdentityRequestFormProvider(provider));
+      },
+      setUsername: (username) => {
+        dispatch(Actions.setIdentityRequestFormUsername(username));
+      },
+      setEvidence: (evidence) => {
+        dispatch(Actions.setIdentityRequestFormEvidence(evidence));
+      },
+      doRequest: (provider, username, evidence) => {
+        dispatch(Actions.doIdentityRequest(provider, username, evidence));
+      }
+    };
   }
 )(LoadingHOC(["priceInWei"],
   class extends React.Component {
-    state = {
-      provider: "",
-      userName: "",
-      token: null,
-      evidence: ""
-    };
 
     constructor(props) {
       super(props);
 
       this.changeProvider = this.changeProvider.bind(this);
       this.changeUserName = this.changeUserName.bind(this);
-      this.createToken = this.createToken.bind(this);
       this.changeEvidence = this.changeEvidence.bind(this);
       this.requestIdentity = this.requestIdentity.bind(this);
     }
 
     changeProvider(event) {
       const value = event.target.value;
-      this.setState({
-        provider: value,
-        userName: "",
-        token: null,
-        evidence: ""
-      });
+      this.props.setProvider(value);
     }
 
     changeUserName(event) {
       const value = event.target.value;
-      this.setState(
-        {
-          userName: value,
-          token: null,
-          evidence: ""
-        },
-        this.createToken
-      );
+      this.props.setUsername(value);
     }
 
     changeEvidence(event) {
       const value = event.target.value;
-      this.setState({
-        evidence: value
-      });
+      this.props.setEvidence(value);
     }
 
-    async createToken() {
-      const token = await this.props.identityService.createToken(
-        this.state.provider,
-        this.state.userName
-      );
-      this.setState({
-        token: token
-      });
-    }
-
-    async requestIdentity() {
-      return this.props.identityService.requestIdentity(
-        this.state.provider,
-        this.state.userName,
-        this.state.evidence
-      );
+    requestIdentity() {
+      return this.props.doRequest(this.props.provider, this.props.userName, this.props.evidence);
     }
 
     render() {
-      const subProps = _.assign({}, this.props, this.state, {
+      const subProps = _.assign({}, this.props, {
         changeUserName: this.changeUserName,
-        createToken: this.createToken,
         changeEvidence: this.changeEvidence,
         requestIdentity: this.requestIdentity
       });
@@ -408,13 +392,12 @@ const IdentityForm = connect(state => {
           <Form>
             <IdentityProviderInput
               {...this.props}
-              value={this.state.provider}
+              value={this.props.provider}
               onChange={this.changeProvider}
             />
             <ProviderSpecificIdentityForm {...subProps} />
             <VerifyForm
               {...this.props}
-              {...this.state}
               requestIdentity={this.requestIdentity}
             />
           </Form>

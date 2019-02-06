@@ -1,10 +1,10 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import Posts from "../widgets/Posts";
 
 class LatestPage extends Component {
-  state = { posts: [] };
+  state = {posts: []};
 
   constructor(props) {
     super(props);
@@ -42,8 +42,7 @@ class LatestPage extends Component {
     const services = _.assign(
       {},
       this.props.postService,
-      this.props.pricingService,
-      this.props.identityService
+      this.props.pricingService
     );
     return (
       <Posts

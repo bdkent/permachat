@@ -10,10 +10,68 @@ export function setAccounts(accounts) {
   };
 }
 
+export function resetIdentityRequestForm() {
+  return {
+    type: ActionTypes.RESET_IDENTITY_REQUEST_FORM_PROVIDER
+  };
+}
+
+export function setIdentityRequestFormProvider(provider) {
+  return {
+    type: ActionTypes.SET_IDENTITY_REQUEST_FORM_PROVIDER,
+    provider
+  };
+}
+
+export function setIdentityRequestFormUsername(username) {
+  return async (dispatch, getState, {web3}) => {
+    const {identityRequestForm: {provider}, activeAccount} = getState();
+    const token = web3.utils.sha3(provider + username + activeAccount);
+    return dispatch({
+      type: ActionTypes.SET_IDENTITY_REQUEST_FORM_USERNAME,
+      username,
+      token
+    });
+  };
+}
+
+export function setIdentityRequestFormEvidence(evidence) {
+  return {
+    type: ActionTypes.SET_IDENTITY_REQUEST_FORM_EVIDENCE,
+    evidence
+  };
+}
+
 export function setActiveAccount(account) {
   return {
     type: ActionTypes.SET_ACTIVE_ACCOUNT,
     account
+  };
+}
+
+export function doIdentityRequest(provider, username, evidence) {
+  return async (dispatch, getState, {contract}) => {
+    const txParams = new TxParams(getState());
+    try {
+      const result = await contract.submitRequest(provider, username, evidence, txParams);
+      return dispatch({
+        type: ActionTypes.DO_IDENTITY_REQUEST,
+        result,
+        provider,
+        username,
+        evidence
+      });
+    } catch (e) {
+      console.error(
+        "error",
+        "requestIdentity",
+        provider,
+        username,
+        evidence,
+        e
+      );
+    }
+
   };
 }
 

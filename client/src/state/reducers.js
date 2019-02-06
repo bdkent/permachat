@@ -60,3 +60,20 @@ export function identityProvidersMapping(state = {}, action) {
       return state;
   }
 }
+
+const DefaultIdentityRequestForm = {provider: "", username: "", token: "", evidence: ""};
+
+export function identityRequestForm(state = DefaultIdentityRequestForm, action) {
+  switch (action.type) {
+    case ActionTypes.SET_IDENTITY_REQUEST_FORM_PROVIDER:
+      return {provider: action.provider};
+    case ActionTypes.SET_IDENTITY_REQUEST_FORM_USERNAME:
+      return _.assign({}, state, {username: action.username, token: action.token});
+    case ActionTypes.SET_IDENTITY_REQUEST_FORM_EVIDENCE:
+      return _.assign({}, state, {evidence: action.evidence});
+    case ActionTypes.RESET_IDENTITY_REQUEST_FORM_PROVIDER:
+      return _.clone(DefaultIdentityRequestForm);
+    default:
+      return state;
+  }
+}

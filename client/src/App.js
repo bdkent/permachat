@@ -24,6 +24,8 @@ import * as Actions from "./state/actions";
 
 import {newReduxStore} from "./utils/ReduxUtils";
 
+import Scheduler from "./services/Scheduler";
+
 const deployContract = async (web3, contractDefinition) => {
   const contract = truffleContract(contractDefinition);
   contract.setProvider(web3.currentProvider);
@@ -107,7 +109,7 @@ class App extends Component {
 
       await store.dispatch(Actions.setAccounts(accounts));
       await store.dispatch(Actions.setActiveAccount(_.head(accounts)));
-      await store.dispatch(Actions.refreshIdentityRequestPrice());
+      await Scheduler.startImmediate(() => store.dispatch(Actions.refreshIdentityRequestPrice()), 1000 * 60 * 10);
       await store.dispatch(Actions.fetchMyIdentityProviders());
 
       this.setState({

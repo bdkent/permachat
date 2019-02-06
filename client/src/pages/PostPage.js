@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 
 import LoadableHOC from "../hoc/LoadableHOC";
 import DerivedStateHOC from "../hoc/DerivedStateHOC";
@@ -41,7 +41,7 @@ const LoadedPost = LoadableHOC(
 
       return (
         <Post {...postProps} services={props.services} show>
-          <hr />
+          <hr/>
           <Replies
             replyIds={props.replyIds}
             services={props.services}
@@ -65,8 +65,7 @@ const PostPage = LoadableHOC(
     const services = _.assign(
       {},
       props.postService,
-      props.pricingService,
-      props.identityService
+      props.pricingService
     );
     return (
       <div>
@@ -86,7 +85,7 @@ const PostPage = LoadableHOC(
       </div>
     );
   },
-  { post: props => props.postService.getPostById(props.postId) }
+  {post: props => props.postService.getPostById(props.postId)}
 );
 
 export default PostPage;
