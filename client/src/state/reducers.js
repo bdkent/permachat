@@ -5,6 +5,10 @@ export function providers(state = ["twitter", "github"], action) {
   return state;
 }
 
+export function web3(state = null, action) {
+  return state;
+}
+
 export function accounts(state = [], action) {
   switch (action.type) {
     case ActionTypes.SET_ACCOUNTS:
@@ -73,6 +77,40 @@ export function identityRequestForm(state = DefaultIdentityRequestForm, action) 
       return _.assign({}, state, {evidence: action.evidence});
     case ActionTypes.RESET_IDENTITY_REQUEST_FORM_PROVIDER:
       return _.clone(DefaultIdentityRequestForm);
+    default:
+      return state;
+  }
+}
+
+export function etherPrice(state = null, action) {
+  switch (action.type) {
+    case ActionTypes.REFRESH_ETHER_PRICE:
+      return action.value;
+    default:
+      return state;
+  }
+}
+
+const TipDenominations = {
+  cent: 1,
+  nickel: 5,
+  quarter: 25,
+  dollar: 100
+};
+
+const convertCentsToEther = (etherPriceInCents, cents) => {
+  return (1 / etherPriceInCents) * cents;
+};
+
+export function tipDenominations(state = null, action) {
+  switch (action.type) {
+    case ActionTypes.REFRESH_ETHER_PRICE:
+      return _.mapValues(TipDenominations, cents => {
+        return {
+          cents,
+          priceInEther: convertCentsToEther(action.value.priceInCents, cents)
+        };
+      });
     default:
       return state;
   }

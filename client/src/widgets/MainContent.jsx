@@ -17,8 +17,6 @@ const MainContent = ConditionalHOC(
     const {
       postService,
       dataService,
-      pricingService,
-      identityService,
       account,
       contracts
     } = globalProps;
@@ -38,8 +36,6 @@ const MainContent = ConditionalHOC(
             return (
               <MyPostsPage
                 postService={postService}
-                pricingService={pricingService}
-                identityService={identityService}
               />
             );
           }}
@@ -50,9 +46,7 @@ const MainContent = ConditionalHOC(
             return (
               <DiscoverPage
                 postService={postService}
-                pricingService={pricingService}
                 dataService={dataService}
-                identityService={identityService}
               />
             );
           }}
@@ -63,8 +57,6 @@ const MainContent = ConditionalHOC(
             return (
               <LatestPage
                 postService={postService}
-                pricingService={pricingService}
-                identityService={identityService}
                 account={account}
               />
             );
@@ -77,8 +69,6 @@ const MainContent = ConditionalHOC(
               <UserPage
                 dataService={dataService}
                 postService={postService}
-                pricingService={pricingService}
-                identityService={identityService}
                 userId={props.match.params.userId}
               />
             );
@@ -90,8 +80,6 @@ const MainContent = ConditionalHOC(
             return (
               <PostPage
                 postService={postService}
-                pricingService={pricingService}
-                identityService={identityService}
                 postId={props.match.params.postId}
               />
             );
@@ -103,9 +91,7 @@ const MainContent = ConditionalHOC(
             return (
               <TagPage
                 postService={postService}
-                pricingService={pricingService}
                 dataService={dataService}
-                identityService={identityService}
                 tag={props.match.params.tag}
               />
             );
@@ -121,10 +107,7 @@ const MainContent = ConditionalHOC(
           path="/my/identity"
           render={props => {
             return (
-              <MyIdentityPage
-                identityService={identityService}
-                pricingService={pricingService}
-              />
+              <MyIdentityPage/>
             );
           }}
         />

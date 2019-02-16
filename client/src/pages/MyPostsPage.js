@@ -36,8 +36,7 @@ const IdentitiedMyPostsPage = DerivedStateHOC(
     render() {
       const services = _.assign(
         {},
-        this.props.postService,
-        this.props.pricingService
+        this.props.postService
       );
 
       const props = {

@@ -89,13 +89,10 @@ class App extends Component {
       // Get network provider and web3 instance.
       const web3 = await getWeb3().catch(this.withError(ErrorType.NoWeb3));
       this.setState({web3});
-      await web3.eth.net
-      .isListening()
-      .catch(this.withError(ErrorType.UnconnectedWeb3));
 
-      const networkType = await web3.eth.net
-      .getNetworkType()
-      .catch(this.withError(ErrorType.UnknownNetwork));
+      await web3.eth.net.isListening().catch(this.withError(ErrorType.UnconnectedWeb3));
+
+      const networkType = await web3.eth.net.getNetworkType().catch(this.withError(ErrorType.UnknownNetwork));
 
       this.setState({networkType});
       const accounts = await web3.eth.getAccounts();
@@ -110,6 +107,7 @@ class App extends Component {
       await store.dispatch(Actions.setAccounts(accounts));
       await store.dispatch(Actions.setActiveAccount(_.head(accounts)));
       await Scheduler.startImmediate(() => store.dispatch(Actions.refreshIdentityRequestPrice()), 1000 * 60 * 10);
+      await Scheduler.startImmediate(() => store.dispatch(Actions.refreshEtherPrice()), 1000 * 60 * 10);
       await store.dispatch(Actions.fetchMyIdentityProviders());
 
       this.setState({

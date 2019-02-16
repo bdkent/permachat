@@ -73,7 +73,6 @@ const PostMeta = DerivedStateHOC(
         <div>
           <CommentarySummary
             commentary={props.commentary}
-            convertWeiToDollars={props.services.convertWeiToDollars}
           />
         </div>
       </div>

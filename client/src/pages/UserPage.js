@@ -59,7 +59,6 @@ const UserPage = props => {
   const services = _.assign(
     {},
     props.postService,
-    props.pricingService,
     props.dataService
   );
 

@@ -12,17 +12,28 @@ import ipfs from "../utils/ipfs-infura";
 export function newReduxStore(api) {
   const history = createHistory();
 
-  const DefaultStore = {};
+  const apis = {...api, ipfs};
+
+  const DefaultStore = {
+    web3: api.web3
+  };
 
   const loggerMiddleware = createLogger();
-
-  const thunkExtras = {...api, ipfs};
 
   const store = createStore(
     combineReducers({
       ...Reducers,
       router: connectRouter(history)
-    }), DefaultStore, compose(applyMiddleware(thunkMiddleware.withExtraArgument(thunkExtras), loggerMiddleware, routerMiddleware(history))));
+    }),
+    DefaultStore,
+    compose(
+      applyMiddleware(
+        thunkMiddleware.withExtraArgument(apis),
+        loggerMiddleware,
+        routerMiddleware(history)
+      )
+    )
+  );
 
   return {
     history, store

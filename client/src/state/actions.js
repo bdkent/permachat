@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import {fetch} from "whatwg-fetch";
+
 import * as ActionTypes from "./actionTypes";
 import ContractHelper from "../services/ContractHelper";
 
@@ -51,7 +53,9 @@ export function setActiveAccount(account) {
 
 export function doIdentityRequest(provider, username, evidence) {
   return async (dispatch, getState, {contract}) => {
+    const price = await contract.requestPrice();
     const txParams = new TxParams(getState());
+    txParams.value = price;
     try {
       const result = await contract.submitRequest(provider, username, evidence, txParams);
       return dispatch({
@@ -188,5 +192,26 @@ export function fetchIdentityProviders(address) {
     } else {
       return Promise.resolve();
     }
+  };
+}
+
+export function refreshEtherPrice() {
+  return async (dispatch, getState) => {
+
+    const result = await fetch(
+      "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR"
+    );
+    const json = await result.json();
+
+    const price = json.USD * 100;
+    const now = new Date().getTime();
+
+    return dispatch({
+      type: ActionTypes.REFRESH_ETHER_PRICE,
+      value: {
+        timestamp: now,
+        priceInCents: price
+      }
+    });
   };
 }

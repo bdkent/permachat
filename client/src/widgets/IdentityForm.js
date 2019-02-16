@@ -29,6 +29,7 @@ import ConditionalHOC from "../hoc/ConditionalHOC";
 
 import ExternalAnchor from "./ExternalAnchor";
 import WorkerButton from "./WorkerButton";
+import Dollars from "./Dollars";
 
 const Providers = {
   twitter: {
@@ -258,7 +259,9 @@ const LoadingIFrame = class extends React.Component {
 };
 
 const VerifyForm = ConditionalHOC(props => {
-  const cents = props.pricingService.convertWeiToDollars(props.priceInWei);
+
+  const {priceInWei} = props;
+
   return (
     <React.Fragment>
       <Card className="bg-light mb-4 text-center">
@@ -306,7 +309,7 @@ const VerifyForm = ConditionalHOC(props => {
           The price is approximate $1 USD, but Ether prices can fluxuate wildly.
         </p>
         <p>
-          The current cost is about <strong>${_.toString(cents)}</strong>{" "}
+          The current cost is about <strong><Dollars wei={priceInWei}/></strong>{" "}
           <small>({_.toString(props.priceInWei)} wei)</small>
         </p>
       </Alert>

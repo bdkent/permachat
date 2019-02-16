@@ -1,19 +1,21 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-import { ButtonGroup } from "reactstrap";
+import {ButtonGroup} from "reactstrap";
 import {
+  UncontrolledButtonDropdown,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
 
-import { Card, CardBody, CardHeader } from "reactstrap";
-import { Link } from "react-router-dom";
+import {Card, CardBody, CardHeader} from "reactstrap";
+import {Link} from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faMoneyBill,
   faThumbsUp,
@@ -23,7 +25,7 @@ import {
   faThumbtack,
   faComments
 } from "@fortawesome/free-solid-svg-icons";
-import { faEthereum } from "@fortawesome/free-brands-svg-icons";
+import {faEthereum} from "@fortawesome/free-brands-svg-icons";
 
 import ConditionalHOC from "../hoc/ConditionalHOC";
 import DerivedStateHOC from "../hoc/DerivedStateHOC";
@@ -38,105 +40,66 @@ import WorkerButton from "./WorkerButton";
 
 import BigNumberUtils from "../utils/BigNumberUtils";
 
-const TipDenominations = {
-  cent: 1,
-  nickel: 5,
-  quarter: 25,
-  dollar: 100
-};
-
-const Ether = ({ value }) => {
+const Ether = ({value}) => {
   return (
     <span title={value + " ETH"}>
       {_.round(value, 6).toString()}
-      <FontAwesomeIcon className="ml-1 mr-1" icon={faEthereum} />
+      <FontAwesomeIcon className="ml-1 mr-1" icon={faEthereum}/>
     </span>
   );
 };
 
-class Tip extends React.Component {
-  state = { isOpen: false, prices: {} };
-
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.refresh = this.refresh.bind(this);
-  }
-
-  componentDidMount = async () => {
-    this.refresh();
-  };
-
-  toggle() {
-    this.setState(prevState => {
-      return {
-        isOpen: !prevState.isOpen
-      };
-    });
-  }
-
-  refresh() {
-    const self = this;
-    self.setState({
-      prices: _.mapValues(TipDenominations, amount =>
-        this.props.toEtherFromCents(amount)
-      )
-    });
-  }
-
-  render() {
-    var self = this;
-    return (
-      <span>
-        <ButtonDropdown
-          size="sm"
-          isOpen={this.state.isOpen}
-          toggle={this.toggle}
-          onClick={this.refresh}
-        >
+const PureTip = (props) => {
+  return (
+    <span>
+        <UncontrolledButtonDropdown size="sm">
           <DropdownToggle
             caret
-            color={this.props.attention ? "success" : "secondary"}
+            color={props.attention ? "success" : "secondary"}
           >
-            <FontAwesomeIcon icon={faMoneyBill} className="mr-1" />
+            <FontAwesomeIcon icon={faMoneyBill} className="mr-1"/>
             Tip
           </DropdownToggle>
           <DropdownMenu>
-            {_.map(TipDenominations, (amount, name) => {
-              const ether = self.state.prices[name];
+            {_.map(props.denominations, ({cents, priceInEther}, name) => {
               return (
                 <DropdownItem
-                  key={amount}
-                  onClick={() => self.props.tip(ether)}
+                  key={cents}
+                  onClick={() => props.tip(priceInEther)}
                 >
                   <span className="mr-1">a {name}</span>
                   <span className="text-muted">
-                    (~ <Ether value={ether} />)
+                    (~ <Ether value={priceInEther}/>)
                   </span>
                 </DropdownItem>
               );
             })}
           </DropdownMenu>
-        </ButtonDropdown>
+        </UncontrolledButtonDropdown>
       </span>
-    );
-  }
-}
+  );
+};
 
-const PostContent = ({ content }) => {
+const Tip = connect(
+  (state, ownProps) => {
+    return {
+      denominations: state.tipDenominations
+    };
+  })(PureTip);
+
+const PostContent = ({content}) => {
   return (
     <div className="h4">
       <QuotedContent>
-        <IpfsContent hash={content} />
+        <IpfsContent hash={content}/>
       </QuotedContent>
     </div>
   );
 };
 
 const Pin = ConditionalHOC(
-  ({ attention, hasPin, isPinned, togglePin }) => {
-    const Icon = ({ hasPin }) => {
+  ({attention, hasPin, isPinned, togglePin}) => {
+    const Icon = ({hasPin}) => {
       return (
         <React.Fragment>
           <FontAwesomeIcon
@@ -156,7 +119,7 @@ const Pin = ConditionalHOC(
         onClick={togglePin}
         active={isPinned}
       >
-        <Icon hasPin={hasPin} />
+        <Icon hasPin={hasPin}/>
       </WorkerButton>
     );
   },
@@ -164,7 +127,7 @@ const Pin = ConditionalHOC(
 );
 
 const PostMyToolbar = ConditionalHOC(
-  ({ attention, hasPin, isPinned, togglePin }) => {
+  ({attention, hasPin, isPinned, togglePin}) => {
     return (
       <Pin
         attention={attention}
@@ -177,20 +140,19 @@ const PostMyToolbar = ConditionalHOC(
 );
 
 const CommentaryToolbar = ConditionalHOC(props => {
-  const { attention, upvote, downvote, flag, tip, toEtherFromCents } = props;
+  const {attention, upvote, downvote, flag, tip} = props;
   return (
     <React.Fragment>
       <Tip
         attention={attention}
-        toEtherFromCents={toEtherFromCents}
         tip={tip}
       />
       <ButtonGroup size="sm" className="ml-2 mr-2">
         <WorkerButton onClick={upvote}>
-          <FontAwesomeIcon icon={faThumbsUp} />
+          <FontAwesomeIcon icon={faThumbsUp}/>
         </WorkerButton>
         <WorkerButton onClick={downvote}>
-          <FontAwesomeIcon icon={faThumbsDown} />
+          <FontAwesomeIcon icon={faThumbsDown}/>
         </WorkerButton>
       </ButtonGroup>
       <WorkerButton
@@ -198,14 +160,14 @@ const CommentaryToolbar = ConditionalHOC(props => {
         onClick={flag}
         color={attention ? "danger" : "secondary"}
       >
-        <FontAwesomeIcon icon={faSkull} className="mr-1" /> Flag
+        <FontAwesomeIcon icon={faSkull} className="mr-1"/> Flag
       </WorkerButton>
     </React.Fragment>
   );
 });
 
 const PostOthersToolbar = ConditionalHOC(props => {
-  const { attention, toggleReply, replying, hasMyCommentary } = props;
+  const {attention, toggleReply, replying, hasMyCommentary} = props;
   return (
     <React.Fragment>
       <WorkerButton
@@ -215,31 +177,30 @@ const PostOthersToolbar = ConditionalHOC(props => {
         onClick={toggleReply}
         active={replying}
       >
-        <FontAwesomeIcon icon={faReply} className="mr-1" /> Reply
+        <FontAwesomeIcon icon={faReply} className="mr-1"/> Reply
       </WorkerButton>
-      <CommentaryToolbar {...props} show={!hasMyCommentary} />
+      <CommentaryToolbar {...props} show={!hasMyCommentary}/>
     </React.Fragment>
   );
 });
 
 const PostToolbar = ({
-  attention,
-  mine,
-  toggleReply,
-  replying,
-  isPinned,
-  hasPin,
-  togglePin,
-  upvote,
-  downvote,
-  flag,
-  tip,
-  toEtherFromCents,
-  hasMyCommentary
-}) => {
+                       attention,
+                       mine,
+                       toggleReply,
+                       replying,
+                       isPinned,
+                       hasPin,
+                       togglePin,
+                       upvote,
+                       downvote,
+                       flag,
+                       tip,
+                       hasMyCommentary
+                     }) => {
   const opacity = attention ? 1 : 0.25;
   return (
-    <span style={{ opacity: opacity }}>
+    <span style={{opacity: opacity}}>
       <PostMyToolbar
         attention={attention}
         isPinned={isPinned}
@@ -255,7 +216,6 @@ const PostToolbar = ({
         downvote={downvote}
         flag={flag}
         tip={tip}
-        toEtherFromCents={toEtherFromCents}
         show={!mine}
         hasMyCommentary={hasMyCommentary}
       />
@@ -283,7 +243,7 @@ const Reply = ConditionalHOC(
           </CardHeader>
 
           <CardBody>
-            <PostForm doPost={this.props.addReply} />
+            <PostForm doPost={this.props.addReply}/>
           </CardBody>
         </Card>
       );
@@ -291,22 +251,22 @@ const Reply = ConditionalHOC(
   }
 );
 
-const ViewParentThread = ConditionalHOC(({ postId }) => {
+const ViewParentThread = ConditionalHOC(({postId}) => {
   return (
     <p className="mb-2">
       <Link to={"/posts/" + postId}>
-        <FontAwesomeIcon className="mr-2" icon={faReply} />
+        <FontAwesomeIcon className="mr-2" icon={faReply}/>
         view parent thread of this reply
       </Link>
     </p>
   );
 });
 
-const ViewChildrenThread = ConditionalHOC(({ postId, count }) => {
+const ViewChildrenThread = ConditionalHOC(({postId, count}) => {
   return (
     <p className="mt-2">
       <Link to={"/posts/" + postId}>
-        <FontAwesomeIcon className="mr-2" icon={faComments} />
+        <FontAwesomeIcon className="mr-2" icon={faComments}/>
         view responses ({count})
       </Link>
     </p>
@@ -327,7 +287,6 @@ class GoodPost extends React.Component {
     this.downvote = this.downvote.bind(this);
     this.flag = this.flag.bind(this);
     this.tip = this.tip.bind(this);
-    this.toEtherFromCents = this.toEtherFromCents.bind(this);
     this.addReply = this.addReply.bind(this);
   }
 
@@ -363,10 +322,6 @@ class GoodPost extends React.Component {
     return this.props.services.addFlag(this.props.post.id);
   }
 
-  toEtherFromCents(cents) {
-    return this.props.services.convertCentsToEther(cents);
-  }
-
   addReply(content, tags, contentType) {
     return this.props.services.addReplyFromContent(
       this.props.post.id,
@@ -377,14 +332,14 @@ class GoodPost extends React.Component {
   }
 
   render() {
-    const { post, mine, attention, pinnedPostId, hasMyCommentary } = this.props;
+    const {post, mine, attention, pinnedPostId, hasMyCommentary} = this.props;
 
     const showParentThread =
       this.props.showParentThread || this.props.showThread;
     const showChildrenThread =
       this.props.showChildrenThread || this.props.showThread;
 
-    const { replying } = this.state;
+    const {replying} = this.state;
 
     const isPinned = BigNumberUtils.eq(post.id, pinnedPostId);
     const hasPin = !_.isNil(pinnedPostId);
@@ -395,7 +350,7 @@ class GoodPost extends React.Component {
           postId={this.props.replyParentId}
           show={showParentThread && !_.isNil(this.props.replyParentId)}
         />
-        <PostContent content={post.hash} />
+        <PostContent content={post.hash}/>
         <div className="mt-2">
           <PostToolbar
             mine={mine}
@@ -409,7 +364,6 @@ class GoodPost extends React.Component {
             downvote={this.downvote}
             tip={this.tip}
             flag={this.flag}
-            toEtherFromCents={this.toEtherFromCents}
             hasMyCommentary={hasMyCommentary}
           />
         </div>
@@ -429,10 +383,10 @@ class GoodPost extends React.Component {
   }
 }
 
-const FlaggedPost = ({ overrideFlag }) => {
+const FlaggedPost = ({overrideFlag}) => {
   return (
     <div className="text-danger text-center mt-4" onClick={overrideFlag}>
-      <FontAwesomeIcon icon={faSkull} size="4x" />
+      <FontAwesomeIcon icon={faSkull} size="4x"/>
       <p className="mt-4 mb-0">This post has been flagged.</p>
       <p className="mb-4">Click to view anyway.</p>
     </div>

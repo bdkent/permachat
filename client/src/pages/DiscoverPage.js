@@ -9,7 +9,6 @@ class DiscoverPage extends Component {
     const services = _.assign(
       {},
       this.props.postService,
-      this.props.pricingService,
       this.props.dataService
     );
 

@@ -64,8 +64,7 @@ const PostPage = LoadableHOC(
   props => {
     const services = _.assign(
       {},
-      props.postService,
-      props.pricingService
+      props.postService
     );
     return (
       <div>
