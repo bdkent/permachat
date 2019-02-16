@@ -41,7 +41,7 @@ class DataService {
     // );
 
     const result = await this.contract.getLatestDatabaseState();
-    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    const {multihashDigest, multihashHashFunction, multihashSize} = result;
     const ipfsHash = Multihash.getMultihashFromBytes32({
       digest: multihashDigest,
       hashFunction: multihashHashFunction,
@@ -58,7 +58,7 @@ class DataService {
 
   async getDB(currentDatabaseIndex) {
     const result = await this.contract.getDatabaseHash(currentDatabaseIndex);
-    const { multihashDigest, multihashHashFunction, multihashSize } = result;
+    const {multihashDigest, multihashHashFunction, multihashSize} = result;
     return Multihash.getMultihashFromBytes32({
       digest: multihashDigest,
       hashFunction: multihashHashFunction,
@@ -72,7 +72,10 @@ class DataService {
   }
 
   async unlockLatestDatabase() {
-    const result = await this.contract.unlockNewestDatabase(this.txParams);
+    const price = await this.contract.unlockPrice();
+    const txParams = _.clone(this.txParams);
+    txParams.value = price;
+    const result = await this.contract.unlockNewestDatabase(txParams);
     return result;
   }
 
