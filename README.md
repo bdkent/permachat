@@ -1,3 +1,6 @@
+# THIS IMPLEMENTATION IS DEPRECATED
+----
+
 # permachat
 
 ## What is permachat?
